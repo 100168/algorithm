@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+//0-1 bag
 func canPartition(nums []int) bool {
 
 	if len(nums) <= 1 {
