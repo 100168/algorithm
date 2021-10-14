@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 /*
 有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。
@@ -54,4 +57,5 @@ func infect(image [][]int, sr int, sc int, n int, m int, currentColor int) {
 }
 func main() {
 
+	fmt.Println("hhh")
 }
