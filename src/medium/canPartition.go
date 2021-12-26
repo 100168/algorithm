@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 //0-1 bag
 func canPartition(nums []int) bool {
@@ -24,10 +26,10 @@ func canPartition(nums []int) bool {
 	if max > midSum {
 		return false
 	}
-	return process2(nums, 0, midSum)
+	return process2(nums, midSum)
 }
 
-func process2(nums []int, index int, value int) bool {
+func process2(nums []int, value int) bool {
 	m := len(nums)
 	dp := make([][]bool, m)
 
@@ -68,8 +70,28 @@ func process(nums []int, index int, value int) bool {
 	return ans
 }
 
+type user struct {
+	name string
+	age  int8
+}
+
+func (u *user) setUser() {
+	u.name = "hhh"
+	u.age = 10
+	fmt.Println(u.name)
+	fmt.Println(u.age)
+}
+
 func main() {
-	nums := []int{1, 5, 11, 5}
+	nums := []int{11, 5, 11, 5}
 	partition := canPartition(nums)
 	fmt.Println(partition)
+	printInt(1<<15 - 1)
+
+}
+
+func printInt(t int16) {
+
+	fmt.Println(true)
+	fmt.Println(t)
 }
