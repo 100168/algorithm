@@ -10,6 +10,7 @@ type MsgError struct {
 	divider int
 }
 
+//实现了错误中的error方法
 func (msgError *MsgError) Error() string {
 	strFormat := `
     Cannot proceed, the divider is zero.

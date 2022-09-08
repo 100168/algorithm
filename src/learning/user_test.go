@@ -2,6 +2,7 @@ package learning
 
 import (
 	"fmt"
+	"testing"
 	_ "testing"
 )
 
@@ -26,12 +27,12 @@ func (u User) setUser2(name string, a int8) {
 	u.name = name
 	u.age = a
 
-	fmt.Println("user2", u.name)
+	fmt.Println("user2-name", u.name)
 	fmt.Println("user2-age", u.age)
 
 }
 
-func main() {
+func TestUser(t *testing.T) {
 	a := User{
 		name: " ",
 		age:  10,
@@ -42,7 +43,10 @@ func main() {
 	//a.getUser()
 
 	//可以使用指针调用值方法
-	fmt.Println("------")
+
 	b.setUser2("b", 10)
+	fmt.Println("------")
+	//b.setUser("aaa", 100)
+	fmt.Println("------")
 	b.getUser()
 }

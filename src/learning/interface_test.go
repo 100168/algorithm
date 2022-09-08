@@ -22,6 +22,12 @@ func (dog Dog) MyName() {
 	fmt.Println("my name is dog")
 }
 
+func Print[T any](s []T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
 func TestName(t *testing.T) {
 	dog := Dog{}
 	cat := Cat{}
