@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-leetcode/src/util"
+)
 
 func main() {
 
@@ -8,6 +11,8 @@ func main() {
 	fmt.Println(x + y)
 	fmt.Println("hello world!")
 	test(0)
+
+	fmt.Println(util.MAX(y, x))
 }
 
 func test(a int) {
