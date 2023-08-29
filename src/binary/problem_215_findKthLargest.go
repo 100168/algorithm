@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-//找第k大数
+// 找第k大数
 func findKthLargest(nums []int, k int) int {
 
 	return quicklySort(nums, 0, len(nums)-1, k-1)
@@ -58,6 +59,8 @@ func swap(a, b int, nums []int) {
 
 func main() {
 	nums := []int{1, 2, 3, 4, 5, 2, 24, 1, 3, 343, 21, 34, 4242}
+
+	sort.Ints(nums)
 
 	sort := quicklySort(nums, 0, len(nums)-1, 10)
 
