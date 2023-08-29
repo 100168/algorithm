@@ -21,7 +21,7 @@ func trap1(height []int) (ans int) {
 	return
 }
 
-//动态规划
+// 动态规划
 func trap2(height []int) (ans int) {
 	n := len(height)
 	maxLeft := make([]int, n)
@@ -48,7 +48,7 @@ func trap2(height []int) (ans int) {
 	return ans
 }
 
-//单调栈
+// 单调栈
 func trap3(height []int) (ans int) {
 	var stack []int
 	for i, h := range height {
@@ -70,18 +70,6 @@ func trap3(height []int) (ans int) {
 	}
 
 	return
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-func min(a, b int) int {
-	if a > b {
-		return b
-	}
-	return a
 }
 
 func main() {
