@@ -2,6 +2,13 @@ package main
 
 import "strconv"
 
+// 给你正整数 low ，high 和 k 。
+//
+// 如果一个数满足以下两个条件，那么它是 美丽的 ：
+//
+// 偶数数位的数目与奇数数位的数目相同。
+// 这个整数可以被 k 整除。
+// 请你返回范围 [low, high] 中美丽整数的数目。
 func numberOfBeautifulIntegers(low, high, k int) int {
 	calc := func(high int) int {
 		s := strconv.Itoa(high)
