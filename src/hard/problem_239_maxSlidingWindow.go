@@ -11,7 +11,7 @@ import "fmt"
 链接：https://leetcode-cn.com/problems/sliding-window-maximum
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
 
-//单调队列，加滑动窗口
+// 单调队列，加滑动窗口
 func maxSlidingWindow(nums []int, k int) []int {
 	left := 0
 	right := 0
@@ -74,4 +74,5 @@ func main() {
 
 	window = maxSlidingWindow2(a, 3)
 	fmt.Println(window)
+
 }
