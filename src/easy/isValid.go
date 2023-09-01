@@ -41,7 +41,10 @@ func main() {
 		2: 2,
 		3: 3,
 	}
+
 	fmt.Println(pairs[1])
+
+	fmt.Println(pairs[4])
 
 	isValid("()")
 
