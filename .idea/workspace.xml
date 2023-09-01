@@ -71,7 +71,7 @@
       <recent name="$PROJECT_DIR$/src/bitdp/233" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/bitdp/1397">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/bitdp/600">
     <configuration name="go build go-leetcode/src/bitdp/1397" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -117,15 +117,6 @@
       <filePath value="$PROJECT_DIR$/src/weekly/358/c.go" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build go-leetcode/src/bitdp/1397" />
-        <item itemvalue="Go Build.go build go-leetcode/src/kmp" />
-        <item itemvalue="Go Build.go build go-leetcode/src/bitdp/600" />
-        <item itemvalue="Go Build.go build go-leetcode/src/weekly/358 (2)" />
-        <item itemvalue="Go Build.go build go-leetcode/src/weekly/358 (1)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
