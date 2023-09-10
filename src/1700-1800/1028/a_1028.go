@@ -66,28 +66,26 @@ type TreeNode struct {
 
 func recoverFromPreorder(traversal string) *TreeNode {
 	parent := make(map[*TreeNode]*TreeNode)
+	//定义一个虚拟节点
 	ans := &TreeNode{
-		Val:   int(traversal[0] - '0'),
+		Val:   -1,
 		Left:  nil,
 		Right: nil,
 	}
 	parent[ans] = nil
-
 	cur := ans
 	parentLevel := -1
 	n := len(traversal)
 	curLevel := 0
-
-	for i := 0; i < n; i++ {
-		if traversal[i] == '-' {
+	p := 0
+	for p < n {
+		for ; traversal[p] == '-'; p++ {
 			curLevel++
-			continue
 		}
-		start := i
-		for ; start < n && traversal[start] != '-'; start++ {
-
+		start := p
+		for ; p < n && traversal[p] != '-'; p++ {
 		}
-		curVal, _ := strconv.Atoi(traversal[i:start])
+		curVal, _ := strconv.Atoi(traversal[start:p])
 		if curLevel > parentLevel {
 			cur.Left = &TreeNode{
 				Val:   curVal,
@@ -98,25 +96,22 @@ func recoverFromPreorder(traversal string) *TreeNode {
 			curLevel = 0
 			parent[cur.Left] = cur
 			cur = cur.Left
-
 		} else {
-			p := cur
+			pa := cur
 			for curLevel <= parentLevel {
-				p = parent[p]
+				pa = parent[pa]
 				parentLevel--
 			}
-			p.Right = &TreeNode{
+			pa.Right = &TreeNode{
 				Val:   curVal,
 				Left:  nil,
 				Right: nil,
 			}
-			parent[p.Right] = p
-			cur = p.Right
+			parent[pa.Right] = pa
+			cur = pa.Right
 			parentLevel = curLevel
 		}
 		curLevel = 0
-		i = start - 1
-
 	}
 	return ans.Left
 }
