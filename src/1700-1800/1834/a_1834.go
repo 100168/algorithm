@@ -20,15 +20,15 @@ import (
 type pair struct{ t, i int }
 type hp []pair
 
-func (h hp) Len() int {
-	return len(h)
+func (h *hp) Len() int {
+	return len(*h)
 }
-func (h hp) Less(i, j int) bool {
-	a, b := h[i], h[j]
+func (h *hp) Less(i, j int) bool {
+	a, b := (*h)[i], (*h)[j]
 	return a.t < b.t || a.t == b.t && a.i < b.i
 }
-func (h hp) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
+func (h *hp) Swap(i, j int) {
+	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
 func (h *hp) Push(v interface{}) {
 	*h = append(*h, v.(pair))
