@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛+双周赛">
       <change afterPath="$PROJECT_DIR$/src/learning/myheap/myHeap.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/week/366/b.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/week/366/c.go" afterDir="false" />
+=======
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="1700-1800">
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/1700-1800/1834/a_1834.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/1700-1800/1834/a_1834.go" afterDir="false" />
     </list>
@@ -137,6 +141,13 @@
         <item itemvalue="Go Build.go build go-leetcode/src/dfs" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-5b9edf226cbe-dfeaa18eee3a-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.9102.195" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
