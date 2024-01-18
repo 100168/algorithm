@@ -1,9 +1,11 @@
 package main
 
+import "container/heap"
+
 type myHeap []int
 
 func (h *myHeap) Less(i, j int) bool {
-	return (*h)[i] < (*h)[j]
+	return (*h)[i] > (*h)[j]
 }
 
 func (h *myHeap) Swap(i, j int) {
@@ -23,15 +25,23 @@ func (h *myHeap) Push(v any) {
 	*h = append(*h, v.(int))
 }
 
-func main() {
-	heap := new(myHeap)
-	println(heap.Len())
-	heap.Push(1)
-	heap.Push(5)
-	heap.Push(2)
-	heap.Push(12)
-	for heap.Len() > 0 {
-		println(heap.Pop().(int))
+func maxKElements(nums []int, k int) int64 {
+
+	hp := new(myHeap)
+	for i := range nums {
+		heap.Push(hp, nums[i])
 	}
+	ans := int64(0)
+	for hp.Len() > 0 && k > 0 {
+		cur := heap.Pop(hp).(int)
+		ans += int64(cur)
+		heap.Push(hp, (cur+2)/3)
+		k--
+	}
+	return ans
+}
+
+func main() {
+	println(maxKElements([]int{1, 10, 3, 3, 3}, 3))
 
 }

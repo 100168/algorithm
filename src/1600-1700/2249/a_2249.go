@@ -15,7 +15,6 @@ https://leetcode.cn/problems/count-lattice-points-inside-a-circle/description/
 func countLatticePoints(circles [][]int) int {
 
 	ans := 0
-
 	sort.Slice(circles, func(i, j int) bool {
 		return circles[i][2] > circles[j][2]
 	})
