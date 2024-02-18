@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛+双周赛">
-      <change afterPath="$PROJECT_DIR$/src/binary/33/33.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/binary/33/problem_33.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/370/a.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/370/b.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/370/c.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/binary/153/desc.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/binary/153/problem_153.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/binary/81/des.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/binary/81/problem_81.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dp/931/des.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dp/931/problem_931.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/1600-1700/2249/a_2249.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/1600-1700/2249/a_2249.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/learning/myheap/myHeap.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/learning/myheap/myHeap.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/binary/33/33.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/binary/33/des.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/myheap/myHeap.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/myheap/myHeap.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="4581" />
+    <option name="totalTimeSeconds" value="2255" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -55,31 +56,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "configurable..is.expanded": "true",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/panjian",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "leetcode.id"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build go-leetcode/src/dp/931.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/learning/myheap.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/myheap.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;true&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/panjian/goProject/go-leetcode&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;leetcode.id&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: [
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -92,23 +100,14 @@
       <recent name="$PROJECT_DIR$/src/bitdp/233" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/1600-1700/2249">
-    <configuration name="go build go-leetcode/src/1600-1700/2249" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build go-leetcode/src/myheap">
+    <configuration name="go build go-leetcode/src/dp/931" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1600-1700/2249" />
+      <package value="go-leetcode/src/dp/931" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1600-1700/2249/a_2249.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build go-leetcode/src/dfs" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/dfs" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/dfs/a_77.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/931/problem_931.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/learning/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -118,6 +117,15 @@
       <package value="go-leetcode/src/learning/myheap" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/learning/myheap/myheap.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go-leetcode/src/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/myheap" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/myheap/myHeap.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/week/366 (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -140,18 +148,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build go-leetcode/src/1600-1700/2249" />
+        <item itemvalue="Go Build.go build go-leetcode/src/myheap" />
         <item itemvalue="Go Build.go build go-leetcode/src/learning/myheap" />
-        <item itemvalue="Go Build.go build go-leetcode/src/week/366" />
-        <item itemvalue="Go Build.go build go-leetcode/src/week/366 (1)" />
-        <item itemvalue="Go Build.go build go-leetcode/src/dfs" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-266795519c66-911b893a1778-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.13135.104" />
+        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14475.38" />
       </set>
     </attachedChunks>
   </component>
@@ -174,94 +179,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/medium/problem_1590.go</url>
-          <line>39</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/medium/problem_1590.go</url>
-          <line>43</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/medium/problem_1590.go</url>
-          <line>46</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/medium/1371.go</url>
-          <line>13</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/medium/1124.go</url>
-          <line>13</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/binary/problem_215_findKthLargest.go</url>
-          <line>64</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/bitdp/600/a_600.go</url>
-          <line>19</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/bitdp/600/a_600.go</url>
-          <line>69</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/bitdp/600/a_600.go</url>
-          <line>74</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/kmp/a_28.go</url>
-          <line>53</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/bitdp/1397/a_1397.go</url>
-          <line>17</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/1700-1800/1186/a_1186.go</url>
-          <line>40</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/1700-1800/1186/a_1186.go</url>
-          <line>36</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/1700-1800/1711/a_1711.go</url>
-          <line>21</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/1700-1800/1028/a_1028.go</url>
-          <line>80</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/dfs/a_77.go</url>
-          <line>63</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/week/366/b.go</url>
-          <line>50</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/learning/myheap/myHeap.go</url>
-          <line>30</line>
-          <option name="timeStamp" value="45" />
+          <url>file://$PROJECT_DIR$/src/dp/931/problem_931.go</url>
+          <line>57</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
