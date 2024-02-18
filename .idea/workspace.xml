@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛+双周赛" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="删除无效代码" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="2255" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -158,7 +157,8 @@
     <MESSAGE value="数位dp模板题" />
     <MESSAGE value="1700-1800" />
     <MESSAGE value="周赛+双周赛" />
-    <option name="LAST_COMMIT_MESSAGE" value="周赛+双周赛" />
+    <MESSAGE value="删除无效代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无效代码" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
