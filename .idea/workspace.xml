@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="删除无效代码" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="删除无效代码">
+      <change afterPath="$PROJECT_DIR$/src/stack/589/a_589.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/week/385/a.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/week/385/b.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/week/385/c.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/week/385/d.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
+    <option name="totalTimeSeconds" value="6839" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -25,8 +34,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;pjn1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="5f5c35c0-4e03-4e6d-9f30-0ffeaa499437" />
+        <option name="url" value="https://github.com/100168/algorithm.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file:///usr/local/go/src/builtin/builtin.go" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/local/go/src/container/heap/heap.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/runtime/proc.go" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/local/go/src/sort/sort.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/strings/strings.go" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -51,6 +77,8 @@
     &quot;Go Build.go build go-leetcode/src/dp/931.executor&quot;: &quot;Run&quot;,
     &quot;Go Build.go build go-leetcode/src/learning/myheap.executor&quot;: &quot;Run&quot;,
     &quot;Go Build.go build go-leetcode/src/myheap.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385 (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
@@ -68,7 +96,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;leetcode.id&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: [
@@ -80,23 +108,14 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/stack" />
       <recent name="$PROJECT_DIR$/src/binary/33" />
       <recent name="$PROJECT_DIR$/src/learning/myheap" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/bitdp/1012" />
-      <recent name="$PROJECT_DIR$/src/bitdp/233" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/myheap">
-    <configuration name="go build go-leetcode/src/dp/931" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/dp/931" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/dp/931/problem_931.go" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build go-leetcode/src/week/385 (1)">
     <configuration name="go build go-leetcode/src/learning/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -124,17 +143,28 @@
       <filePath value="$PROJECT_DIR$/src/week/366/c.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/week/366" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/week/385 (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <package value="go-leetcode/src/week/366" />
+      <package value="go-leetcode/src/week/385" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/week/366/b.go" />
+      <filePath value="$PROJECT_DIR$/src/week/385/d.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go-leetcode/src/week/385" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="go-leetcode/src/week/385" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/week/385/a.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build go-leetcode/src/week/385 (1)" />
+        <item itemvalue="Go Build.go build go-leetcode/src/week/385" />
         <item itemvalue="Go Build.go build go-leetcode/src/myheap" />
         <item itemvalue="Go Build.go build go-leetcode/src/learning/myheap" />
       </list>
@@ -170,6 +200,11 @@
           <url>file://$PROJECT_DIR$/src/dp/931/problem_931.go</url>
           <line>57</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/week/385/d.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

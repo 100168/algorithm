@@ -9,7 +9,6 @@ func strStr(haystack string, needle string) int {
 
 	for i := 1; i < n; i++ {
 		j := next[i-1]
-
 		for j != 0 && needle[i] != needle[j] {
 			j = next[j-1]
 		}
