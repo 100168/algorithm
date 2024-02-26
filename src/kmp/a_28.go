@@ -60,8 +60,39 @@ func strStr2(haystack string, needle string) int {
 	return -1
 }
 
+func findIndex2(s string, t string) int {
+
+	n := len(s)
+	m := len(t)
+	next := make([]int, m)
+	for i := 1; i < m; i++ {
+		j := next[i-1]
+		for j > 0 && t[i] != t[j] {
+			j = next[j-1]
+		}
+		if t[i] == t[j] {
+			next[i] = j + 1
+		}
+	}
+
+	j := 0
+	for i := 0; i < n && j < m; i++ {
+		for j > 0 && s[i] != t[j] {
+			j = next[j-1]
+		}
+		if s[i] == t[j] {
+			j++
+		}
+		if j == len(next) {
+			return i - j + 1
+		}
+	}
+	return -1
+}
+
 func main() {
 
-	println(strStr("butsad", "sad"))
+	println(strStr("ababd", "ababc"))
 	println(strStr2("butsad", "sad"))
+	println(findIndex2("butsad", "sad"))
 }
