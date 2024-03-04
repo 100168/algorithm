@@ -1,4 +1,4 @@
-package _struct
+package main
 
 type UnionSet struct {
 	parent map[int]int

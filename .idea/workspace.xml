@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛">
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add some algorithm">
+      <change afterPath="$PROJECT_DIR$/src/struct/LRU.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struct/morris.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/morris.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struct/restocking.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struct/union_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/union_set.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="7493" />
+    <option name="totalTimeSeconds" value="4041" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -69,9 +75,10 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "DefaultGoTemplateProperty": "Go File",
     "Go Build.go build go-leetcode/src/dp/931.executor": "Run",
-    "Go Build.go build go-leetcode/src/kmp.executor": "Run",
+    "Go Build.go build go-leetcode/src/kmp.executor": "Debug",
     "Go Build.go build go-leetcode/src/learning/myheap.executor": "Run",
     "Go Build.go build go-leetcode/src/myheap.executor": "Debug",
+    "Go Build.go build go-leetcode/src/struct.executor": "Run",
     "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
     "Go Build.go build go-leetcode/src/week/385.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -91,7 +98,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
@@ -110,7 +117,7 @@
       <recent name="$PROJECT_DIR$/src/bitdp/1012" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/kmp">
+  <component name="RunManager" selected="Go Build.go build go-leetcode/src/struct">
     <configuration name="go build go-leetcode/src/kmp" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -120,15 +127,6 @@
       <filePath value="$PROJECT_DIR$/src/kmp/a_28.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/learning/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/learning/myheap" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/learning/myheap/myheap.go" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build go-leetcode/src/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -136,6 +134,15 @@
       <package value="go-leetcode/src/myheap" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/myheap/myHeap.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go-leetcode/src/struct" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/struct" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/struct/LRU.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/week/385 (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -158,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build go-leetcode/src/struct" />
         <item itemvalue="Go Build.go build go-leetcode/src/kmp" />
         <item itemvalue="Go Build.go build go-leetcode/src/week/385 (1)" />
         <item itemvalue="Go Build.go build go-leetcode/src/week/385" />
         <item itemvalue="Go Build.go build go-leetcode/src/myheap" />
-        <item itemvalue="Go Build.go build go-leetcode/src/learning/myheap" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +192,8 @@
     <MESSAGE value="周赛+双周赛" />
     <MESSAGE value="删除无效代码" />
     <MESSAGE value="周赛" />
-    <option name="LAST_COMMIT_MESSAGE" value="周赛" />
+    <MESSAGE value="add some algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some algorithm" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -202,6 +210,26 @@
           <url>file://$PROJECT_DIR$/src/week/385/d.go</url>
           <line>45</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/kmp/a_28.go</url>
+          <line>11</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
+          <line>29</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
+          <line>48</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
+          <line>49</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
