@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add some algorithm">
-      <change afterPath="$PROJECT_DIR$/src/struct/LRU.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add lru">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struct/morris.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/morris.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struct/restocking.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struct/union_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/union_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struct/LRU.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/LRU.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="4041" />
+    <option name="totalTimeSeconds" value="15" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -193,7 +188,8 @@
     <MESSAGE value="删除无效代码" />
     <MESSAGE value="周赛" />
     <MESSAGE value="add some algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some algorithm" />
+    <MESSAGE value="add lru" />
+    <option name="LAST_COMMIT_MESSAGE" value="add lru" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -218,17 +214,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
-          <line>29</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
-          <line>48</line>
+          <line>49</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/struct/LRU.go</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>

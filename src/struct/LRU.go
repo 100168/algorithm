@@ -27,7 +27,8 @@ func Constructor(capacity int) LRUCache {
 
 func (cache *LRUCache) Get(key int) int {
 	nodeMap := cache.nodeMap
-	if nodeMap[key] == nil {
+
+	if _, ok := nodeMap[key]; !ok {
 		return -1
 	}
 	cache.moveToHead(nodeMap[key])
