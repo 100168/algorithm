@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add lru">
+      <change afterPath="$PROJECT_DIR$/src/heap/1976/a_1976.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/heap/2642/a_2642.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/heap/743/a_743.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struct/LRU.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/struct/LRU.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="15" />
+    <option name="totalTimeSeconds" value="1341" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -70,6 +74,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "DefaultGoTemplateProperty": "Go File",
     "Go Build.go build go-leetcode/src/dp/931.executor": "Run",
+    "Go Build.go build go-leetcode/src/heap/743.executor": "Run",
     "Go Build.go build go-leetcode/src/kmp.executor": "Debug",
     "Go Build.go build go-leetcode/src/learning/myheap.executor": "Run",
     "Go Build.go build go-leetcode/src/myheap.executor": "Debug",
@@ -93,7 +98,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "leetcode.id"
   },
   "keyToStringList": {
     "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
@@ -105,14 +110,23 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/heap/1976" />
+      <recent name="$PROJECT_DIR$/src/heap/743" />
       <recent name="$PROJECT_DIR$/src/stack" />
       <recent name="$PROJECT_DIR$/src/binary/33" />
       <recent name="$PROJECT_DIR$/src/learning/myheap" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/bitdp/1012" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/struct">
+  <component name="RunManager" selected="Go Build.go build go-leetcode/src/heap/743">
+    <configuration name="go build go-leetcode/src/heap/743" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/heap/743" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/heap/743/a_743.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build go-leetcode/src/kmp" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -120,15 +134,6 @@
       <package value="go-leetcode/src/kmp" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/kmp/a_28.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build go-leetcode/src/myheap" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/myheap" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/myheap/myHeap.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/struct" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -160,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build go-leetcode/src/heap/743" />
         <item itemvalue="Go Build.go build go-leetcode/src/struct" />
         <item itemvalue="Go Build.go build go-leetcode/src/kmp" />
         <item itemvalue="Go Build.go build go-leetcode/src/week/385 (1)" />
         <item itemvalue="Go Build.go build go-leetcode/src/week/385" />
-        <item itemvalue="Go Build.go build go-leetcode/src/myheap" />
       </list>
     </recent_temporary>
   </component>
