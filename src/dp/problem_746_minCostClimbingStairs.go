@@ -29,11 +29,10 @@ func minCostClimbingStairs(cost []int) int {
 		}
 		a = c
 	}
-
 	return b
 }
 
-//到每一步都往前看一步到当前位置的最小消耗.
+// 到每一步都往前看一步到当前位置的最小消耗.
 func minCost(cost []int) int {
 	n := len(cost)
 	dp := make([]int, n+1)
