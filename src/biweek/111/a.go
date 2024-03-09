@@ -17,6 +17,7 @@ func countPairs(nums []int, target int) int {
 		} else if cur >= target {
 			right--
 		}
+
 	}
 	return ans
 

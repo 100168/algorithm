@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add lru">
-      <change afterPath="$PROJECT_DIR$/src/heap/1976/a_1976.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/heap/2642/a_2642.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/heap/743/a_743.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add  plus and multiply">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +44,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/local/go/src/builtin/builtin.go" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/local/go/src/container/heap/example_intheap_test.go" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/local/go/src/container/heap/example_pq_test.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/container/heap/heap.go" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/local/go/src/container/heap/heap_test.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/runtime/proc.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/sort/sort.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/strings/strings.go" root0="SKIP_INSPECTION" />
@@ -68,43 +66,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.go build go-leetcode/src/dp/931.executor": "Run",
-    "Go Build.go build go-leetcode/src/heap/743.executor": "Run",
-    "Go Build.go build go-leetcode/src/kmp.executor": "Debug",
-    "Go Build.go build go-leetcode/src/learning/myheap.executor": "Run",
-    "Go Build.go build go-leetcode/src/myheap.executor": "Debug",
-    "Go Build.go build go-leetcode/src/struct.executor": "Run",
-    "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
-    "Go Build.go build go-leetcode/src/week/385.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "configurable..is.expanded": "true",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/panjian/goProject/go-leetcode",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "leetcode.id"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build go-leetcode/src/dp/931.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/heap/743.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/kmp.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build go-leetcode/src/learning/myheap.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/myheap.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build go-leetcode/src/struct.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385 (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;true&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/panjian/goProject/go-leetcode&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
-    ]
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -117,7 +114,7 @@
       <recent name="$PROJECT_DIR$/src/learning/myheap" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build go-leetcode/src/heap/743">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/heap/743">
     <configuration name="go build go-leetcode/src/heap/743" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -163,22 +160,6 @@
       <filePath value="$PROJECT_DIR$/src/week/385/a.go" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build go-leetcode/src/heap/743" />
-        <item itemvalue="Go Build.go build go-leetcode/src/struct" />
-        <item itemvalue="Go Build.go build go-leetcode/src/kmp" />
-        <item itemvalue="Go Build.go build go-leetcode/src/week/385 (1)" />
-        <item itemvalue="Go Build.go build go-leetcode/src/week/385" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14475.38" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +175,8 @@
     <MESSAGE value="周赛" />
     <MESSAGE value="add some algorithm" />
     <MESSAGE value="add lru" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lru" />
+    <MESSAGE value="add  plus and multiply" />
+    <option name="LAST_COMMIT_MESSAGE" value="add  plus and multiply" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
