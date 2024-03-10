@@ -1,4 +1,4 @@
-package rob
+package _37
 
 /*在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。
 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。
@@ -37,11 +37,4 @@ func process(node *TreeNode) []int {
 	//不偷当前=
 	noSelected := max(l[0], l[1]) + max(r[0], r[1])
 	return []int{selected, noSelected}
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

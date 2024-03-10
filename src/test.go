@@ -1,15 +1,21 @@
 package main
 
-import "fmt"
+import "math"
 
-func getBinary(num int) int {
-	count := 0
-	for num > 0 {
-		count++
-		num &= num - 1
+func minimumPossibleSum(n int, target int) int {
+	//4/2 = 2
+	//5/2 = 2
+	mid := target / 2
+	if n <= mid {
+		return (1 + n) * n / 2
 	}
-	return count
+
+	lSum := (1 + mid) * mid / 2
+	n -= mid
+	rSum := (target + target + n - 1) * n / 2
+	return lSum + rSum
 }
 func main() {
-	fmt.Println(1<<13 | 1<<12 | 1<<7 | 1<<6 | 1<<4 | 1<<2)
+	println(minimumPossibleSum(1000000000, 100000000))
+	println(math.MaxInt32)
 }
