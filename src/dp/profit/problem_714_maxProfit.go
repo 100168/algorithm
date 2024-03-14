@@ -1,6 +1,7 @@
 package profit
 
-/*给定一个整数数组prices，其中第i个元素代表了第i天的股票价格 ；整数fee 代表了交易股票的手续费用。
+/*
+给定一个整数数组prices，其中第i个元素代表了第i天的股票价格 ；整数fee 代表了交易股票的手续费用。
 
 你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。
 
@@ -19,7 +20,6 @@ package profit
 在此处买入 prices[4] = 4
 在此处卖出 prices[5] = 9
 总利润:((8 - 1) - 2) + ((9 - 4) - 2) = 8
-
 */
 func maxProfit6(prices []int, fee int) int {
 	n := len(prices)

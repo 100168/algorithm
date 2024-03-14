@@ -2,7 +2,8 @@ package profit
 
 import "math"
 
-/*给定一个整数数组prices ，它的第 i 个元素prices[i] 是一支给定的股票在第 i 天的价格。
+/*
+给定一个整数数组prices ，它的第 i 个元素prices[i] 是一支给定的股票在第 i 天的价格。
 
 设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。
 
@@ -10,7 +11,8 @@ import "math"
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+*/
 func maxProfit4(k int, prices []int) int {
 	n := len(prices)
 
