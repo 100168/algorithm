@@ -80,7 +80,7 @@ func (rmq *RMQ) withStrategyQuery(l int, r int, k int) int {
 }
 func (rmq *RMQ) query(l int, r int) int {
 	k := 0
-	for ; (1 << k) < r-l+1; k++ {
+	for ; (1<<k + 1) <= r-l+1; k++ {
 	}
 	return rmq.withStrategyQuery(l, r, k)
 }

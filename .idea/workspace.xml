@@ -4,36 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="每日一题">
-      <change afterPath="$PROJECT_DIR$/src/dfs/310/a_310.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dp/lcs/1143.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/multiply/1483/1483.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/multiply/1483/st.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/multiply/1521/1521.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/388/a/a.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/388/b/b.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/388/c/c.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/388/d/d.go" afterDir="false" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="move">
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/1012/a_1012.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/1012/a_1012.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/1067/a_1067.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/1067/a_1067.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/1397/a_1397.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/1397/a_1397.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/233/a_233.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/233/a_233.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/2827/a_2827.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/2827/a_2827.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/600/a_600.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/600/a_600.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bitdp/902/a_902.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/bitdp/902/a_902.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dptree/1377/a_1377.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/dptree/1377/a_1377.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dptree/2467/a_2468.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/dptree/2467/a_2468.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dptree/2646/a_2646.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/dptree/2646/a_2646.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dptree/337/problem_337_rob.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/dptree/337/problem_337_rob.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_121_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_121_maxProfit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_122_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_122_maxProfit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_123_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_123_maxProfit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_188_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_188_maxProfit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_309_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_309_maxProfit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profit/problem_714_maxProfit.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/dp/profit/problem_714_maxProfit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/multiply/1483/st.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiply/1483/st.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/multiply/1521/1521.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiply/1521/1521.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="626" />
+    <option name="totalTimeSeconds" value="2765" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -94,53 +69,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build go-leetcode/src.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/dfs/310.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build go-leetcode/src/dp/931.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/dptree/1377.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build go-leetcode/src/dptree/2467.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/heap/743.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/kmp.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/learning/2129.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/learning/299.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/learning/myheap.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/multiply/1483.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build go-leetcode/src/multiply/1521.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build go-leetcode/src/myheap.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build go-leetcode/src/struct.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/week/385 (1).executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/week/385.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/week/388/b.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build go-leetcode/src/week/388/c.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;true&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/panjian/goProject/go-leetcode&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build go-leetcode/src.executor": "Run",
+    "Go Build.go build go-leetcode/src/dfs/310.executor": "Debug",
+    "Go Build.go build go-leetcode/src/dp/931.executor": "Run",
+    "Go Build.go build go-leetcode/src/dptree/1377.executor": "Debug",
+    "Go Build.go build go-leetcode/src/dptree/2467.executor": "Run",
+    "Go Build.go build go-leetcode/src/heap/743.executor": "Run",
+    "Go Build.go build go-leetcode/src/kmp.executor": "Run",
+    "Go Build.go build go-leetcode/src/learning/2129.executor": "Run",
+    "Go Build.go build go-leetcode/src/learning/299.executor": "Run",
+    "Go Build.go build go-leetcode/src/learning/myheap.executor": "Run",
+    "Go Build.go build go-leetcode/src/multiply/1483.executor": "Debug",
+    "Go Build.go build go-leetcode/src/multiply/1521.executor": "Debug",
+    "Go Build.go build go-leetcode/src/myheap.executor": "Debug",
+    "Go Build.go build go-leetcode/src/struct.executor": "Run",
+    "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
+    "Go Build.go build go-leetcode/src/week/385.executor": "Run",
+    "Go Build.go build go-leetcode/src/week/388/b.executor": "Run",
+    "Go Build.go build go-leetcode/src/week/388/c.executor": "Debug",
+    "Go 构建.go build go-leetcode/src/multiply/1483.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "configurable..is.expanded": "true",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/panjian/goProject/go-leetcode",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: [
+  "keyToStringList": {
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -153,7 +129,7 @@
       <recent name="$PROJECT_DIR$/src/learning/299" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/dfs/310">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/multiply/1483">
     <configuration name="go build go-leetcode/src/dfs/310" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -199,6 +175,11 @@
       <filePath value="$PROJECT_DIR$/src/week/388/c/c.go" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go 构建.go build go-leetcode/src/multiply/1483" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -224,7 +205,8 @@
     <MESSAGE value="add dj" />
     <MESSAGE value="add dp tree" />
     <MESSAGE value="每日一题" />
-    <option name="LAST_COMMIT_MESSAGE" value="每日一题" />
+    <MESSAGE value="move" />
+    <option name="LAST_COMMIT_MESSAGE" value="move" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -288,11 +270,6 @@
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/multiply/1483/st.go</url>
-          <line>35</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/multiply/1521/1521.go</url>
           <line>129</line>
           <option name="timeStamp" value="78" />
@@ -301,6 +278,21 @@
           <url>file://$PROJECT_DIR$/src/multiply/1521/1521.go</url>
           <line>123</line>
           <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/multiply/1483/st.go</url>
+          <line>43</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/multiply/1483/st.go</url>
+          <line>36</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/multiply/1483/st.go</url>
+          <line>12</line>
+          <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
