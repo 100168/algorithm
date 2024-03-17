@@ -1,7 +1,5 @@
 package main
 
-import "strings"
-
 /*给你一个数组 arr ，数组中有 n 个 非空 字符串。
 
 请你求出一个长度为 n 的字符串 answer ，满足：
@@ -13,33 +11,58 @@ answer[i] 应该是它们中字典序最小的一个。如果不存在这样的�
 func shortestSubstrings(arr []string) []string {
 	n := len(arr)
 	ans := make([]string, n)
-	for i, v := range arr {
-		minV := ""
-		for j := 1; j <= len(v) && len(minV) == 0; j++ {
-			for z := 0; z+j <= len(v); z++ {
-				isV := true
-				cur := v[z : z+j]
-				for y, x := range arr {
-					if y == i {
-						continue
-					}
-					if strings.Contains(x, cur) {
-						isV = false
-						break
-					}
-				}
-				if isV {
-					if minV == "" {
-						minV = cur
-					} else {
-						if strings.Compare(minV, cur) > 0 {
-							minV = cur
-						}
-					}
-				}
-			}
+
+	//用来表示排名第几的是哪个字符
+	sa := make([][]int, n)
+	//用来表示字符排名第几
+	rk := make([][]int, n)
+	for i := range sa {
+		sa[i] = make([]int, 100000)
+	}
+	for i := range rk {
+		rk[i] = make([]int, 100000)
+	}
+
+	for x := range arr {
+		s := arr[x]
+		m := len(s)
+		//第一次计算
+		cnt := make([]int, 26)
+		for i := 0; i < m; i++ {
+			cnt[s[i]-'a']++
 		}
-		ans[i] = minV
+		for i := 1; i < 26; i++ {
+			cnt[i] += cnt[i-1]
+		}
+		for i := n - 1; i >= 0; i-- {
+			cur := s[i] - 'a'
+			//排名cnt[cur]-1 为cur
+			sa[x][cnt[cur]-1] = i
+			//第i个字符排名为cnt[cur]-1
+			rk[x][i] = cnt[cur] - 1
+			cnt[cur]--
+		}
+		//倍增计算
+		for exp := 1; 1<<exp < m; exp <<= 1 {
+			y := make([]int, len(sa))
+			z := make([]int, len(rk))
+			copy(sa[x], y)
+			copy(rk[x], z)
+			cnt := make([]int, 26)
+			for i := 0; i < n; i++ {
+				cur := s[i+exp] - 'a'
+				cnt[cur]++
+			}
+			for i := 1; i < 26; i++ {
+				cnt[i] += cnt[i-1]
+			}
+			for i := n - 1; i >= 0; i-- {
+				cur := s[i+exp] - 'a'
+				y[rk[x][cnt[cur]-1]] = i
+				cnt[cur]--
+			}
+			copy(y, sa[x])
+		}
 	}
 	return ans
 }

@@ -12,21 +12,5 @@ package main
 */
 func minimumMoves(nums []int, k int, maxChanges int) int64 {
 
-	n := len(nums)
-	dp := make([][]int, n)
-	for i := range dp {
-		dp[i] = make([]int, n)
-		for j := range dp[i] {
-			dp[i][j] = -1
-		}
-	}
-
-	var dfs func(int, int,int,int,int,bool) int
-	dfs = func(index int, x, y ,j int, ops int,isOne bool) int {
-		if isOne {
-			if j== {
-				
-			}
-		}
-	}
+	return 0
 }
