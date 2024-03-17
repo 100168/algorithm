@@ -61,7 +61,7 @@ func isDigit(input string) bool {
 	return true
 }
 
-//记忆化搜索
+// dfs
 func diffWaysToCompute2(expression string) []int {
 	// 记忆化
 	subExpWays := make(map[string][]int)

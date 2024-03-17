@@ -18,7 +18,7 @@ s 中每个数位 恰好 属于一个子字符串。
 */
 var dp []int
 
-// 记忆化搜索
+// dfs
 // 1.从左往右
 func minimumPartition(s string, k int) int {
 	if k < 10 {
