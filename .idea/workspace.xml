@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛">
-      <change afterPath="$PROJECT_DIR$/src/biweek/126/a/a.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biweek/126/b/b.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biweek/126/c/c.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/biweek/126/d/d.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bittree/LCR170/lcr170.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/biweek/126/d/d.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/biweek/126/d/d.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="408" />
+    <option name="totalTimeSeconds" value="2" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -44,12 +41,14 @@
   &quot;prStates&quot;: []
 }</component>
   <component name="GitLabMergeRequestsSettings">{}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/100168/algorithm.git&quot;,
-    &quot;accountId&quot;: &quot;581fddb7-9e04-4a61-bd07-fc2f0fba5b42&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="5f5c35c0-4e03-4e6d-9f30-0ffeaa499437" />
+        <option name="url" value="https://github.com/100168/algorithm.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/local/go/src/builtin/builtin.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/container/heap/example_intheap_test.go" root0="SKIP_INSPECTION" />
@@ -90,6 +89,7 @@
     "Go Build.go build go-leetcode/src/struct.executor": "Run",
     "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
     "Go Build.go build go-leetcode/src/week/385.executor": "Run",
+    "Go 构建.go build go-leetcode/src/bittree/LCR170.executor": "Debug",
     "Go 构建.go build go-leetcode/src/biweek/126.executor": "Debug",
     "Go 构建.go build go-leetcode/src/biweek/126/c.executor": "Run",
     "Go 构建.go build go-leetcode/src/dfs/38.executor": "Run",
@@ -132,7 +132,16 @@
       <recent name="$PROJECT_DIR$/src/dp" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/biweek/126/c">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/bittree/LCR170">
+    <configuration name="go build go-leetcode/src/bittree/LCR170" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/bittree/LCR170" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/bittree/LCR170/a.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build go-leetcode/src/biweek/126" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -149,15 +158,6 @@
       <package value="go-leetcode/src/biweek/126/c" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/biweek/126/c/c.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build go-leetcode/src/dp/记忆化搜索/2684" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/dp/记忆化搜索/2684" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/dp/记忆化搜索/2684/2684.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/dp/dfs/2684" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -180,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build go-leetcode/src/bittree/LCR170" />
         <item itemvalue="Go 构建.go build go-leetcode/src/biweek/126/c" />
         <item itemvalue="Go 构建.go build go-leetcode/src/biweek/126" />
         <item itemvalue="Go 构建.go build go-leetcode/src/week/389" />
         <item itemvalue="Go 构建.go build go-leetcode/src/dp/dfs/2684" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684" />
       </list>
     </recent_temporary>
   </component>
@@ -310,6 +310,11 @@
           <url>file://$PROJECT_DIR$/src/biweek/126/c/c.go</url>
           <line>25</line>
           <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/bittree/LCR170/lcr170.go</url>
+          <line>77</line>
+          <option name="timeStamp" value="117" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
