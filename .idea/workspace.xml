@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="add  plus and multiply">
-      <change afterPath="$PROJECT_DIR$/src/dp/bag/2312/2312.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/388/c/c2.go" afterDir="false" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="周赛">
+      <change afterPath="$PROJECT_DIR$/src/biweek/126/a/a.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/biweek/126/b/b.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/biweek/126/c/c.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/biweek/126/d/d.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week/388/c/c.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/week/388/c/c.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week/389/c.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/week/389/c.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week/389/d.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/week/389/d.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="2248" />
+    <option name="totalTimeSeconds" value="408" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -44,6 +43,7 @@
   <component name="GitHubPullRequestState">{
   &quot;prStates&quot;: []
 }</component>
+  <component name="GitLabMergeRequestsSettings">{}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/100168/algorithm.git&quot;,
@@ -90,6 +90,8 @@
     "Go Build.go build go-leetcode/src/struct.executor": "Run",
     "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
     "Go Build.go build go-leetcode/src/week/385.executor": "Run",
+    "Go 构建.go build go-leetcode/src/biweek/126.executor": "Debug",
+    "Go 构建.go build go-leetcode/src/biweek/126/c.executor": "Run",
     "Go 构建.go build go-leetcode/src/dfs/38.executor": "Run",
     "Go 构建.go build go-leetcode/src/dp/dfs/2684.executor": "Debug",
     "Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684.executor": "Run",
@@ -107,7 +109,7 @@
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/jianmac",
+    "last_opened_file_path": "/Users/panjian",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -123,21 +125,30 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/biweek/126/b" />
+      <recent name="$PROJECT_DIR$/src/biweek/126/a" />
+      <recent name="$PROJECT_DIR$/src/biweek/126/c" />
+      <recent name="$PROJECT_DIR$/src/biweek/126" />
       <recent name="$PROJECT_DIR$/src/dp" />
-      <recent name="$PROJECT_DIR$/src/multiply/1521" />
-      <recent name="$PROJECT_DIR$/src/week/388/a" />
-      <recent name="$PROJECT_DIR$/src/daily" />
-      <recent name="$PROJECT_DIR$/src/learning/299" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/week/389">
-    <configuration name="go build go-leetcode/src/dfs/38" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/biweek/126/c">
+    <configuration name="go build go-leetcode/src/biweek/126" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/dfs/38" />
+      <package value="go-leetcode/src/biweek/126" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/dfs/38/38.go" />
+      <filePath value="$PROJECT_DIR$/src/biweek/126/b.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go-leetcode/src/biweek/126/c" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/biweek/126/c" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/biweek/126/c/c.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/dp/记忆化搜索/2684" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -158,15 +169,6 @@
       <filePath value="$PROJECT_DIR$/src/dp/dfs/2684/2684.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/week/385 (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="go-leetcode/src/week/385" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/week/385/d.go" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build go-leetcode/src/week/389" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -178,12 +180,20 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build go-leetcode/src/biweek/126/c" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/biweek/126" />
         <item itemvalue="Go 构建.go build go-leetcode/src/week/389" />
         <item itemvalue="Go 构建.go build go-leetcode/src/dp/dfs/2684" />
         <item itemvalue="Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/dfs/38" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14808.20" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,11 +229,11 @@
     <MESSAGE value="1700-1800" />
     <MESSAGE value="周赛+双周赛" />
     <MESSAGE value="删除无效代码" />
-    <MESSAGE value="周赛" />
     <MESSAGE value="add some algorithm" />
     <MESSAGE value="add lru" />
     <MESSAGE value="add  plus and multiply" />
-    <option name="LAST_COMMIT_MESSAGE" value="add  plus and multiply" />
+    <MESSAGE value="周赛" />
+    <option name="LAST_COMMIT_MESSAGE" value="周赛" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -285,6 +295,21 @@
           <url>file://$PROJECT_DIR$/src/week/389/c.go</url>
           <line>45</line>
           <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/biweek/126/b/b.go</url>
+          <line>28</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/biweek/126/c/c.go</url>
+          <line>43</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/biweek/126/c/c.go</url>
+          <line>25</line>
+          <option name="timeStamp" value="115" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
