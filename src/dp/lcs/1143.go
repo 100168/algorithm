@@ -75,3 +75,41 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	}
 	return ans
 }
+
+func longestCommonSubsequence2(text1 string, text2 string) int {
+
+	m := len(text1)
+	n := len(text2)
+
+	dp := make([][]int, m)
+	for i := range dp {
+		dp[i] = make([]int, n)
+		for j := range dp[i] {
+			dp[i][j] = -1
+		}
+	}
+	var dfs func(int, int) int
+
+	dfs = func(i int, j int) int {
+		if i == m || j == n || i < 0 || j < 0 {
+			return 0
+		}
+		if dp[i][j] != -1 {
+			return dp[i][j]
+		}
+		cur := 0
+		if text1[i] == text2[j] {
+			cur = dfs(i-1, j-1) + 1
+		}
+		cur = max(max(dfs(i-1, j), dfs(i, j-1)), cur)
+		dp[i][j] = cur
+		return cur
+
+	}
+	return dfs(m-1, n-1)
+
+}
+
+func main() {
+	println(longestCommonSubsequence2("abndsfs", "sfsafa"))
+}
