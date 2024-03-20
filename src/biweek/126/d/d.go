@@ -38,68 +38,117 @@ n−c
 
 */
 
+//给你一个长度为 n 的整数数组 nums 和一个 正 整数 k 。
+//
+// 一个整数数组的 能量 定义为和 等于 k 的子序列的数目。
+//
+// 请你返回 nums 中所有子序列的 能量和 。
+//
+// 由于答案可能很大，请你将它对 10⁹ + 7 取余 后返回。
+//
+//
+//
+// 示例 1：
+//
+//
+// 输入： nums = [1,2,3], k = 3
+//
+//
+// 输出： 6
+//
+// 解释：
+//
+// 总共有 5 个能量不为 0 的子序列：
+//
+//
+// 子序列 [1,2,3] 有 2 个和为 3 的子序列：[1,2,3] 和 [1,2,3] 。
+// 子序列 [1,2,3] 有 1 个和为 3 的子序列：[1,2,3] 。
+// 子序列 [1,2,3] 有 1 个和为 3 的子序列：[1,2,3] 。
+// 子序列 [1,2,3] 有 1 个和为 3 的子序列：[1,2,3] 。
+// 子序列 [1,2,3] 有 1 个和为 3 的子序列：[1,2,3] 。
+//
+//
+// 所以答案为 2 + 1 + 1 + 1 + 1 = 6 。
+//
+// 示例 2：
+//
+//
+// 输入： nums = [2,3,3], k = 5
+//
+//
+// 输出： 4
+//
+// 解释：
+//
+// 总共有 3 个能量不为 0 的子序列：
+//
+//
+// 子序列 [2,3,3] 有 2 个子序列和为 5 ：[2,3,3] 和 [2,3,3] 。
+// 子序列 [2,3,3] 有 1 个子序列和为 5 ：[2,3,3] 。
+// 子序列 [2,3,3] 有 1 个子序列和为 5 ：[2,3,3] 。
+//
+//
+// 所以答案为 2 + 1 + 1 = 4 。
+//
+// 示例 3：
+//
+//
+// 输入： nums = [1,2,3], k = 7
+//
+//
+// 输出： 0
+//
+// 解释：不存在和为 7 的子序列，所以 nums 的能量和为 0 。
+//
+//
+//
+// 提示：
+//
+//
+// 1 <= n <= 100
+// 1 <= nums[i] <= 10⁴
+// 1 <= k <= 100
+//
+//
+// Related Topics 数组 动态规划 👍 7 👎 0
+
+// leetcode submit region begin(Prohibit modification and deletion)
 func sumOfPower(nums []int, k int) int {
 
+	mod := 1_000_000_007
 	n := len(nums)
-	type pair struct {
-		val int
-		cnt int
-	}
-	cntMap := make(map[int]int)
 
-	for i := range nums {
-		cntMap[nums[i]]++
-	}
-	pairs := make([]pair, 0)
-	for k, v := range cntMap {
-		pairs = append(pairs, pair{k, v})
+	cache := make([][]int, n)
+	for i := range cache {
+		cache[i] = make([]int, k+1)
+		for j := range cache[i] {
+			cache[i][j] = -1
+		}
 	}
 	var dfs func(int, int) int
-
-	dp := make([][]int, n)
-	for i := range dp {
-		dp[i] = make([]int, k+1)
-		for j := range dp[i] {
-			dp[i][j] = -1
-		}
-	}
-	dfs = func(index int, rest int) int {
-		if rest < 0 || index == n {
+	dfs = func(index, rest int) int {
+		if rest < 0 {
 			return 0
 		}
-		if rest == 0 {
-			return 1
-		}
-		if dp[index][rest] != -1 {
-			return dp[index][rest]
-		}
-		cur := int64(0)
-		val, p := pairs[index].val, pairs[index].cnt
-		for j := 0; j <= p; j++ {
-			cur += int64(dfs(index+1, rest-val*p)) * multiply(n, j)
-			cur %= 1_000_000_007
-		}
-		dp[index][rest] = int(cur)
-		return int(cur)
 
+		if index == n {
+			if rest == 0 {
+				return 1
+			}
+			return 0
+		}
+		if cache[index][rest] != -1 {
+			return cache[index][rest]
+		}
+
+		cnt := 0
+		cnt += dfs(index+1, rest)*2%mod + dfs(index+1, rest-nums[index])%mod
+		cache[index][rest] = cnt
+		return cnt % mod
 	}
 	return dfs(0, k)
 }
-func multiply(a, b int) int64 {
-	if b == 0 {
-		return 1
-	}
-	ans := int64(1)
-	for i := 1; i <= a; i++ {
-		ans *= int64(i)
-	}
-	div := int64(1)
-	for i := 1; i <= b; i++ {
-		div *= int64(i)
-	}
-	return ans / div % int64(1_000_000_007)
-}
 
 func main() {
-	println(sumOfPower([]int{1, 2, 3}, 3))
+	println(sumOfPower([]int{3, 4}, 2))
 }
