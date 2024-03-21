@@ -59,6 +59,7 @@ func Constructor(n int, parent []int) TreeAncestor {
 		pa[i] = make([]int, m)
 		pa[i][0] = p
 	}
+	//跳多少步
 	for i := 0; i < m-1; i++ {
 		for x := 0; x < n; x++ {
 			if p := pa[x][i]; p != -1 {
@@ -70,6 +71,8 @@ func Constructor(n int, parent []int) TreeAncestor {
 	}
 	return pa
 }
+
+//0  3   p 2
 
 func (pa TreeAncestor) GetKthAncestor(node, k int) int {
 	m := bits.Len(uint(k))

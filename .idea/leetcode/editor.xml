@@ -619,6 +619,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2671]频率跟踪器.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/doc/content/[2671]频率跟踪器.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2671" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2671]频率跟踪器.go" />
+              <option name="titleSlug" value="frequency-tracker" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2699]修改图中的边权.go">
           <value>
             <LeetcodeEditor>
@@ -751,6 +762,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2929]给小朋友们分糖果 II.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/doc/content/[2929]给小朋友们分糖果 II.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2929" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2929]给小朋友们分糖果 II.go" />
+              <option name="titleSlug" value="distribute-candies-among-children-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2962]统计最大元素出现至少 K 次的子数组.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/doc/content/[2962]统计最大元素出现至少 K 次的子数组.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2962" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2962]统计最大元素出现至少 K 次的子数组.go" />
+              <option name="titleSlug" value="count-subarrays-where-max-element-appears-at-least-k-times" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[2]两数相加.go">
           <value>
             <LeetcodeEditor>
@@ -781,6 +814,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[3044]出现频率最高的质数.go" />
               <option name="titleSlug" value="most-frequent-prime" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[3077]K 个不相交子数组的最大能量值.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/doc/content/[3077]K 个不相交子数组的最大能量值.md" />
+              <option name="frontendQuestionId" value="leetcode.cn3077" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/46/zx0pgc1n4p11y6mmf9mt2pl40000gq/T/leetcode/editor/cn/[3077]K 个不相交子数组的最大能量值.go" />
+              <option name="titleSlug" value="maximum-strength-of-k-disjoint-subarrays" />
             </LeetcodeEditor>
           </value>
         </entry>
