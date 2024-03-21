@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="双周赛最后一道题+每日一题">
-      <change afterPath="$PROJECT_DIR$/src/1700-1800/2929/2929.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/1700-1800/2962/2962.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/daily/2475/2475.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/386/a/a.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week/386/b/b.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/multiply/1483/1483.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiply/1483/1483.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week/385/c.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/week/385/c.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week/388/d/d.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/week/388/d/d.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/1700-1800/2929/2929.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/1700-1800/2929/2929.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="975" />
+    <option name="totalTimeSeconds" value="1212" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -96,7 +87,7 @@
     "Go Build.go build go-leetcode/src/struct.executor": "Run",
     "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
     "Go Build.go build go-leetcode/src/week/385.executor": "Run",
-    "Go 构建.go build go-leetcode/src/1700-1800/2929.executor": "Run",
+    "Go 构建.go build go-leetcode/src/1700-1800/2929.executor": "Debug",
     "Go 构建.go build go-leetcode/src/1700-1800/2961.executor": "Debug",
     "Go 构建.go build go-leetcode/src/1700-1800/2962.executor": "Debug",
     "Go 构建.go build go-leetcode/src/bittree/LCR170.executor": "Debug",
@@ -228,7 +219,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -250,12 +241,12 @@
     <MESSAGE value="add some algorithm" />
     <MESSAGE value="add lru" />
     <MESSAGE value="add  plus and multiply" />
-    <MESSAGE value="周赛" />
     <MESSAGE value="树状数组" />
     <MESSAGE value="难顶" />
     <MESSAGE value="单调栈+接雨水三种写法" />
     <MESSAGE value="双周赛最后一道题+每日一题" />
-    <option name="LAST_COMMIT_MESSAGE" value="双周赛最后一道题+每日一题" />
+    <MESSAGE value="周赛" />
+    <option name="LAST_COMMIT_MESSAGE" value="周赛" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -377,6 +368,16 @@
           <url>file://$PROJECT_DIR$/src/1700-1800/2962/2962.go</url>
           <line>32</line>
           <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/1700-1800/2929/2929.go</url>
+          <line>39</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/1700-1800/2929/2929.go</url>
+          <line>46</line>
+          <option name="timeStamp" value="157" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

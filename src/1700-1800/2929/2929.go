@@ -37,10 +37,17 @@ package main
 func distributeCandies(n int, limit int) int64 {
 
 	ans := int64(0)
-	for x := 0; x <= limit; x++ {
-		for y := n - x - limit; y <= min(n-x, limit); y++ {
-			ans++
-		}
+	//先枚举第一个数
+	for x := 0; x <= min(limit, n); x++ {
+		//for y:=max(n-x-limit,0);y<=min(n-x,limit);y++{
+		//
+		//}
+		//然后确定第二个数范围
+		//计算范围内的值
+		//left := max(n-x-limit, 0)
+		//right := min(n-x, limit)
+
+		ans += int64(max(min(n-x, limit)-max(n-x-limit, 0)+1, 0))
 	}
 
 	//n-x-limit
@@ -48,5 +55,5 @@ func distributeCandies(n int, limit int) int64 {
 }
 
 func main() {
-	println(distributeCandies(5, 2))
+	println(distributeCandies(4, 1))
 }
