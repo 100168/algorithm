@@ -36,7 +36,6 @@ func (h *hp) Pop() (v any) {
 }
 func rearrangeBarcodes(barcodes []int) []int {
 
-	n := len(barcodes)
 	cnt := make(map[int]int)
 	for i := range barcodes {
 		cnt[barcodes[i]]++
@@ -46,23 +45,22 @@ func rearrangeBarcodes(barcodes []int) []int {
 		heap.Push(h, pair{i, cnt[i]})
 	}
 
-	ans := make([]int, n)
-	for i := 0; i < n; i++ {
-		p := heap.Pop(h).(pair)
-		k, v := p.key, p.val
-		if i == 0 || ans[i-1] != k {
-			ans[i] = k
-			if v > 0 {
-				heap.Push(h, pair{k, v - 1})
+	ans := make([]int, 0)
+	for h.Len() > 0 {
+		x1 := heap.Pop(h).(pair)
+		if len(ans) > 0 && ans[len(ans)-1] == x1.key {
+			x2 := heap.Pop(h).(pair)
+			ans = append(ans, x2.key)
+			x2.val--
+			if x2.val > 0 {
+				heap.Push(h, x2)
 			}
 		} else {
-			p2 := heap.Pop(h).(pair)
-			k2, v2 := p2.key, p2.val
-			ans[i] = k2
-			if v2 > 0 {
-				heap.Push(h, pair{k2, v2 - 1})
-			}
-			heap.Push(h, p)
+			ans = append(ans, x1.key)
+			x1.val--
+		}
+		if x1.val > 0 {
+			heap.Push(h, x1)
 		}
 	}
 	return ans
