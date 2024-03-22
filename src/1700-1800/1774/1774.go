@@ -1,5 +1,9 @@
 package main
 
+import (
+	"slices"
+)
+
 //1774. 最接近目标价格的甜点成本
 //中等
 //相关标签
@@ -20,38 +24,104 @@ package main
 //返回最接近 target 的甜点成本。如果有多种方案，返回 成本相对较低 的一种。
 
 func closestCost(baseCosts []int, toppingCosts []int, target int) int {
-	x := baseCosts[0]
-	for _, c := range baseCosts {
-		x = min(x, c)
+
+	minVal := slices.Min(baseCosts)
+	if minVal > target {
+		return minVal
 	}
-	if x > target {
-		return x
-	}
-	can := make([]bool, target+1)
-	ans := 2*target - x
-	for _, c := range baseCosts {
-		if c <= target {
-			can[c] = true
-		} else {
-			ans = min(ans, c)
-		}
-	}
-	for _, c := range toppingCosts {
-		for count := 0; count < 2; count++ {
-			for i := target; i > 0; i-- {
-				if can[i] && i+c > target {
-					ans = min(ans, i+c)
-				}
-				if i-c > 0 {
-					can[i] = can[i] || can[i-c]
+	n := len(toppingCosts)
+	ans := minVal
+	var dfs func(int, int)
+	dfs = func(index, cost int) {
+		if cost < target {
+			if abs(ans-target) >= target-cost {
+				ans = cost
+			}
+		} else if cost >= target {
+			if cost == target {
+				ans = cost
+			} else {
+				if abs(ans-target) > cost-target {
+					ans = cost
 				}
 			}
+			return
 		}
+		if index == n {
+			return
+		}
+		dfs(index+1, cost)
+		dfs(index+1, cost+toppingCosts[index])
+		dfs(index+1, cost+toppingCosts[index]*2)
+
 	}
-	for i := 0; i <= ans-target; i++ {
-		if can[target-i] {
-			return target - i
-		}
+	for _, cost := range baseCosts {
+		dfs(0, cost)
 	}
 	return ans
+}
+
+func closestCost2(baseCosts []int, toppingCosts []int, target int) int {
+
+	minVal := slices.Min(baseCosts)
+	if minVal > target {
+		return minVal
+	}
+	//abs(y-target)<=abs(target - x)
+	//y - target <=target-x ==>y<2*target - x
+	n := len(toppingCosts)
+	cache := make([][]int, n+1)
+	maxValue := 2*target - minVal
+	for i := range cache {
+		cache[i] = make([]int, maxValue+1)
+		for j := range cache[i] {
+			cache[i][j] = -1
+		}
+	}
+	valuesMap := make(map[int]bool)
+	for _, cost := range baseCosts {
+		valuesMap[cost] = true
+	}
+	var dfs func(int, int) bool
+
+	ans := minVal
+	dfs = func(index, value int) bool {
+		if value < 0 {
+			return false
+		}
+		if n == index {
+			return valuesMap[value]
+		}
+		if cache[index][value] != -1 {
+			return cache[index][value] == 1
+		}
+		cur := dfs(index+1, value) || dfs(index+1, value-toppingCosts[index]) || dfs(index+1, value-2*toppingCosts[index])
+		if cur {
+			cache[index][value] = 1
+			if abs(target-value) < abs(ans-target) {
+				ans = value
+			} else if abs(target-value) == abs(ans-target) {
+				ans = min(ans, value)
+			}
+		} else {
+			cache[index][value] = 0
+		}
+		return cur
+	}
+
+	for i := 0; i <= maxValue; i++ {
+		dfs(0, i)
+	}
+	return ans
+}
+
+func abs(a int) int {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+func main() {
+	//println(closestCost([]int{1}, []int{8, 10}, 10))
+	println(closestCost2([]int{3, 10}, []int{5}, 9))
 }
