@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="2929">
-      <change afterPath="$PROJECT_DIR$/src/1700-1800/1054/1054.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="1054">
+      <change afterPath="$PROJECT_DIR$/src/1700-1800/1774/1774.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="2223" />
+    <option name="totalTimeSeconds" value="3322" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -248,7 +247,8 @@
     <MESSAGE value="双周赛最后一道题+每日一题" />
     <MESSAGE value="周赛" />
     <MESSAGE value="2929" />
-    <option name="LAST_COMMIT_MESSAGE" value="2929" />
+    <MESSAGE value="1054" />
+    <option name="LAST_COMMIT_MESSAGE" value="1054" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -383,13 +383,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/1700-1800/1054/1054.go</url>
-          <line>58</line>
+          <line>67</line>
           <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/1700-1800/1054/1054.go</url>
-          <line>53</line>
-          <option name="timeStamp" value="163" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
