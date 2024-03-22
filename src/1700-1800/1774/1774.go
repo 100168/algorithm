@@ -95,7 +95,10 @@ func closestCost2(baseCosts []int, toppingCosts []int, target int) int {
 		if cache[index][value] != -1 {
 			return cache[index][value] == 1
 		}
-		cur := dfs(index+1, value) || dfs(index+1, value-toppingCosts[index]) || dfs(index+1, value-2*toppingCosts[index])
+		cur := false
+		for i := 0; i <= 2; i++ {
+			cur = cur || dfs(index+1, value-i*toppingCosts[index])
+		}
 		if cur {
 			cache[index][value] = 1
 			if abs(target-value) < abs(ans-target) {
@@ -115,6 +118,89 @@ func closestCost2(baseCosts []int, toppingCosts []int, target int) int {
 	return ans
 }
 
+func closestCost3(baseCosts []int, toppingCosts []int, target int) int {
+
+	minVal := slices.Min(baseCosts)
+	if minVal > target {
+		return minVal
+	}
+	//abs(y-target)<=abs(target - x)
+	//y - target <=target-x ==>y<2*target - x
+	n := len(toppingCosts)
+	dp := make([][]bool, n+1)
+	maxValue := 2*target - minVal
+	for i := range dp {
+		dp[i] = make([]bool, maxValue+1)
+	}
+	for i := range baseCosts {
+		//注意，可能会超出
+		for j := 0; j <= n && baseCosts[i] <= maxValue; j++ {
+			dp[j][baseCosts[i]] = true
+		}
+	}
+
+	ans := minVal
+	for i := 1; i <= n; i++ {
+		v := toppingCosts[i-1]
+		for k := 0; k <= 2; k++ {
+			for j := 0; j <= maxValue; j++ {
+				dp[i][j] = dp[i][j] || dp[i-1][max(0, j-k*v)]
+				if dp[i][j] {
+					if abs(ans-target) > abs(j-target) {
+						ans = j
+					} else if abs(ans-target) == abs(j-target) {
+						ans = min(ans, j)
+					}
+				}
+			}
+		}
+	}
+	return ans
+}
+
+func closestCost4(baseCosts []int, toppingCosts []int, target int) int {
+
+	minVal := slices.Min(baseCosts)
+	if minVal > target {
+		return minVal
+	}
+	//abs(y-target)<=abs(target - x)
+	//y - target <=target-x ==>y<2*target - x
+	n := len(toppingCosts)
+
+	maxValue := 2*target - minVal
+	dp := make([]bool, maxValue+1)
+	for i := range baseCosts {
+		//注意，可能会超出
+		if baseCosts[i] <= maxValue {
+			dp[baseCosts[i]] = true
+		}
+	}
+
+	ans := minVal
+	for i := 1; i <= n; i++ {
+		v := toppingCosts[i-1]
+
+		for j := maxValue; j >= 0; j-- {
+			// 1 2,2
+			// 2,3,4
+			// 2,3,3
+			//dp[i][j] = dp[i-1][j-k*v]
+			//k 必须放在j里面
+			for k := 0; k <= 2; k++ {
+				dp[j] = dp[j] || dp[max(0, j-k*v)]
+				if dp[j] {
+					if abs(ans-target) > abs(j-target) {
+						ans = j
+					} else if abs(ans-target) == abs(j-target) {
+						ans = min(ans, j)
+					}
+				}
+			}
+		}
+	}
+	return ans
+}
 func abs(a int) int {
 	if a < 0 {
 		return -a
@@ -123,5 +209,8 @@ func abs(a int) int {
 }
 func main() {
 	//println(closestCost([]int{1}, []int{8, 10}, 10))
-	println(closestCost2([]int{3, 10}, []int{5}, 9))
+	println(closestCost2([]int{8, 5}, []int{7}, 7))
+	println(closestCost3([]int{2, 3}, []int{1}, 6))
+	println(closestCost4([]int{2, 3}, []int{1}, 6))
+
 }
