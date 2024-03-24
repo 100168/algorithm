@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="1054">
-      <change afterPath="$PROJECT_DIR$/src/1700-1800/1774/1774.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/1700-1800/2080/2080.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/daily/2617/2617.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/daily/322/322.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stack/239/239.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="3322" />
+    <option name="totalTimeSeconds" value="2302" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -38,14 +42,12 @@
   &quot;prStates&quot;: []
 }</component>
   <component name="GitLabMergeRequestsSettings">{}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="5f5c35c0-4e03-4e6d-9f30-0ffeaa499437" />
-        <option name="url" value="https://github.com/100168/algorithm.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/100168/algorithm.git",
+    "accountId": "581fddb7-9e04-4a61-bd07-fc2f0fba5b42"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/local/go/src/builtin/builtin.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/container/heap/example_intheap_test.go" root0="SKIP_INSPECTION" />
@@ -87,6 +89,7 @@
     "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
     "Go Build.go build go-leetcode/src/week/385.executor": "Run",
     "Go 构建.go build go-leetcode/src/1700-1800/1054.executor": "Debug",
+    "Go 构建.go build go-leetcode/src/1700-1800/2080.executor": "Run",
     "Go 构建.go build go-leetcode/src/1700-1800/2929.executor": "Debug",
     "Go 构建.go build go-leetcode/src/1700-1800/2961.executor": "Debug",
     "Go 构建.go build go-leetcode/src/1700-1800/2962.executor": "Debug",
@@ -94,6 +97,8 @@
     "Go 构建.go build go-leetcode/src/biweek/126.executor": "Debug",
     "Go 构建.go build go-leetcode/src/biweek/126/c.executor": "Run",
     "Go 构建.go build go-leetcode/src/biweek/126/d.executor": "Run",
+    "Go 构建.go build go-leetcode/src/daily/2617.executor": "Run",
+    "Go 构建.go build go-leetcode/src/daily/322.executor": "Run",
     "Go 构建.go build go-leetcode/src/dfs/38.executor": "Run",
     "Go 构建.go build go-leetcode/src/dp/dfs/2684.executor": "Debug",
     "Go 构建.go build go-leetcode/src/dp/dfs/72.executor": "Run",
@@ -118,15 +123,14 @@
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/panjian",
+    "last_opened_file_path": "/Users/jianmac",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "editor.preferences.completion"
   },
   "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
-    ]
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
 }]]></component>
   <component name="RecentsManager">
@@ -141,7 +145,7 @@
       <recent name="$PROJECT_DIR$/src/dp" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/1700-1800/1054">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/daily/322">
     <configuration name="go build go-leetcode/src/1700-1800/1054" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -149,6 +153,15 @@
       <package value="go-leetcode/src/1700-1800/1054" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/1700-1800/1054/1054.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go-leetcode/src/1700-1800/2080" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="leetcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-leetcode/src/1700-1800/2080" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/1700-1800/2080/2080.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build go-leetcode/src/1700-1800/2929" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -160,49 +173,33 @@
       <filePath value="$PROJECT_DIR$/src/1700-1800/2929/2929.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/1700-1800/2961" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/daily/2617" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1700-1800/2961" />
+      <package value="go-leetcode/src/daily/2617" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1700-1800/2961/2961.go" />
+      <filePath value="$PROJECT_DIR$/src/daily/2617/2617.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/1700-1800/2962" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/daily/322" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1700-1800/2962" />
+      <package value="go-leetcode/src/daily/322" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1700-1800/2962/2962.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build go-leetcode/src/week/388/d" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="leetcode" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="go-leetcode/src/week/388/d" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/week/388/d/d.go" />
+      <filePath value="$PROJECT_DIR$/src/daily/322/322.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build go-leetcode/src/daily/322" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2080" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/daily/2617" />
         <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/1054" />
         <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2929" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2962" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2961" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/week/388/d" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14808.20" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,11 +304,6 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/week/389/c.go</url>
-          <line>45</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/biweek/126/b/b.go</url>
           <line>28</line>
           <option name="timeStamp" value="109" />
@@ -337,11 +329,6 @@
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/dp/lcs/1143.go</url>
-          <line>93</line>
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/stack/1793/1793.go</url>
           <line>45</line>
           <option name="timeStamp" value="136" />
@@ -362,11 +349,6 @@
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/week/388/d/d.go</url>
-          <line>34</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/1700-1800/2962/2962.go</url>
           <line>32</line>
           <option name="timeStamp" value="155" />
@@ -383,8 +365,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/1700-1800/1054/1054.go</url>
-          <line>67</line>
+          <line>65</line>
           <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/1700-1800/2080/2080.go</url>
+          <line>55</line>
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/1700-1800/2080/2080.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/1700-1800/2080/2080.go</url>
+          <line>33</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/daily/322/322.go</url>
+          <line>42</line>
+          <option name="timeStamp" value="177" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
