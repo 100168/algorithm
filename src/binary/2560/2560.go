@@ -54,7 +54,7 @@ func minCapability(nums []int, k int) int {
 	l, r := 1, slices.Max(nums)
 	for l <= r {
 		m := (l + r) / 2
-		if check(nums, m, k) {
+		if checkDp(nums, k, m) {
 			r = m - 1
 		} else {
 			l = m + 1
@@ -63,6 +63,39 @@ func minCapability(nums []int, k int) int {
 	return l
 }
 
-func check(nums []int, k, t int) {
+func check(nums []int, k, t int) bool {
 
+	n := len(nums)
+	index := -2
+	for i := 0; i < n; i++ {
+		if nums[i] <= t && index != i-1 {
+			index = i
+			k--
+		}
+		if k == 0 {
+			return true
+		}
+	}
+	return false
+}
+
+// dp 写法
+func checkDp(nums []int, k, t int) bool {
+
+	n := len(nums)
+	dp := make([]int, n)
+	for i := 0; i < n; i++ {
+
+		if nums[i] <= t {
+			if i-2 >= 0 {
+				dp[i] = dp[i-2] + 1
+			} else {
+				dp[i] = 1
+			}
+		}
+		if i-1 >= 0 {
+			dp[i] = max(dp[i], dp[i-1])
+		}
+	}
+	return dp[n-1] >= k
 }
