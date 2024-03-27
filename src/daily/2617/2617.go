@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"slices"
 	"sort"
 )
 
@@ -11,7 +10,7 @@ func minimumVisitedCells(grid [][]int) (mn int) {
 	m, n := len(grid), len(grid[0])
 	type pair struct{ x, i int }
 	colStacks := make([][]pair, n) // 每列的单调栈
-	rowSt := []pair{}              // 行单调栈
+	rowSt := make([]pair, 0)       // 行单调栈
 	for i := m - 1; i >= 0; i-- {
 		rowSt = rowSt[:0]
 		for j := n - 1; j >= 0; j-- {
@@ -53,6 +52,4 @@ func minimumVisitedCells(grid [][]int) (mn int) {
 func main() {
 	//fmt.Println(minimumVisitedCells([][]int{{3, 4, 2, 1}, {4, 2, 3, 1}, {2, 1, 0, 0}, {2, 4, 0, 0}}))
 	fmt.Println(minimumVisitedCells([][]int{{2, 1, 0}, {1, 0, 0}}))
-
-	slices.Max()
 }
