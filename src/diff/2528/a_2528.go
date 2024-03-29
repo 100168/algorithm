@@ -1,7 +1,7 @@
 package main
 
 import (
-	"sort"
+	"math"
 )
 
 /*
@@ -40,41 +40,56 @@ import (
 无论如何安排，总有一座城市的供电站数目是 4 ，所以最优解是 4 。
 */
 
-func maxPower(stations []int, r int, k int) int64 {
+// leetcode submit region begin(Prohibit modification and deletion)
+func maxPower(stations []int, rr int, k int) int64 {
 
 	n := len(stations)
 	diff := make([]int64, n+1)
-	for i := 0; i < n; i++ {
-		l := max(i-r, 0)
-		r := min(i+r, n-1)
-		diff[l] += int64(stations[i])
-		diff[r+1] -= int64(stations[i])
+	for i, v := range stations {
+		l := max(0, i-rr)
+		r := min(n-1, i+rr)
+		diff[l] += int64(v)
+		diff[r+1] -= int64(v)
 	}
-	sum := int64(0)
-	cnt := make([]int64, n)
-
-	for i := 0; i < n; i++ {
-		sum += diff[i]
-		cnt[i] = sum
-	}
-	sort.Slice(cnt, func(i, j int) bool {
-		return cnt[i] < cnt[j]
-	})
-
-	ans := int64(0)
-	l := 0
-	for k > 0 {
-		if l == n-1 {
-			return int64(k) + ans
-		}
-		d := cnt[l+1] - cnt[l]
-		if d >= int64(k) {
-			return ans + int64(k)
+	l, r := int64(0), int64(math.MaxInt64)
+	for l <= r {
+		m := (r-l)/2 + l
+		if check(m, rr, k, diff) {
+			l = m + 1
 		} else {
-			l++
-			ans = cnt[l]
-			k = k - int(d)
+			r = m - 1
 		}
 	}
-	return ans
+	return r
+
+}
+
+func check(t int64, rr, k int, diff []int64) bool {
+
+	newDiff := make([]int64, len(diff))
+	copy(newDiff, diff)
+	cur := int64(0)
+	n := len(newDiff) - 1
+	for i := 0; i < n; i++ {
+		cur += newDiff[i]
+		if cur < t {
+			di := t - cur
+			if di > int64(k) {
+				return false
+			}
+			cur += di
+			right := min(i+2*rr, n-1)
+			newDiff[right+1] -= di
+			k -= int(di)
+		}
+		if k < 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func main() {
+	//println(maxPower2([]int{1, 2, 4, 5, 0}, 1, 2))
+	println(maxPower([]int{13, 12, 8, 14, 7}, 2, 23))
 }

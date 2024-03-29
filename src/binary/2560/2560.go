@@ -54,7 +54,7 @@ func minCapability(nums []int, k int) int {
 	l, r := 1, slices.Max(nums)
 	for l <= r {
 		m := (l + r) / 2
-		if check(nums, m, k) {
+		if check(nums, k, m) {
 			r = m - 1
 		} else {
 			l = m + 1
@@ -63,6 +63,15 @@ func minCapability(nums []int, k int) int {
 	return l
 }
 
-func check(nums []int, k, t int) {
+func check(nums []int, k, t int) bool {
+	n := len(nums)
+	cnt := 0
+	for i := 0; i < n; i++ {
 
+		if nums[i] <= t {
+			cnt++
+			i++
+		}
+	}
+	return cnt >= k
 }
