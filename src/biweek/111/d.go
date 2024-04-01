@@ -29,7 +29,7 @@ func numberOfBeautifulIntegers(low, high, k int) int {
 				if *p >= 0 {
 					return *p
 				}
-				defer func() { *p = res }() // dfs
+				defer func() { *p = res }() // cache
 			}
 			if !isNum { // 可以跳过当前数位
 				res += dfs(i+1, val, diff, false, false)
