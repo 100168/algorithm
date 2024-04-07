@@ -2,15 +2,13 @@ package main
 
 func longestDupSubstring(s string) string {
 
+	n := len(s)
 	N := 30010
 	x := make([]uint8, N)
 	y := make([]int, N)
-
 	sa := make([]int, n)
 	rk := make([]int, n)
 	height := make([]int, n)
-	n := len(s)
-
 	cnt := make([]int, 26)
 	for i := 0; i < n; i++ {
 		x[i] = s[i]

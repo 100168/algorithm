@@ -2,7 +2,6 @@ package main
 
 import (
 	"slices"
-	"sort"
 )
 
 // 在股票交易中，如果前一天的股价高于后一天的股价，则可以认为存在一个「交易逆序对」。请设计一个程序，输入一段时间内的股票交易记录 record，返回其中存在的
@@ -46,19 +45,7 @@ func (b *bitSet) update(index, val int) {
 
 func reversePairs(record []int) int {
 
-	type pair struct {
-		index int
-		val   int
-	}
 	n := len(record)
-	sortR := make([]pair, n)
-	for i := range record {
-		sortR[i] = pair{i, record[i]}
-	}
-	sort.Slice(sortR, func(i, j int) bool {
-		return sortR[i].val < sortR[j].val
-	})
-
 	b := new(bitSet)
 	//表示排序好的下标
 	sa := make([]int, n)
@@ -76,7 +63,6 @@ func reversePairs(record []int) int {
 		b.update(v, 1)
 	}
 	return ans
-
 }
 
 func main() {

@@ -1,6 +1,8 @@
 package main
 
-import "strings"
+import (
+	"strings"
+)
 
 func MAX(a int, b int) int {
 	if a >= b {
@@ -21,5 +23,5 @@ func brace(s string) string {
 	return s
 }
 func main() {
-	println(brace("[[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]\n"))
+	println(brace("[[-1,-4,2],[4,3,-1],[2,-4,4],[1,-1,-4]]"))
 }
