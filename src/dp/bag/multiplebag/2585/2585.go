@@ -142,8 +142,8 @@ func waysToReachTarget2(target int, types [][]int) int {
 }
 func main() {
 	fmt.Println(waysToReachTarget(6, [][]int{{6, 1}, {3, 2}, {2, 3}}))
-	fmt.Println(dp(6, [][]int{{6, 1}, {3, 2}, {2, 3}}))
 	fmt.Println(waysToReachTarget2(6, [][]int{{6, 1}, {3, 2}, {2, 3}}))
+	fmt.Println(dp(6, [][]int{{6, 1}, {3, 2}, {2, 3}}))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
