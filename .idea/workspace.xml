@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="1054">
-      <change afterPath="$PROJECT_DIR$/src/1700-1800/2080/2080.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/daily/2617/2617.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/daily/322/322.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stack/239/239.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dp/lcs/1035/1035.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="2302" />
+    <option name="totalTimeSeconds" value="561" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -42,12 +39,12 @@
   &quot;prStates&quot;: []
 }</component>
   <component name="GitLabMergeRequestsSettings">{}</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/100168/algorithm.git",
-    "accountId": "581fddb7-9e04-4a61-bd07-fc2f0fba5b42"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/100168/algorithm.git&quot;,
+    &quot;accountId&quot;: &quot;581fddb7-9e04-4a61-bd07-fc2f0fba5b42&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/local/go/src/builtin/builtin.go" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/go/src/container/heap/example_intheap_test.go" root0="SKIP_INSPECTION" />
@@ -75,64 +72,64 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.go build go-leetcode/src/dp/931.executor": "Run",
-    "Go Build.go build go-leetcode/src/heap/743.executor": "Run",
-    "Go Build.go build go-leetcode/src/kmp.executor": "Debug",
-    "Go Build.go build go-leetcode/src/learning/myheap.executor": "Run",
-    "Go Build.go build go-leetcode/src/myheap.executor": "Debug",
-    "Go Build.go build go-leetcode/src/struct.executor": "Run",
-    "Go Build.go build go-leetcode/src/week/385 (1).executor": "Run",
-    "Go Build.go build go-leetcode/src/week/385.executor": "Run",
-    "Go 构建.go build go-leetcode/src/1700-1800/1054.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/1700-1800/2080.executor": "Run",
-    "Go 构建.go build go-leetcode/src/1700-1800/2929.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/1700-1800/2961.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/1700-1800/2962.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/bittree/LCR170.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/biweek/126.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/biweek/126/c.executor": "Run",
-    "Go 构建.go build go-leetcode/src/biweek/126/d.executor": "Run",
-    "Go 构建.go build go-leetcode/src/daily/2617.executor": "Run",
-    "Go 构建.go build go-leetcode/src/daily/322.executor": "Run",
-    "Go 构建.go build go-leetcode/src/dfs/38.executor": "Run",
-    "Go 构建.go build go-leetcode/src/dp/dfs/2684.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/dp/dfs/72.executor": "Run",
-    "Go 构建.go build go-leetcode/src/dp/lcs.executor": "Run",
-    "Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684.executor": "Run",
-    "Go 构建.go build go-leetcode/src/greedy/1969.executor": "Run",
-    "Go 构建.go build go-leetcode/src/stack/1793.executor": "Run",
-    "Go 构建.go build go-leetcode/src/stack/42.executor": "Run",
-    "Go 构建.go build go-leetcode/src/week/388/b.executor": "Run",
-    "Go 构建.go build go-leetcode/src/week/388/d.executor": "Debug",
-    "Go 构建.go build go-leetcode/src/week/389.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "configurable..is.expanded": "true",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/jianmac",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.completion"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build go-leetcode/src/dp/931.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/heap/743.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/kmp.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build go-leetcode/src/learning/myheap.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/myheap.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build go-leetcode/src/struct.executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385 (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go Build.go build go-leetcode/src/week/385.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/1700-1800/1054.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/1700-1800/2080.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/1700-1800/2929.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/1700-1800/2961.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/1700-1800/2962.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/bittree/LCR170.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/biweek/126.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/biweek/126/c.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/biweek/126/d.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/daily/2617.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/daily/322.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dfs/38.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/dfs/2684.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/dfs/72.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lcs.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/greedy/1969.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/stack/1793.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/stack/42.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/week/388/b.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/week/388/d.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/week/389.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;true&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jianmac&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
   },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
