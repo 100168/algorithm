@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"slices"
+	"sort"
 )
 
 //给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
@@ -126,35 +127,24 @@ func lengthOfLIS3(nums []int) int {
 
 	newNums := make([]int, n)
 	copy(newNums, nums)
+	sort.Ints(newNums)
 	compact := slices.Compact(newNums)
-
-	sa := make([]int, len(compact))
-
 	rkMap := make(map[int]int)
-	for i := range compact {
-		sa[i] = i
+
+	for i, v := range compact {
+		rkMap[v] = i
 	}
-	slices.SortStableFunc(sa, func(a, b int) int {
-		return compact[a] - compact[b]
-	})
-	for i := range sa {
-		rkMap[compact[sa[i]]] = i
-	}
-	addMap := make(map[int]bool)
 	ans := 0
 	for _, v := range nums {
 		cur := b.query(rkMap[v])
 		ans = max(ans, cur+1)
-		if !addMap[rkMap[v]] {
-			b.update(rkMap[v]+1, ans)
-		}
-		addMap[rkMap[v]] = true
+		b.update(rkMap[v]+1, cur+1)
 	}
 	return ans
 }
 
 func main() {
-	fmt.Println(lengthOfLIS3([]int{10, 9, 2, 5, 3, 7, 101, 1}))
+	fmt.Println(lengthOfLIS3([]int{4, 10, 3, 8, 9}))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
