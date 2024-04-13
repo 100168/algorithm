@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 //给你一个整数数组 nums 和一个整数 k 。
 //
@@ -57,7 +60,12 @@ import "fmt"
 // Related Topics 树状数组 线段树 队列 数组 分治 动态规划 单调队列 👍 77 👎 0
 
 // leetcode submit region begin(Prohibit modification and deletion)
-type seg []struct{ l, r, max int }
+
+type seg []struct {
+	maxVal int
+	l      int
+	r      int
+}
 
 func (t seg) build(o, l, r int) {
 	t[o].l, t[o].r = l, r
@@ -68,55 +76,56 @@ func (t seg) build(o, l, r int) {
 	t.build(o<<1, l, m)
 	t.build(o<<1|1, m+1, r)
 }
-
-func (t seg) modify(o, i, val int) {
+func (t seg) update(o, i, v int) {
 	if t[o].l == t[o].r {
-		t[o].max = val
+		t[o].maxVal = v
 		return
 	}
-	m := (t[o].l + t[o].r) >> 1
+	m := (t[o].l + t[o].r) / 2
+
 	if i <= m {
-		t.modify(o<<1, i, val)
+		t.update(o<<1, i, v)
 	} else {
-		t.modify(o<<1|1, i, val)
+		t.update(o<<1|1, i, v)
 	}
-	t[o].max = max(t[o<<1].max, t[o<<1|1].max)
+	t[o].maxVal = max(t[o<<1].maxVal, t[o<<1|1].maxVal)
 }
 
-// 返回区间 [l,r] 内的最大值
 func (t seg) query(o, l, r int) int {
-	if l <= t[o].l && t[o].r <= r {
-		return t[o].max
+
+	if t[o].l >= l && t[o].r <= r {
+		return t[o].maxVal
 	}
-	m := (t[o].l + t[o].r) >> 1
+	m := (t[o].l + t[o].r) / 2
+
 	if r <= m {
 		return t.query(o<<1, l, r)
 	}
-	if m < l {
+	if l >= m {
 		return t.query(o<<1|1, l, r)
 	}
+
 	return max(t.query(o<<1, l, r), t.query(o<<1|1, l, r))
 }
 
 func lengthOfLIS(nums []int, k int) int {
-	mx := 0
-	for _, x := range nums {
-		mx = max(mx, x)
-	}
+
+	mx := slices.Max(nums)
 	t := make(seg, mx*4)
 	t.build(1, 1, mx)
+
 	for _, x := range nums {
 		if x == 1 {
-			t.modify(1, 1, 1)
+			t.update(1, 1, 1)
 		} else {
-			t.modify(1, x, 1+t.query(1, max(x-k, 1), x-1))
+			t.update(1, x, 1+t.query(1, max(x-k, 1), x-1))
 		}
 	}
-	return t[1].max
+	return t[1].maxVal
 }
 
 func main() {
-	fmt.Println(lengthOfLIS([]int{1, 5}, 1))
+	fmt.Println(lengthOfLIS([]int{1, 5}, 4))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
