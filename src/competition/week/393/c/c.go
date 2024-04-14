@@ -38,7 +38,7 @@ next:
 		for j := i; j > 0; j &= j - 1 {
 			lcmRes = lcm(lcmRes, int64(nums[bits.TrailingZeros(j)]))
 			if lcmRes > m { // 太大了
-				continue next
+				goto next
 			}
 		}
 		c := m / lcmRes
@@ -52,4 +52,5 @@ next:
 
 func main() {
 	println(findKthSmallest([]int{5, 2}, 200000000))
+
 }
