@@ -63,6 +63,8 @@ func largestMultipleOfThree(digits []int) string {
 	dp[0][1] = -1
 	dp[0][2] = -1
 
+	//为什么要排序？
+	//只有排序完了之后才能有正常的转移
 	sort.Ints(digits)
 
 	for i := 1; i <= n; i++ {
