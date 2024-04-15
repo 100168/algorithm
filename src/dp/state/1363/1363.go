@@ -1,7 +1,6 @@
 package main
 
 import (
-	"slices"
 	"sort"
 )
 
@@ -56,7 +55,7 @@ func largestMultipleOfThree(digits []int) string {
 	// 3,6,9,12,15,18,21,24,27,30,33,36,
 
 	n := len(digits)
-	dp := make([][]int, 2)
+	dp := make([][]int, n+1)
 	for i := range dp {
 		dp[i] = make([]int, 3)
 	}
@@ -66,48 +65,45 @@ func largestMultipleOfThree(digits []int) string {
 
 	sort.Ints(digits)
 
-	path := make([][][]byte, 2)
-	for i := range path {
-		path[i] = make([][]byte, 3)
-		for j := range path[i] {
-			path[i][j] = make([]byte, 0)
-		}
-	}
-
-	for i, x := range digits {
+	for i := 1; i <= n; i++ {
+		x := digits[i-1]
 		for j := 0; j < 3; j++ {
-			pre := dp[i%2][((j-x)%3+3)%3]
-			dp[(i+1)%2][j] = dp[i%2][j]
-			nP := make([]byte, len(path[i%2][j]))
-			copy(nP, path[i%2][j])
-			path[(i+1)%2][j] = nP
+			mod := ((j-x)%3 + 3) % 3
+			pre := dp[i-1][mod]
+			dp[i][j] = dp[i-1][j]
 			if pre == -1 {
 				continue
 			}
-			dp[(i+1)%2][j] = max(dp[(i)%2][j], pre+1)
-			if dp[(i+1)%2][j] == pre+1 {
-				nP := make([]byte, len(path[i%2][((j-x)%3+3)%3]))
-				copy(nP, path[i%2][((j-x)%3+3)%3])
-				nP = append(nP, byte(x+'0'))
-				path[(i+1)%2][j] = nP
-			}
+			dp[i][j] = max(dp[i][j], pre+1)
 		}
 	}
-	slices.Sort(path[n%2][0])
-	slices.Reverse(path[n%2][0])
 
-	if len(path[n%2][0]) > 0 && path[n%2][0][0] == '0' {
+	ans := ""
+	index := n
+	mod := 0
 
-		return string('0')
+	for index > 0 {
+		x := digits[index-1]
+		if len(ans) > 0 && ans[0] == '0' && x == 0 {
+			return ans
+		}
+		rest := ((mod-x)%3 + 3) % 3
+		if dp[index-1][rest] >= 0 && dp[index-1][rest]+1 >= dp[index-1][mod] {
+			ans += string(byte(x + '0'))
+			mod = rest
+		}
+		index--
 	}
-	return string(path[n%2][0])
+	return ans
 
 }
 
 func main() {
-	println(largestMultipleOfThree([]int{8, 9, 1}))
+	//println(largestMultipleOfThree([]int{8, 9, 1}))
 	println(largestMultipleOfThree([]int{8, 6, 7, 1, 1, 1, 1, 1, 9, 0}))
 	println(largestMultipleOfThree([]int{8, 6, 7, 1, 0}))
+	println(largestMultipleOfThree([]int{1}))
+	println(largestMultipleOfThree([]int{0, 0, 0}))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
