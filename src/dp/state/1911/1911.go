@@ -53,19 +53,20 @@ package main
 // leetcode submit region begin(Prohibit modification and deletion)
 func maxAlternatingSum(nums []int) int64 {
 	n := len(nums)
-	even := make([]int64, n+1)
-	odd := make([]int64, n+1)
-	for i := 1; i <= n; i++ {
-		cur := nums[i-1]
-		even[i] = max(even[i-1], odd[i-1]+int64(cur), int64(cur))
-		odd[i] = max(odd[i-1], even[i-1]-int64(cur))
+	even := int64(0)
+	odd := int64(0)
+	for i := 0; i < n; i++ {
+		cur := nums[i]
+		temp := even
+		even = max(even, odd+int64(cur), int64(cur))
+		odd = max(odd, temp-int64(cur))
 	}
-	return even[n]
+	return even
 }
 
 func main() {
-	println(maxAlternatingSum([]int{4, 2, 5, 3}))
-	println(maxAlternatingSum([]int{5, 6, 7, 8}))
+	//println(maxAlternatingSum([]int{4, 2, 5, 3}))
+	//println(maxAlternatingSum([]int{5, 6, 7, 8}))
 	println(maxAlternatingSum([]int{6, 2, 1, 2, 4, 5}))
 }
 
