@@ -15,7 +15,7 @@ func maxSumDivThree(nums []int) int {
 	dp[0][2] = math.MinInt
 	for i, x := range nums {
 		for j := 0; j < 3; j++ {
-			dp[(i+1)%2][j] = max(dp[i%2][j], dp[i%2][((j-x)%3+3)%3]+x)
+			dp[(i+1)%2][j] = max(dp[i%2][j], dp[i%2][(j+x)%3]+x)
 		}
 	}
 
