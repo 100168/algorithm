@@ -44,21 +44,15 @@ func maximumSum(arr []int) int {
 func maximumSum2(arr []int) int {
 
 	n := len(arr)
-	del := make([]int, n)
-	unDel := make([]int, n)
-
-	unDel[0] = arr[0]
-
-	maVal := slices.Max(arr)
-	if maVal < 0 {
-		return maVal
-	}
-
+	del := make([]int, n+1)
+	unDel := make([]int, n+1)
+	unDel[0] = math.MinInt / 2
+	del[0] = math.MinInt / 2
 	ans := math.MinInt
-	for i := 1; i < n; i++ {
-		unDel[i] = max(arr[i], unDel[i-1]+arr[i], del[i-1], 0)
-		del[i] = max(del[i-1]+arr[i], arr[i], 0)
-		ans = max(ans, del[i], unDel[i])
+	for i := 0; i < n; i++ {
+		unDel[i+1] = max(unDel[i], 0) + arr[i]
+		del[i+1] = max(del[i]+arr[i], unDel[i])
+		ans = max(ans, del[i+1], unDel[i+1])
 	}
 	return ans
 }
