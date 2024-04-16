@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="dp" />
+    <list default="true" id="42918846-bfc2-4399-ac83-af59e4aace1a" name="Changes" comment="1186 优化">
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="878" />
+    <option name="totalTimeSeconds" value="2" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -39,7 +43,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/100168/algorithm.git&quot;,
-    &quot;accountId&quot;: &quot;581fddb7-9e04-4a61-bd07-fc2f0fba5b42&quot;
+    &quot;accountId&quot;: &quot;5f5c35c0-4e03-4e6d-9f30-0ffeaa499437&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -82,6 +86,7 @@
     &quot;Go Build.go build go-leetcode/src/struct.executor&quot;: &quot;Run&quot;,
     &quot;Go Build.go build go-leetcode/src/week/385 (1).executor&quot;: &quot;Run&quot;,
     &quot;Go Build.go build go-leetcode/src/week/385.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build 10.go.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/1700-1800/1054.executor&quot;: &quot;Debug&quot;,
     &quot;Go 构建.go build go-leetcode/src/1700-1800/2080.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/1700-1800/2929.executor&quot;: &quot;Debug&quot;,
@@ -91,16 +96,32 @@
     &quot;Go 构建.go build go-leetcode/src/biweek/126.executor&quot;: &quot;Debug&quot;,
     &quot;Go 构建.go build go-leetcode/src/biweek/126/c.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/biweek/126/d.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/daily/1702.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/daily/2165.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/daily/2617.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/daily/322.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/dfs/38.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/dp/dfs/2684.executor&quot;: &quot;Debug&quot;,
     &quot;Go 构建.go build go-leetcode/src/dp/dfs/72.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/dp/lcs.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lcs/10.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lcs/1458.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lcs/1713.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lcs/368.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lis/1187.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lis/1691.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lis/2407.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lis/300.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/lis/673.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/state/1363.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/state/1911.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 构建.go build go-leetcode/src/dp/state/2771.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/dp/记忆化搜索/2684.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/greedy/1969.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/segment_tree/715.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/stack/1793.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/stack/42.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build go-leetcode/src/unionfind/2421.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/week/388/b.executor&quot;: &quot;Run&quot;,
     &quot;Go 构建.go build go-leetcode/src/week/388/d.executor&quot;: &quot;Debug&quot;,
     &quot;Go 构建.go build go-leetcode/src/week/389.executor&quot;: &quot;Run&quot;,
@@ -117,11 +138,11 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jianmac&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/panjian&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
@@ -132,68 +153,76 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/dp/lis" />
       <recent name="$PROJECT_DIR$/src/biweek/126/b" />
       <recent name="$PROJECT_DIR$/src/biweek/126/a" />
       <recent name="$PROJECT_DIR$/src/biweek/126/c" />
       <recent name="$PROJECT_DIR$/src/biweek/126" />
-      <recent name="$PROJECT_DIR$/src/dp" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/daily/322">
-    <configuration name="go build go-leetcode/src/1700-1800/1054" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go 构建.go build go-leetcode/src/dp/state/2771">
+    <configuration name="go build go-leetcode/src/dp/lcs/1713" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1700-1800/1054" />
+      <package value="go-leetcode/src/dp/lcs/1713" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1700-1800/1054/1054.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/lcs/1713/1713.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/1700-1800/2080" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/dp/lcs/368" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1700-1800/2080" />
+      <package value="go-leetcode/src/dp/lcs/368" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1700-1800/2080/2080.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/lcs/368/368.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/1700-1800/2929" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/dp/state/1363" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/1700-1800/2929" />
+      <package value="go-leetcode/src/dp/state/1363" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/1700-1800/2929/2929.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/state/1363/1363.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/daily/2617" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/dp/state/1911" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/daily/2617" />
+      <package value="go-leetcode/src/dp/state/1911" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/daily/2617/2617.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/state/1911/1911.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build go-leetcode/src/daily/322" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build go-leetcode/src/dp/state/2771" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="leetcode" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="go-leetcode/src/daily/322" />
+      <package value="go-leetcode/src/dp/state/2771" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/daily/322/322.go" />
+      <filePath value="$PROJECT_DIR$/src/dp/state/2771/2771.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 构建.go build go-leetcode/src/daily/322" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2080" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/daily/2617" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/1054" />
-        <item itemvalue="Go 构建.go build go-leetcode/src/1700-1800/2929" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/dp/state/2771" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/dp/state/1911" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/dp/state/1363" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/dp/lcs/1713" />
+        <item itemvalue="Go 构建.go build go-leetcode/src/dp/lcs/368" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-33c477a475b1-b97fc8a1e17c-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-241.14494.238" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-GO-241.14494.238" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +253,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add sum algorithm" />
     <MESSAGE value="数位dp模板题" />
     <MESSAGE value="1700-1800" />
     <MESSAGE value="周赛+双周赛" />
@@ -232,15 +260,25 @@
     <MESSAGE value="add some algorithm" />
     <MESSAGE value="add lru" />
     <MESSAGE value="add  plus and multiply" />
-    <MESSAGE value="树状数组" />
-    <MESSAGE value="难顶" />
     <MESSAGE value="单调栈+接雨水三种写法" />
     <MESSAGE value="双周赛最后一道题+每日一题" />
     <MESSAGE value="周赛" />
     <MESSAGE value="2929" />
     <MESSAGE value="1054" />
     <MESSAGE value="dp" />
-    <option name="LAST_COMMIT_MESSAGE" value="dp" />
+    <MESSAGE value="糖心" />
+    <MESSAGE value="俄罗斯套娃" />
+    <MESSAGE value="线段树模版动态开点" />
+    <MESSAGE value="树状数组" />
+    <MESSAGE value="记忆化搜索" />
+    <MESSAGE value="lis" />
+    <MESSAGE value="难顶" />
+    <MESSAGE value="1363优化一下" />
+    <MESSAGE value="注释" />
+    <MESSAGE value="1911一个奇的dp不知为啥能过" />
+    <MESSAGE value="1911 优化" />
+    <MESSAGE value="1186 优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="1186 优化" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -315,7 +353,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/bittree/LCR170/lcr170.go</url>
-          <line>77</line>
+          <line>64</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -382,6 +420,71 @@
           <url>file://$PROJECT_DIR$/src/daily/322/322.go</url>
           <line>42</line>
           <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/daily/2165/2165.go</url>
+          <line>13</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lcs/1458/1458.go</url>
+          <line>55</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/daily/1702/1702.go</url>
+          <line>80</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lcs/10/10.go</url>
+          <line>69</line>
+          <option name="timeStamp" value="185" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/unionfind/2421/2421.go</url>
+          <line>119</line>
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lis/673/673.go</url>
+          <line>67</line>
+          <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lis/300/300.go</url>
+          <line>136</line>
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/segment_tree/715/715.go</url>
+          <line>156</line>
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lis/1187/1187.go</url>
+          <line>79</line>
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/lcs/368/368.go</url>
+          <line>34</line>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/state/1363/1363.go</url>
+          <line>86</line>
+          <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/state/1363/1363.go</url>
+          <line>71</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/dp/state/1911/1911.go</url>
+          <line>57</line>
+          <option name="timeStamp" value="236" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

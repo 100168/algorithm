@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"go-leetcode/src/util"
 	"math"
 )
 
@@ -48,7 +47,7 @@ func minSubarray(nums []int, p int) int {
 		cur = (cur + num) % p
 		key := ((cur - last) + p) % p
 		if exist[key] != -1 {
-			ans = util.Min(ans, i+1-exist[key])
+			ans = min(ans, i+1-exist[key])
 		}
 		exist[cur] = i + 1
 
