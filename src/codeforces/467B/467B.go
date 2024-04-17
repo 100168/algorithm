@@ -1,18 +1,33 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
+	"math/bits"
+	"os"
 )
 
-func CF467B() {
+func CF467B(_r io.Reader, out io.Writer) {
 
+	in := bufio.NewReader(_r)
+	var n, m, k, v, ans uint
+	fmt.Fscan(in, &n, &m, &k)
+	a := make([]uint, m)
+
+	for i := range a {
+		fmt.Fscan(in, &a[i])
+	}
+	fmt.Fscan(in, &v)
+
+	for _, w := range a {
+		if uint(bits.OnesCount(v^w)) <= k {
+			ans++
+		}
+	}
+	fmt.Fprint(out, ans)
 }
 
 func main() {
-	var t, a, b int
-	fmt.Scanln(&t)
-	for i := 0; i < t; i++ {
-		fmt.Scanln(&a, &b)
-		fmt.Println(a + b)
-	}
+	CF467B(os.Stdin, os.Stdout)
 }
