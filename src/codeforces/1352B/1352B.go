@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 )
 
 func CF1352B(_r io.Reader, out io.Writer) {
@@ -14,35 +13,29 @@ func CF1352B(_r io.Reader, out io.Writer) {
 
 	var t, n, k int
 	fmt.Fscan(in, &t)
-next:
 	for i := 0; i < t; i++ {
 		fmt.Fscan(in, &n, &k)
 
-		ans := make([]int, 0)
-		mod := n % k
-
-		if mod == 0 {
-			for j := 0; i < k; j++ {
-				ans = append(ans, n/k)
+		n1 := n - (k - 1)
+		if n1 > 0 && n1%2 == 1 {
+			fmt.Fprintln(out, "YES")
+			for j := 0; j < k-1; j++ {
+				fmt.Fprint(out, 1, " ")
 			}
-		} else {
-			same := n / (k - 1)
-			if same%2 == mod%2 {
-				for i := 0; i < k-1; i++ {
-					ans = append(ans, same)
-				}
-				ans = append(ans, mod)
-			} else {
-				fmt.Fprintln(out, "NO")
-				continue next
-			}
-
+			fmt.Fprintln(out, n1)
+			continue
 		}
-		fmt.Fprintln(out, "YES")
-		res := fmt.Sprint(ans)
-		res = strings.Trim(res, "[")
-		res = strings.Trim(res, "]")
-		fmt.Fprintln(out, res)
+		n2 := n - 2*(k-1)
+		if n2 > 0 && n2%2 == 0 {
+			fmt.Fprintln(out, "YES")
+			for j := 0; j < k-1; j++ {
+				fmt.Fprint(out, 2, " ")
+			}
+			fmt.Fprintln(out, n2)
+
+			continue
+		}
+		fmt.Fprintln(out, "NO")
 	}
 }
 
