@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 func minExtraChar(s string, dictionary []string) int {
 
@@ -41,4 +44,8 @@ func minExtraChar(s string, dictionary []string) int {
 	}
 
 	return dfs(n)
+}
+
+func main() {
+	println(strconv.FormatInt(25, 2))
 }
