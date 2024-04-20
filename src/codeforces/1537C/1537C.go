@@ -26,7 +26,7 @@ func CF1537C(_r io.Reader, out io.Writer) {
 			continue
 		}
 		mn := math.MaxInt
-		pos := -1
+		pos := 0
 		for i := 1; i < n; i++ {
 			if h[i]-h[i-1] < mn {
 				mn = h[i] - h[i-1]
