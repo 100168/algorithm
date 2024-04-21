@@ -1,6 +1,10 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+	"strconv"
+)
 
 // 也可以用二分
 func splitArray(nums []int, k int) int {
@@ -45,4 +49,8 @@ func splitArray(nums []int, k int) int {
 	}
 
 	return dfs(n-1, k)
+}
+
+func main() {
+	fmt.Println(strconv.FormatInt(523, 2))
 }
