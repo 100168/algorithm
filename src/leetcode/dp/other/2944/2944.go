@@ -29,6 +29,7 @@ func minimumCoins(prices []int) int {
 	//3,1,2,4,5,6,3,3,4,5,100,1,1,100,1001,100
 	dp[1][1] = prices[0]
 	for i := 2; i <= n; i++ {
+		//i == 9           i-1==8   4                 5
 		dp[i][1] = min(dp[i][1], dp[i-1][1]+prices[i-1], dp[i-1][0]+prices[i-1])
 		for j := i - 1; j*2 >= i; j-- {
 			if j*2 >= i {
