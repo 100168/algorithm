@@ -15,11 +15,7 @@ func longestArithSeqLength(nums []int) int {
 
 	n := len(nums)
 
-	numsMap := make(map[int][]int)
-
-	for i, v := range nums {
-		numsMap[v] = append(numsMap[v], i)
-	}
+	numsMap := make(map[int]int)
 
 	maxVal := slices.Max(nums)
 	dp := make([][][]int, n)
@@ -35,23 +31,18 @@ func longestArithSeqLength(nums []int) int {
 	}
 
 	ans := 1
-	for i := 1; i < n; i++ {
+	for i := 0; i < n; i++ {
 		cur := nums[i]
 		for j := 0; j <= maxVal; j++ {
-			bigPre := numsMap[cur-j]
-			for _, v := range bigPre {
-				if v < i {
-					dp[i][j][0] = max(dp[i][j][0], dp[v][j][0]+1)
-				}
+			if _, ok := numsMap[cur-j]; ok {
+				dp[i][j][0] = dp[numsMap[cur-j]][j][0] + 1
 			}
-			smallPre := numsMap[cur+j]
-			for _, v := range smallPre {
-				if v < i {
-					dp[i][j][1] = max(dp[i][j][1], dp[v][j][1]+1)
-				}
+			if _, ok := numsMap[cur+j]; ok {
+				dp[i][j][1] = dp[numsMap[cur+j]][j][1] + 1
 			}
 			ans = max(ans, dp[i][j][0], dp[i][j][1])
 		}
+		numsMap[cur] = i
 	}
 	return ans
 }
