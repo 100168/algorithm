@@ -27,7 +27,6 @@ func mctFromLeafValues(arr []int) int {
 			memo[i][j] = -1
 		}
 	}
-
 	var dfs func(int, int) int
 
 	dfs = func(l int, r int) int {
