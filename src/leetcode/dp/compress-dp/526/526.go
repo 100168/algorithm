@@ -20,6 +20,8 @@ func countArrangement(n int) int {
 
 	dfs = func(i, mask int) int {
 		if i == 0 {
+
+			//为什么需要特判，应为到这不一定满足情况
 			if mask == (1<<n - 1) {
 				return 1
 			}
@@ -31,6 +33,7 @@ func countArrangement(n int) int {
 		}
 		cur := 0
 		for j := 0; j < n; j++ {
+			//注意这
 			if 1<<j&mask == 0 && (j+1)%i == 0 || i%(j+1) == 0 {
 				cur += dfs(i-1, mask|(1<<j))
 			}
@@ -43,5 +46,5 @@ func countArrangement(n int) int {
 }
 
 func main() {
-	println(1 << 15)
+	countArrangement(2)
 }
