@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"strings"
 )
 
 /**
@@ -20,87 +19,67 @@ func shortestSuperstring(words []string) string {
 		ans += word
 	}
 
-	orr := make([][]int, n)
-	for i := range orr {
-		orr[i] = make([]int, n)
+	overLap := make([][]int, n)
+	for i := range overLap {
+		overLap[i] = make([]int, n)
 	}
 
 	for i := 0; i < n; i++ {
 		s1 := words[i]
-		for j := i + 1; j < n; j++ {
+		for j := 0; j < n; j++ {
 			s2 := words[j]
 			for k := 1; k <= min(len(s1), len(s2)); k++ {
 				if s1[len(s1)-k:] == s2[:k] {
-					orr[i][j] = k
-					orr[j][i] = k
+					overLap[i][j] = k
 				}
 			}
 		}
 	}
-
-	memo := make([][]int, 1<<n)
-	parent := make([][]int, 1<<n)
+	memo := make([]map[int]string, 1<<n)
 
 	for i := range memo {
-		memo[i] = make([]int, n)
-		parent[i] = make([]int, n)
-
-		for j := range memo[i] {
-			memo[i][j] = -1
-			parent[i][j] = -1
-		}
+		memo[i] = make(map[int]string, n)
 	}
-	var dfs func(int, int) int
-	dfs = func(mask int, pre int) int {
+	var dfs func(int, int) string
+
+	dfs = func(mask int, pre int) string {
 
 		if mask == 1<<n-1 {
-			return 0
+			return words[pre]
 		}
 
-		if memo[mask][pre] != -1 {
+		if _, ok := memo[mask][pre]; ok {
 			return memo[mask][pre]
 		}
 
-		cur := math.MinInt
+		curLen := math.MaxInt / 2
+		cur := ""
+
 		for i := 0; i < n; i++ {
 			if 1<<i&mask == 0 {
-				cur = min(cur, dfs(mask|1<<i, i)+orr[pre][mask])
+				overlap := overLap[pre][i]
+				preL := len(words[pre])
+				next := words[pre][:preL-overlap] + dfs(mask|1<<i, i)
+				if len(next) < curLen {
+					cur = next
+					curLen = len(next)
+				}
 			}
 		}
-	}
 
-	dfs(0, -1)
+		memo[mask][pre] = cur
+		return cur
+	}
+	for i := 0; i < n; i++ {
+		cur := dfs(1<<i, i)
+		if len(cur) < len(ans) {
+			ans = cur
+		}
+	}
 	return ans
-}
-
-func merge(s1, s2 string) int {
-
-	n1 := len(s1)
-	n2 := len(s2)
-
-	index := 1
-
-	maxI := 0
-	for index <= min(n1, n2) {
-		if s1[n1-index:] == s2[:index] {
-			maxI = index
-		}
-		index++
-	}
-	return maxI
-
-}
-
-func check(s string, words []string) bool {
-	for _, v := range words {
-		if strings.Index(s, v) < 0 {
-			return false
-		}
-	}
-	return true
 }
 
 func main() {
 	fmt.Println(shortestSuperstring([]string{"catg", "ctaagt", "gcta", "ttca", "atgcatc"}))
-	fmt.Println(merge("catg", "atg"))
+	//fmt.Println(merge("catg", "atg"))
 }
