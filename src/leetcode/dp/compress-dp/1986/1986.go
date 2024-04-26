@@ -13,6 +13,7 @@ import "math"
 给你 tasks 和 sessionTime ，请你按照上述要求，返回完成所有任务所需要的 最少 数目的 工作时间段 。
 测试数据保证 sessionTime 大于等于 tasks[i] 中的 最大值 。
 */
+
 func minSessions(tasks []int, sessionTime int) int {
 
 	n := len(tasks)
@@ -21,6 +22,7 @@ func minSessions(tasks []int, sessionTime int) int {
 		memo[i] = -1
 	}
 
+	//先预处理，要不然会卡常
 	sum := make([]int, 1<<n)
 	for i, t := range tasks {
 		for j, k := 0, 1<<i; j < k; j++ {
@@ -40,19 +42,16 @@ func minSessions(tasks []int, sessionTime int) int {
 
 		ans := math.MaxInt
 
-		next := mask
-
-		for next > 0 {
+		for next := mask; next > 0; next = (next - 1) & mask {
 			cur := 0
 			for i := 0; i < n; i++ {
 				if 1<<i&next != 0 {
 					cur += tasks[i]
 				}
 			}
-			if cur <= sessionTime {
+			if sum[next] <= sessionTime {
 				ans = min(ans, dfs(mask^next)+1)
 			}
-			next = (next - 1) & mask
 		}
 		memo[mask] = ans
 		return ans
