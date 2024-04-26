@@ -68,6 +68,52 @@ func distributeCookies(cookies []int, k int) int {
 	return dfs(0, k)
 }
 
+func distributeCookies2(cookies []int, k int) int {
+
+	n := len(cookies)
+
+	sum := make([]int, 1<<n)
+	for i, v := range cookies {
+		for j, k := 0, 1<<i; j < k; j++ {
+			sum[j|k] = sum[j] + v
+		}
+	}
+
+	f := make([]int, 1<<n)
+	for i := range f {
+		f[i] = sum[i]
+	}
+	for i := 1; i < k; i++ {
+		for mask := 1<<n - 1; mask >= 0; mask-- {
+			for sub := mask; sub > 0; sub = (sub - 1) & mask {
+				f[mask] = min(f[mask], max(f[mask^sub], sum[sub]))
+			}
+		}
+	}
+	return f[1<<n-1]
+}
+
+func distributeCookies3(a []int, k int) int {
+	n := 1 << len(a)
+	sum := make([]int, n)
+	for i, v := range a {
+		for j, bit := 0, 1<<i; j < bit; j++ {
+			sum[bit|j] = sum[j] + v
+		}
+	}
+
+	f := append([]int{}, sum...)
+	for i := 1; i < k; i++ {
+		for j := n - 1; j > 0; j-- {
+			for s := j; s > 0; s = (s - 1) & j {
+				f[j] = min(f[j], max(f[j^s], sum[s]))
+			}
+		}
+	}
+	return f[n-1]
+}
+
 func main() {
 	fmt.Println(distributeCookies([]int{8, 15, 10, 20, 8}, 2))
+	fmt.Println(distributeCookies2([]int{8, 15, 10, 20, 8}, 2))
 }
