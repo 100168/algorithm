@@ -56,3 +56,62 @@ func dfs(i int, isLimit bool, isNum bool, memo []int, s string, digits []string)
 	}
 	return res
 }
+
+func atMostNGivenDigitSet2(digits []string, n int) int {
+
+	s := strconv.Itoa(n)
+	l := len(s)
+	m := len(digits)
+
+	memo := make([][]int, l)
+
+	for i := range memo {
+		memo[i] = make([]int, 1<<m)
+		for j := range memo[i] {
+			memo[i][j] = -1
+		}
+	}
+
+	var dfs func(int, int, bool, bool) int
+
+	dfs = func(i, mask int, isLimit bool, isNum bool) int {
+		if i == l {
+			if isNum {
+				return 1
+			}
+			return 0
+		}
+
+		if isNum && !isLimit && memo[i][mask] != -1 {
+			return memo[i][mask]
+		}
+
+		cur := 0
+		if !isNum {
+			cur += dfs(i+1, mask, false, false)
+		}
+
+		up := 9
+		if isLimit {
+			up = int(s[i] - '0')
+		}
+
+		for j, d := range digits {
+			v := int(d[0] - '0')
+			if v > up {
+				break
+			}
+			cur += dfs(i+1, mask|1<<j, isLimit && v == up, true)
+		}
+
+		if !isLimit && isNum {
+			memo[i][mask] = cur
+		}
+		return cur
+	}
+	return dfs(0, 0, true, false)
+}
+
+func main() {
+	println(atMostNGivenDigitSet2([]string{"1", "3", "5", "7"}, 100))
+}

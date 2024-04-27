@@ -16,8 +16,10 @@ import (
 func findIntegers(n int) int {
 
 	s := strconv.FormatInt(int64(n), 2)
-	l := len(s)
-	memo := make([][]int, l)
+
+	m := len(s)
+	memo := make([][]int, m)
+
 	for i := range memo {
 		memo[i] = make([]int, 2)
 		for j := range memo[i] {
@@ -25,53 +27,39 @@ func findIntegers(n int) int {
 		}
 	}
 
-	return dfs(0, false, true, false, memo, s)
-}
+	var dfs func(int, int, bool, bool) int
 
-func dfs(i int, isOne bool, isLimit bool, isNum bool, memo [][]int, s string) int {
-
-	//base case
-	if i == len(s) {
-		return 1
-	}
-	j := 0
-	if isOne {
-		j = 1
-	}
-	//是否计算过
-	if !isLimit && isNum && memo[i][j] != -1 {
-		return memo[i][j]
-	}
-
-	res := 0
-	//跳过当前数
-	if !isNum {
-		res = dfs(i+1, false, false, false, memo, s)
-	}
-	up := 1
-	start := 0
-	//受限制
-	if isLimit {
-		up = int(s[i] - '0')
-	}
-	//当前是否填过数
-	if !isNum {
-		start = 1
-	}
-
-	for end := start; end <= up; end++ {
-		if !isOne || isOne && end != 1 {
-
-			res += dfs(i+1, end == 1, isLimit && end == up, true, memo, s)
+	dfs = func(i, pre int, isLimit bool, isNum bool) int {
+		if i == m {
+			return 1
 		}
-
+		if !isLimit && isNum && memo[i][pre] != -1 {
+			return memo[i][pre]
+		}
+		res := 0
+		if !isNum {
+			res += dfs(i+1, 0, false, false)
+		}
+		up := 1
+		if isLimit {
+			up = int(s[i] - '0')
+		}
+		low := 0
+		if !isNum {
+			low = 1
+		}
+		for j := low; j <= up; j++ {
+			if pre != 1 || j != 1 {
+				res += dfs(i+1, j, isLimit && j == up, true)
+			}
+		}
+		if !isLimit && isNum {
+			memo[i][pre] = res
+		}
+		return res
 	}
-	if !isLimit && isNum {
-		memo[i][j] = res
-	}
-	return res
+	return dfs(0, 0, true, false)
 }
-
 func main() {
 	println(findIntegers(5))
 }
