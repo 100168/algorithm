@@ -9,15 +9,18 @@ import (
 对于所有 0 <= i < n - 1 ，满足 nums[i + 1] 大于 nums[i] ，并且数组 nums 中所有元素的按位 AND 运算结果为 x 。
 
 返回 nums[n - 1] 可能的 最小 值。
-
 */
+func minEnd(n int, x int) int64 {
 
-func minEnd(n, x int) int64 {
 	n--
+
+	low := ^x
 	j := 0
-	for t, lb := ^x, 0; n>>j > 0; t ^= lb {
-		lb = t & -t
-		x |= n >> j & 1 * lb
+	for n>>j > 0 {
+		l := low & -low
+		lb := n >> j & 1
+		x |= l * lb
+		low ^= l
 		j++
 	}
 	return int64(x)
