@@ -68,6 +68,7 @@ func numberOfBeautifulIntegers(low, high, k int) int {
 			up = int(highs[i] - '0')
 		}
 
+		//一定要放里面取最大值
 		for d := max(low, down); d <= up; d++ {
 			res += dfs(i+1, diff+(d%2)*2-1, (rest*10+d)%k, isLimitL && d == low, isLimitH && d == up, true)
 		}
