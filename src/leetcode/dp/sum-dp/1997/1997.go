@@ -62,5 +62,28 @@ package main
 
 func firstDayBeenInAllRooms(nextVisit []int) int {
 
-	return 0
+	n := len(nextVisit)
+	mod := 1_000_000_007
+	s := make([]int, n)
+
+	//hoe to think?
+	//第一次到i访问次数是奇数，只能往前跳，i之前的的位置访问的次数一定是偶数 f[i] = f[]
+	//第二次到i是偶数，可以往右跳
+
+	//f[0]+f[1]+⋯+f[n−2]+1=s[n−1]+1
+	//即定义 f[i] 表示从「访问到房间 i 且次数为奇数」到「访问到房间 i 且次数为偶数」所需要的天数。
+	for i, j := range nextVisit[:n-1] {
+		s[i+1] = (s[i]*2 - s[j] + 2 + mod) % mod
+	}
+	return s[n-1]
+}
+
+func firstDayBeenInAllRooms2(nextVisit []int) int {
+	const mod = 1_000_000_007
+	n := len(nextVisit)
+	s := make([]int, n)
+	for i, j := range nextVisit[:n-1] {
+		s[i+1] = (s[i]*2 - s[j] + 2 + mod) % mod // + mod 避免算出负数
+	}
+	return s[n-1]
 }
