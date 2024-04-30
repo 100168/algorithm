@@ -35,11 +35,11 @@ func maxScore(edges [][]int) int64 {
 
 	var dfs func(int, int) (int, int)
 
-	//1.选当前节点作为一条边== 当前子节点不选+其他子节点的边选或不选取最大值 max(选,不选)
+	//1.选当前节点作为一条边 == 当前子节点不选 + 其他子节点的边选或不选取最大值并累加sum(max(选,不选))
 	//2.不选当前节点作为一条边 == 所有子节点选或不选取最大值并累加sum(max(选，不选))
 	dfs = func(x, fa int) (int, int) {
 
-		//不选单前接口作为边
+		//不选当前节点作为边
 		no := 0
 		//选当前节点作为边
 		maxS := 0
@@ -59,6 +59,7 @@ func maxScore(edges [][]int) int64 {
 			ssMap[v.y] = n + v.d
 			no += max(y, n)
 		}
+		//遍历一遍找出选哪个边值最大
 		for k, v := range ssMap {
 			maxS = max(maxS, v+no-max(unMap[k], sMap[k]))
 		}
