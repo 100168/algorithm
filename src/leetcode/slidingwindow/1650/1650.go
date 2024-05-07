@@ -23,12 +23,13 @@ func minOperations(nums []int, x int) int {
 	}
 	rest := s - x
 
+	if rest < 0 {
+		return -1
+	}
+
 	for r := 0; r < n; r++ {
 		w += nums[r]
-		for w >= rest && l <= r {
-			if w == rest {
-				ans = max(ans, r-l+1)
-			}
+		for w > rest {
 			w -= nums[l]
 			l++
 		}
@@ -42,9 +43,9 @@ func minOperations(nums []int, x int) int {
 	return n - ans
 }
 func main() {
-	//fmt.Println(minOperations([]int{1, 1, 1, 1, 2, 3, 1}, 5))
-	//fmt.Println(minOperations([]int{1, 1, 1, 1, 2, 3, 1}, 7))
-	//fmt.Println(minOperations([]int{1, 1, 4, 2, 3}, 5))
-	//fmt.Println(minOperations([]int{1, 1}, 3))
+	fmt.Println(minOperations([]int{1, 1, 1, 1, 2, 3, 1}, 5))
+	fmt.Println(minOperations([]int{1, 1, 1, 1, 2, 3, 1}, 7))
+	fmt.Println(minOperations([]int{1, 1, 4, 2, 3}, 5))
+	fmt.Println(minOperations([]int{1, 1}, 3))
 	fmt.Println(minOperations([]int{8828, 9581, 49, 9818, 9974, 9869, 9991, 10000, 10000, 10000, 9999, 9993, 9904, 8819, 1231, 6309}, 134365))
 }
