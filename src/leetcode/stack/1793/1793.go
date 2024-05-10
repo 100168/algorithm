@@ -37,7 +37,7 @@ package main
 //
 // Related Topics 栈 数组 双指针 二分查找 单调栈 👍 91 👎 0
 
-func maximumScore(nums []int, k int) int {
+func maximumScore1(nums []int, k int) int {
 	n := len(nums)
 
 	left := make([]int, n)
@@ -80,7 +80,7 @@ func maximumScore(nums []int, k int) int {
 	return ans
 }
 
-func maximumScore2(nums []int, k int) int {
+func maximumScore(nums []int, k int) int {
 	n := len(nums)
 	ans, minH := nums[k], nums[k]
 	i, j := k, k
@@ -97,5 +97,6 @@ func maximumScore2(nums []int, k int) int {
 	return ans
 }
 func main() {
-	println(maximumScore([]int{1, 4, 7, 3, 7, 4, 5}, 3))
+	println(maximumScore([]int{5, 5, 4, 5, 4, 1, 1, 1}, 0))
+	println(maximumScore1([]int{5, 5, 4, 5, 4, 1, 1, 1}, 0))
 }
