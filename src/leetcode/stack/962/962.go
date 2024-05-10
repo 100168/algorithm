@@ -30,7 +30,27 @@ func maxWidthRamp(nums []int) int {
 	}
 	return ans
 }
+func maxWidthRamp2(nums []int) int {
+
+	n := len(nums)
+	st := make([]int, n)
+
+	ans := 0
+	for i := 0; i < n; i++ {
+		if nums[st[len(st)-1]] > nums[i] {
+			st = append(st, i)
+		}
+	}
+	for i := n - 1; i >= 0; i-- {
+		for len(st) > 0 && nums[st[len(st)-1]] <= nums[i] {
+			ans = max(ans, i-st[len(st)-1])
+			st = st[:len(st)-1]
+		}
+	}
+	return ans
+}
 
 func main() {
 	println(maxWidthRamp([]int{9, 8, 1, 0, 1, 9, 4, 0, 4, 1}))
+	println(maxWidthRamp2([]int{9, 8, 1, 0, 1, 9, 4, 0, 4, 1}))
 }
