@@ -1,6 +1,8 @@
 package main
 
-import "slices"
+import (
+	"slices"
+)
 
 // 给你一个整数数组 nums 和一个 正整数 k 。
 //
@@ -28,7 +30,43 @@ import "slices"
 // 1 <= k <= 10⁵
 //
 // leetcode submit region begin(Prohibit modification and deletion)
-func countSubarrays(nums []int, k int) (ans int64) {
+func countSubarrays(nums []int, k int) int64 {
+
+	maxVal := slices.Max(nums)
+
+	cnt := 0
+	for _, v := range nums {
+		if v == maxVal {
+			cnt++
+		}
+	}
+
+	if cnt < k {
+		return 0
+	}
+
+	l := 0
+
+	w := 0
+	ans := 0
+	for _, v := range nums {
+		if v == maxVal {
+			w++
+		}
+		for nums[l] != maxVal || w > k {
+			if nums[l] == maxVal {
+				w--
+			}
+			l++
+		}
+		if w == k {
+			ans += l + 1
+		}
+	}
+	return int64(ans)
+}
+
+func countSubarrays2(nums []int, k int) (ans int64) {
 	mx := slices.Max(nums)
 	cntMx, left := 0, 0
 	for _, x := range nums {
@@ -47,7 +85,7 @@ func countSubarrays(nums []int, k int) (ans int64) {
 }
 
 func main() {
-	println(countSubarrays([]int{1, 1, 1}, 2))
+	println(countSubarrays([]int{1, 3, 2, 3, 3}, 2))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
