@@ -1,6 +1,9 @@
 package main
 
-import "sort"
+import (
+	"slices"
+	"sort"
+)
 
 //给你一个整数数组 nums 以及两个整数 lower 和 upper 。求数组中，值位于范围 [lower, upper] （包含 lower 和
 //upper）之内的 区间和的个数 。
@@ -66,7 +69,7 @@ func countRangeSum(nums []int, lower, upper int) (cnt int) {
 	n := len(nums)
 
 	// 计算前缀和 preSum，以及后面统计时会用到的所有数字 allNums
-	allNums := make([]int, 1, 3*n+1)
+	allNums := make([]int, 1)
 	preSum := make([]int, n+1)
 	for i, v := range nums {
 		preSum[i+1] = preSum[i] + v
@@ -75,22 +78,19 @@ func countRangeSum(nums []int, lower, upper int) (cnt int) {
 
 	// 将 allNums 离散化
 	sort.Ints(allNums)
-	k := 1
-	kth := map[int]int{allNums[0]: k}
-	for i := 1; i <= 3*n; i++ {
-		if allNums[i] != allNums[i-1] {
-			k++
-			kth[allNums[i]] = k
-		}
+	sa := make(map[int]int)
+	allNums = slices.Compact(allNums)
+	for i, v := range allNums {
+		sa[v] = i + 1
 	}
 
 	// 遍历 preSum，利用树状数组计算每个前缀和对应的合法区间数
-	t := fenwick{make([]int, k+1)}
-	t.inc(kth[0])
+	t := fenwick{make([]int, len(sa)+1)}
+	t.inc(sa[0])
 	for _, sum := range preSum[1:] {
-		left, right := kth[sum-upper], kth[sum-lower]
+		left, right := sa[sum-upper], sa[sum-lower]
 		cnt += t.query(left, right)
-		t.inc(kth[sum])
+		t.inc(sa[sum])
 	}
 	return
 }
