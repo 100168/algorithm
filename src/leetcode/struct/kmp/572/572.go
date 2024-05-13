@@ -39,13 +39,15 @@ func pattern(s1, s2 string) bool {
 	sss := strings.Split(ss, ",")
 	n := len(sss)
 	z := make([]int, n)
+	//c = 13 r = 20
+	// 13 14 15 16 17 18 19 20 21
+	// 0  1  2  3  4  5  6  7  8
+	// 4  5  6  7
 	for i, c, r := 1, 1, 1; i < n; i++ {
 		l := 0
-
 		if i < r {
 			l = min(r-i, z[i-c])
 		}
-
 		for i+l < n && sss[l] == sss[i+l] {
 			l++
 		}

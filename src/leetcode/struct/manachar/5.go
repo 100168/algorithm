@@ -7,13 +7,16 @@ func longestPalindrome(s string) string {
 		manaChar = manaChar + string(v) + "#"
 	}
 	n := len(manaChar)
+	//每个点的最长回文半径
 	p := make([]int, n)
+	//c回文中心,r是回问半径（）
 	c, r := 0, 0
 
+	// a b c d
 	maxLen := 0
 	maxIndex := 0
 	for i := 0; i < n; i++ {
-
+		//自己也是回文串
 		l := 1
 		if r < i {
 			l = min(r-i, p[2*c-i])
