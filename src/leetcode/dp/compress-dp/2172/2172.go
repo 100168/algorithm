@@ -1,5 +1,7 @@
 package main
 
+import "math/bits"
+
 func maximumANDSum(nums []int, numSlots int) int {
 
 	n := len(nums)
@@ -15,14 +17,13 @@ func maximumANDSum(nums []int, numSlots int) int {
 		}
 	}
 
-	var dfs func(int, int) int
+	var dfs func(int) int
 
-	dfs = func(i, mask int) int {
-
-		if i < 0 {
+	dfs = func(mask int) int {
+		i := bits.OnesCount(uint(mask))
+		if i == n {
 			return 0
 		}
-
 		if memo[i][mask] != -1 {
 			return memo[i][mask]
 		}
@@ -31,13 +32,13 @@ func maximumANDSum(nums []int, numSlots int) int {
 
 		for j := 0; j < numSlots; j++ {
 			if 1<<j&mask == 0 {
-				cur = max(cur, dfs(i-1, mask|1<<j)+nums[i]&((j/2)+1))
+				cur = max(cur, dfs(mask|1<<j)+nums[i]&((j/2)+1))
 			}
 		}
 		memo[i][mask] = cur
 		return cur
 	}
-	return dfs(n-1, 0)
+	return dfs(0)
 }
 
 func main() {
