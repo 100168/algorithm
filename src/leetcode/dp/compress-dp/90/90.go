@@ -44,6 +44,7 @@ next:
 		t := make([]int, 0)
 		for i, v := range nums {
 			if mask>>i&1 > 0 {
+				//去重
 				if i > 0 && mask>>(i-1)&1 == 0 && v == nums[i-1] {
 					continue next
 				}
