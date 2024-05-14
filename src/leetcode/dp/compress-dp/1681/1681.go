@@ -72,13 +72,11 @@ func minimumIncompatibility(nums []int, k int) int {
 		for _, v := range seen {
 			sub |= 1 << v
 		}
-		nxt := sub
-		for nxt > 0 {
+		//枚举子集的子集妙啊
+		for nxt := sub; nxt > 0; nxt = (nxt - 1) & sub {
 			if val, ok := values[nxt]; ok {
 				cur = min(cur, dfs(mask^nxt)+val)
 			}
-			//妙啊
-			nxt = (nxt - 1) & sub
 		}
 		memo[mask] = cur
 		return cur
