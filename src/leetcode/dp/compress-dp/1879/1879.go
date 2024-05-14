@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"math"
+	"math/bits"
+)
 
 /*
 给你两个整数数组 nums1 和 nums2 ，它们长度都为 n 。
@@ -48,6 +51,39 @@ func minimumXORSum(nums1 []int, nums2 []int) int {
 		return cur
 	}
 	return dfs(n-1, 0)
+}
+
+func minimumXORSum2(nums1 []int, nums2 []int) int {
+
+	n := len(nums1)
+
+	memo := make([]int, 1<<n)
+	for i := range memo {
+		memo[i] = -1
+	}
+
+	var dfs func(int) int
+	dfs = func(mask int) int {
+		if mask == 1<<n-1 {
+			return 0
+		}
+
+		if memo[mask] != -1 {
+			return memo[mask]
+		}
+
+		cur := math.MaxInt
+		index := bits.OnesCount(uint(mask))
+		for j := 0; j < n; j++ {
+			if 1<<j&mask == 0 {
+				cur = min(cur, dfs(1<<j|mask)+(nums2[j]^nums1[index]))
+			}
+		}
+		memo[mask] = cur
+		return cur
+
+	}
+	return dfs(0)
 }
 
 func main() {
