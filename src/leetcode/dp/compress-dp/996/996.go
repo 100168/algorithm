@@ -15,23 +15,20 @@ import (
 func numSquarefulPerms(nums []int) int {
 
 	n := len(nums)
-	memo := make([][]map[int]int, n)
+	memo := make([]map[int]int, 1<<n)
 	for i := range memo {
-		memo[i] = make([]map[int]int, 1<<n)
-		for j := range memo[i] {
-			memo[i][j] = make(map[int]int)
-		}
+		memo[i] = make(map[int]int)
 	}
 
-	var dfs func(int, int, int) int
+	var dfs func(int, int) int
 
-	dfs = func(i, mask, pre int) int {
-		if i < 0 {
+	dfs = func(mask, pre int) int {
+
+		if mask == 1<<n-1 {
 			return 1
 		}
-
-		if _, ok := memo[i][mask][pre]; ok {
-			return memo[i][mask][pre]
+		if _, ok := memo[mask][pre]; ok {
+			return memo[mask][pre]
 		}
 
 		cur := 0
@@ -39,14 +36,14 @@ func numSquarefulPerms(nums []int) int {
 		for j := 0; j < n; j++ {
 			if 1<<j&mask == 0 && (isSqrt(pre+nums[j]) || pre == -1) && !check[nums[j]] {
 				check[nums[j]] = true
-				cur += dfs(i-1, mask|1<<j, nums[j])
+				cur += dfs(mask|1<<j, nums[j])
 			}
 		}
-		memo[i][mask][pre] = cur
+		memo[mask][pre] = cur
 		return cur
 	}
 
-	return dfs(n-1, 0, -1)
+	return dfs(0, -1)
 }
 
 func isSqrt(a int) bool {
