@@ -102,18 +102,17 @@ func (t seg) update(cur *node, l, r int, val *int) {
 	t.pushUp(cur)
 }
 
-func findMinimumTime(tasks [][]int) (ans int) {
+func findMinimumTime(tasks [][]int) int {
 	slices.SortFunc(tasks, func(a, b []int) int { return a[1] - b[1] })
 	s := seg{newNode(1, tasks[len(tasks)-1][1])}
 	for _, t := range tasks {
 		start, end, d := t[0], t[1], t[2]
 		d -= s.query(s.root, start, end)
-		ans += d
 		if d > 0 {
 			s.update(s.root, start, end, &d)
 		}
 	}
-	return
+	return s.root.cnt
 }
 
 func compare(tasks [][]int) (ans int) {
@@ -127,12 +126,12 @@ func compare(tasks [][]int) (ans int) {
 				d--
 			}
 		}
-		ans += d
 		if d > 0 {
 			for i := end; d > 0; i-- {
 				if !do[i] {
 					do[i] = true
 					d--
+					ans++
 				}
 			}
 		}
