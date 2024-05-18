@@ -11,6 +11,7 @@ package main
 */
 func canTraverseAllPairs(nums []int) bool {
 
+	//质因子分解+并查集
 	n := len(nums)
 
 	uf := new(unionFind)
