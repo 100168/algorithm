@@ -29,6 +29,7 @@ func minSessions(tasks []int, sessionTime int) int {
 			sum[j|k] = sum[j] + t
 		}
 	}
+
 	var dfs func(int) int
 	dfs = func(mask int) int {
 
@@ -43,12 +44,6 @@ func minSessions(tasks []int, sessionTime int) int {
 		ans := math.MaxInt
 
 		for next := mask; next > 0; next = (next - 1) & mask {
-			cur := 0
-			for i := 0; i < n; i++ {
-				if 1<<i&next != 0 {
-					cur += tasks[i]
-				}
-			}
 			if sum[next] <= sessionTime {
 				ans = min(ans, dfs(mask^next)+1)
 			}

@@ -20,52 +20,39 @@ func distributeCookies(cookies []int, k int) int {
 	n := len(cookies)
 
 	memo := make([][]int, 1<<n)
-
 	for i := range memo {
-		memo[i] = make([]int, k+1)
+		memo[i] = make([]int, k)
+
 		for j := range memo[i] {
 			memo[i][j] = -1
 		}
 	}
 
 	var dfs func(int, int) int
-	dfs = func(mask, index int) int {
-		if mask == 1<<n-1 {
+	dfs = func(mask, rest int) int {
+		if mask == 0 {
 			return 0
 		}
-
-		if index == 0 {
-			return math.MaxInt
+		if rest < 0 {
+			return math.MaxInt / 2
 		}
-
-		if memo[mask][index] != -1 {
-			return memo[mask][index]
+		if memo[mask][rest] != -1 {
+			return memo[mask][rest]
 		}
-		nextMask := 0
-		for i := 0; i < n; i++ {
-			if 1<<i&mask == 0 {
-				nextMask |= 1 << i
-			}
-		}
-
-		ans := math.MaxInt
-		next := nextMask
-		//枚举子集的子集
-		for next > 0 {
+		res := math.MaxInt / 2
+		for s := mask; s > 0; s = (s - 1) & mask {
 			cur := 0
-			for i := 0; i < n; i++ {
-				if 1<<i&next > 0 {
-					cur += cookies[i]
+			for j := 0; j < n; j++ {
+				if 1<<j&s != 0 {
+					cur += cookies[j]
 				}
 			}
-			ans = min(ans, max(cur, dfs(mask^next, index-1)))
-			next = (next - 1) & nextMask
+			res = min(res, max(cur, dfs(s^mask, rest-1)))
 		}
-
-		memo[mask][index] = ans
-		return ans
+		memo[mask][rest] = res
+		return res
 	}
-	return dfs(0, k)
+	return dfs(1<<n-1, k-1)
 }
 
 func distributeCookies2(cookies []int, k int) int {
