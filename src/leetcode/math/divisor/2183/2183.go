@@ -81,6 +81,7 @@ func countPairs3(nums []int, k int) (ans int64) {
 	}
 	return
 }
+
 func gcd(a, b int) int {
 	for b != 0 {
 		a, b = b, a%b
