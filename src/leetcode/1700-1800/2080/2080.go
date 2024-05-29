@@ -1,7 +1,5 @@
 package main
 
-import "sort"
-
 // RangeFreqQuery 2080. 区间内查询数字的频率
 // 中等
 // 相关标签
@@ -17,24 +15,24 @@ import "sort"
 // int query(int left, int right, int value) 返回子数组 arr[left...right] 中 value 的 频率 。
 // 一个 子数组 指的是数组中一段连续的元素。arr[left...right] 指的是 nums 中包含下标 left 和 right 在内 的中间一段连续元素。/***/
 type RangeFreqQuery struct {
-	m map[int][]int
+	bt *bitTree
 }
 
 func Constructor(arr []int) RangeFreqQuery {
 	r := new(RangeFreqQuery)
-	r.m = make(map[int][]int)
-
+	r.bt = new(bitTree)
+	r.bt.cnt = make([]map[int]int, len(arr)+1)
+	for i := range r.bt.cnt {
+		r.bt.cnt[i] = make(map[int]int)
+	}
 	for i, v := range arr {
-		r.m[v] = append(r.m[v], i)
+		r.bt.update(i+1, v)
 	}
 	return *r
 }
 
 func (r *RangeFreqQuery) Query(left int, right int, value int) int {
-	left = sort.SearchInts(r.m[value], left)
-	right = sort.SearchInts(r.m[value], right+1)
-
-	return right - left
+	return r.bt.query(right+1, value) - r.bt.query(left, value)
 }
 
 func search(nums []int, target int) int {
@@ -51,7 +49,28 @@ func search(nums []int, target int) int {
 	}
 	return r
 }
+
+type bitTree struct {
+	cnt []map[int]int
+}
+
+func (t *bitTree) query(index, v int) int {
+	ans := 0
+	for ; index > 0; index -= index & -index {
+		ans += t.cnt[index][v]
+	}
+	return ans
+}
+
+func (t *bitTree) update(index, v int) int {
+	ans := 0
+	for ; index < len(t.cnt); index += index & -index {
+		t.cnt[index][v]++
+	}
+	return ans
+}
+
 func main() {
 	freqQuery := Constructor([]int{4, 2, 9, 7, 5, 5, 1, 9, 8, 6})
-	println(freqQuery.Query(2, 6, 10))
+	println(freqQuery.Query(2, 6, 1))
 }
