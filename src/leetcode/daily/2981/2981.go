@@ -22,7 +22,7 @@ func maximumLength(s string) int {
 		if s[i] != s[pre] {
 			pre = i
 		}
-		for j := pre + 1; j <= i+1; j++ {
+		for j := max(i-2, pre+1); j <= i+1; j++ {
 			cnt[s[pre:j]]++
 			if cnt[s[pre:j]] >= 3 {
 				ans = max(ans, j-pre)
@@ -30,7 +30,6 @@ func maximumLength(s string) int {
 		}
 
 	}
-
 	return ans
 }
 
