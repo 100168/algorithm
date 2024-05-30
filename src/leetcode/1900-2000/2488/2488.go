@@ -24,14 +24,16 @@ import "fmt"
 输入：nums = [2,3,1], k = 3
 输出：1
 解释：[3] 是唯一一个中位数等于 3 的子数组。
+
+nums 中的整数互不相同
 */
 func countSubarrays(nums []int, k int) int {
 
 	for i := range nums {
 		if nums[i] < k {
-			nums[i] = 1
+			nums[i] = 2
 		} else if nums[i] > k {
-			nums[i] = -1
+			nums[i] = -2
 		} else {
 			nums[i] = 0
 		}
@@ -46,6 +48,36 @@ func countSubarrays(nums []int, k int) int {
 		s += num
 		ans += sum[s]
 		sum[s]++
+	}
+	return ans
+}
+
+func countSubarrays2(nums []int, k int) int {
+	pos := 0
+	for nums[pos] != k {
+		pos++
+	}
+
+	// i=pos 的时候 x 是 0，直接记到 cnt 中，这样下面不是大于 k 就是小于 k
+	cnt, x := map[int]int{0: 1}, 0
+	for i := pos - 1; i >= 0; i-- { // 从 pos-1 开始累加 x
+		if nums[i] < k {
+			x++
+		} else {
+			x--
+		}
+		cnt[x]++
+	}
+
+	// i=pos 的时候 x 是 0，直接加到答案中，这样下面不是大于 k 就是小于 k
+	ans, x := cnt[0]+cnt[-1], 0
+	for _, v := range nums[pos+1:] { // 从 pos+1 开始累加 x
+		if v > k {
+			x++
+		} else {
+			x--
+		}
+		ans += cnt[x] + cnt[x-1]
 	}
 	return ans
 }
