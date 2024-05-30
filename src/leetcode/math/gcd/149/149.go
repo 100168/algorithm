@@ -15,26 +15,22 @@ func maxPoints(points [][]int) int {
 	if len(points) == 1 {
 		return 1
 	}
+	type pair struct {
+		x, y int
+	}
+
 	for i := 0; i < len(points); i++ {
+		cnt := make(map[pair]int)
 		for j := i + 1; j < len(points); j++ {
-			cnt := 2
 			k1, k2 := points[j][1]-points[i][1], points[j][0]-points[i][0]
 			g1 := gcd(k1, k2)
 			k1 /= g1
 			k2 /= g1
-			for k := j + 1; k < len(points); k++ {
-				k11, k22 := points[k][1]-points[i][1], points[k][0]-points[i][0]
-				g2 := gcd(k11, k22)
-				k11 /= g2
-				k22 /= g2
-				if k11 == k1 && k22 == k2 {
-					cnt++
-				}
-			}
-			ans = max(ans, cnt)
+			cnt[pair{k1, k2}]++
+			ans = max(ans, cnt[pair{k1, k2}])
 		}
 	}
-	return ans
+	return ans + 1
 }
 
 func gcd(a, b int) int {
