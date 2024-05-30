@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"slices"
 )
 
 /*
@@ -16,15 +17,19 @@ import (
 func maximumLength(s string) int {
 
 	pre := 0
-	cnt := make(map[string]int)
+	cnt := make([][]int, 26)
+	for i := range cnt {
+		cnt[i] = make([]int, len(s)+1)
+	}
 	ans := -1
 	for i := 0; i < len(s); i++ {
 		if s[i] != s[pre] {
 			pre = i
 		}
 		for j := max(i-2, pre+1); j <= i+1; j++ {
-			cnt[s[pre:j]]++
-			if cnt[s[pre:j]] >= 3 {
+			cur := s[i] - 'a'
+			cnt[cur][j-pre]++
+			if cnt[cur][j-pre] >= 3 {
 				ans = max(ans, j-pre)
 			}
 		}
@@ -34,46 +39,29 @@ func maximumLength(s string) int {
 }
 
 func maximumLength2(s string) int {
-	ans := -1
-	length := len(s)
-
-	chs := make([][]int, 26)
+	groups := [26][]int{}
 	cnt := 0
-	for i := 0; i < length; i++ {
+	for i := range s {
 		cnt++
-		if i+1 == length || s[i] != s[i+1] {
-			ch := int(s[i] - 'a')
-			chs[ch] = append(chs[ch], cnt)
+		if i+1 == len(s) || s[i] != s[i+1] {
+			groups[s[i]-'a'] = append(groups[s[i]-'a'], cnt) // 统计连续字符长度
 			cnt = 0
-
-			for j := len(chs[ch]) - 1; j > 0; j-- {
-				if chs[ch][j] > chs[ch][j-1] {
-					tmp := chs[ch][j-1]
-					chs[ch][j-1] = chs[ch][j]
-					chs[ch][j] = tmp
-				} else {
-					break
-				}
-			}
-
-			if len(chs[ch]) > 3 {
-				chs[ch] = chs[ch][:len(chs[ch])-1]
-			}
 		}
 	}
 
-	for i := 0; i < 26; i++ {
-		if len(chs[i]) > 0 && chs[i][0] > 2 {
-			ans = max(ans, chs[i][0]-2)
+	ans := 0
+	for _, a := range groups {
+		if len(a) == 0 {
+			continue
 		}
-		if len(chs[i]) > 1 && chs[i][0] > 1 {
-			ans = max(ans, min(chs[i][0]-1, chs[i][1]))
-		}
-		if len(chs[i]) > 2 {
-			ans = max(ans, chs[i][2])
-		}
+		slices.SortFunc(a, func(a, b int) int { return b - a })
+		a = append(a, 0, 0) // 假设还有两个空串
+		ans = max(ans, a[0]-2, min(a[0]-1, a[1]), a[2])
 	}
 
+	if ans == 0 {
+		return -1
+	}
 	return ans
 }
 
