@@ -54,6 +54,31 @@ func countDifferentSubsequenceGCDs(nums []int) int {
 	return len(gcdMap)
 }
 
+func countDifferentSubsequenceGCDs1(nums []int) (ans int) {
+	mx := 0
+	for _, x := range nums {
+		if x > mx {
+			mx = x
+		}
+	}
+	has := make([]bool, mx+1)
+	for _, x := range nums {
+		has[x] = true
+	}
+	for i := 1; i <= mx; i++ {
+		g := 0                                  // 0 和任何数 x 的最大公约数都是 x
+		for j := i; j <= mx && g != i; j += i { // 枚举 i 的倍数 j
+			if has[j] { // 如果 j 在 nums 中
+				g = gcd(g, j) // 更新最大公约数
+			}
+		}
+		if g == i { // 找到一个答案
+			ans++
+		}
+	}
+	return
+}
+
 func gcd(a, b int) int {
 
 	for b != 0 {
