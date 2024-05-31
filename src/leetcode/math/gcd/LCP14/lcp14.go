@@ -34,6 +34,8 @@ import (
 1 <= nums.length <= 10^5
 
 2 <= nums[i] <= 10^6
+
+思路：质因子分解+dp
 */
 func splitArray(nums []int) int {
 
