@@ -30,29 +30,31 @@ package main
 func subarrayGCD(nums []int, k int) int {
 
 	n := len(nums)
-	gcdList := make([]int, 0)
+	type pair struct{ x, y int }
+	var gcdList []pair
 	ans := 0
 
 	for i := 0; i < n; i++ {
-		gcdNewList := make([]int, 0)
-		gcdList = append(gcdList, nums[i])
-		for j := 0; j < len(gcdList); j++ {
-			curGcd := gcd(gcdList[j], nums[i])
-			if curGcd%k != 0 {
+		var newGcdList []pair
+		if nums[i]%k == 0 {
+			gcdList = append(gcdList, pair{nums[i], 1})
+		}
+
+		for _, v := range gcdList {
+			cur := gcd(v.x, nums[i])
+			if cur%k != 0 {
 				continue
 			}
-			if curGcd < k {
-				continue
+			if len(newGcdList) > 0 && newGcdList[len(newGcdList)-1].x == cur {
+				newGcdList[len(newGcdList)-1].y += v.y
+			} else {
+				newGcdList = append(newGcdList, pair{cur, v.y})
 			}
-			if curGcd >= k {
-				gcdNewList = append(gcdNewList, curGcd)
-			}
-			if curGcd == k {
-				ans++
+			if newGcdList[len(newGcdList)-1].x == k {
+				ans += v.y
 			}
 		}
-		gcdList = gcdNewList
-
+		gcdList = newGcdList
 	}
 
 	return ans
