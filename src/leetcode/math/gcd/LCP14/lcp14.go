@@ -40,19 +40,21 @@ func splitArray(nums []int) int {
 	primes := make(map[int][]int)
 	gcdMap := make(map[int][]int)
 	for i, v := range nums {
+		t := v
 		for j := 2; j*j <= v; j++ {
 			if v%j == 0 {
 				primes[j] = append(primes[j], i)
-				gcdMap[v] = append(gcdMap[v], j)
-				if j*j != v {
-					primes[v/j] = append(primes[v/j], i)
-					gcdMap[v] = append(gcdMap[v], v/j)
+				gcdMap[t] = append(gcdMap[t], j)
+				for v%j == 0 {
+					v /= j
 				}
-
 			}
+
 		}
-		primes[v] = append(primes[v], i)
-		gcdMap[v] = append(gcdMap[v], v)
+		if v > 1 {
+			primes[v] = append(primes[v], i)
+			gcdMap[t] = append(gcdMap[t], v)
+		}
 
 	}
 
