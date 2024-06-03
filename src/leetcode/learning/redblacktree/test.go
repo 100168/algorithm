@@ -5,6 +5,10 @@ import (
 	rbt "github.com/emirpasic/gods/trees/redblacktree"
 )
 
+type TreeNode struct {
+	Val int
+}
+
 func main() {
 
 	tree := rbt.NewWithIntComparator()
@@ -14,5 +18,4 @@ func main() {
 	right := tree.Right()
 	fmt.Println(left.Value)
 	fmt.Println(right.Value)
-
 }
