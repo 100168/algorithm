@@ -35,6 +35,46 @@ func countVowels(word string) (ans int64) {
 	return
 }
 
+/*
+*
+dp做法 计算以当前位置结尾，有多少字符，然后再累加
+
+当 i>0 时，以下标 i结尾的所有子字符串中的元音总数根据以下标 i−1 结尾的所有子字符串中的元音总数与  是否为元音计算得到。
+
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+*/
+func countVowels2(word string) (ans int64) {
+
+	n := len(word)
+	dp := make([]int, n+1)
+	dp[0] = 0
+	s := 0
+
+	for i := range word {
+		if strings.ContainsRune("aeiou", rune(word[i])) {
+			dp[i+1] = dp[i] + i + 1
+		} else {
+			dp[i+1] = dp[i]
+		}
+		s += dp[i+1]
+	}
+	return int64(s)
+}
+func countVowels3(word string) (ans int64) {
+
+	pre := 0
+	s := 0
+
+	for i := range word {
+		if strings.ContainsRune("aeiou", rune(word[i])) {
+			pre += i + 1
+		}
+		s += pre
+	}
+	return int64(s)
+}
+
 func main() {
 	fmt.Println(countVowels("aba"))
+	fmt.Println(countVowels2("aba"))
 }
