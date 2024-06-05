@@ -41,33 +41,62 @@ func resultArray(nums []int) []int {
 	var arr2 []int
 	bt1 := bt{sum: make([]int, len(rk)+1), n: len(rk) + 1}
 	bt2 := bt{sum: make([]int, len(rk)+1), n: len(rk) + 1}
-
-	for i := range nums {
+	bt1.update(rk[nums[0]], 1)
+	bt2.update(rk[nums[1]], 1)
+	arr1 = append(arr1, nums[0])
+	arr2 = append(arr2, nums[1])
+	for i := 2; i < len(nums); i++ {
 		rank := rk[nums[i]]
-		if i == 0 {
+		greater1 := bt1.query(rkL) - bt1.query(rank)
+		greater2 := bt2.query(rkL) - bt2.query(rank)
+		if greater1 > greater2 || greater1 == greater2 && len(arr1) <= len(arr2) {
 			arr1 = append(arr1, nums[i])
-			bt1.update(rank)
-		} else if i == 1 {
-			arr2 = append(arr2, nums[i])
-			bt2.update(rank)
+			bt1.update(rank, 1)
 		} else {
-			greater1 := bt1.query(rkL) - bt1.query(rank)
-			greater2 := bt2.query(rkL) - bt2.query(rank)
-			if greater1 > greater2 {
-				arr1 = append(arr1, nums[i])
-				bt1.update(rank)
-			} else if greater1 < greater2 {
-				arr2 = append(arr2, nums[i])
-				bt2.update(rank)
-			} else {
-				if len(arr1) <= len(arr2) {
-					arr1 = append(arr1, nums[i])
-					bt1.update(rank)
-				} else {
-					arr2 = append(arr2, nums[i])
-					bt2.update(rank)
-				}
-			}
+			arr2 = append(arr2, nums[i])
+			bt2.update(rank, 1)
+		}
+
+	}
+	return append(arr1, arr2...)
+
+}
+
+/*
+*
+单树状数组
+*/
+func resultArray2(nums []int) []int {
+
+	newNums := slices.Clone(nums)
+	sort.Ints(newNums)
+
+	newNums = slices.Compact(newNums)
+
+	rk := make(map[int]int)
+
+	for i, v := range newNums {
+		rk[v] = i + 1
+	}
+
+	rkL := len(rk)
+
+	var arr1 []int
+	var arr2 []int
+	bt := bt{sum: make([]int, len(rk)+1), n: len(rk) + 1}
+	bt.update(rk[nums[0]], 1)
+	bt.update(rk[nums[1]], -1)
+	arr1 = append(arr1, nums[0])
+	arr2 = append(arr2, nums[1])
+	for i := 2; i < len(nums); i++ {
+		rank := rk[nums[i]]
+		sum := bt.query(rkL) - bt.query(rank)
+		if sum > 0 || sum == 0 && len(arr1) <= len(arr2) {
+			arr1 = append(arr1, nums[i])
+			bt.update(rank, 1)
+		} else {
+			arr2 = append(arr2, nums[i])
+			bt.update(rank, -1)
 		}
 
 	}
@@ -95,9 +124,9 @@ func (b bt) query(index int) int {
 	return ans
 }
 
-func (b bt) update(index int) {
+func (b bt) update(index int, val int) {
 	for index < b.n {
-		b.sum[index] += 1
+		b.sum[index] += val
 		index += lowBit(index)
 	}
 }
