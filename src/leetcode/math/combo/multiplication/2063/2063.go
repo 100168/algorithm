@@ -21,6 +21,10 @@ import (
 - "a"、"ab"、"ba" 和 "a" 每个都有 1 个元音
 - "aba" 中有 2 个元音
 因此，元音总数 = 0 + 1 + 1 + 1 + 1 + 2 = 6 。
+
+思路
+1.单独计算每个元音字母可能出现在多少个子串中
+2.将所有结果累加
 */
 func countVowels(word string) (ans int64) {
 	for i, ch := range word {
