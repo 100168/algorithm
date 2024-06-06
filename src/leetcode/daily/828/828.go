@@ -51,6 +51,36 @@ func uniqueLetterString(s string) int {
 	return ans
 }
 
+func uniqueLetterString2(s string) (ans int) {
+	idx := map[rune][]int{}
+	for i, c := range s {
+		idx[c] = append(idx[c], i)
+	}
+	for _, arr := range idx {
+		arr = append(append([]int{-1}, arr...), len(s))
+		for i := 1; i < len(arr)-1; i++ {
+			ans += (arr[i] - arr[i-1]) * (arr[i+1] - arr[i])
+		}
+	}
+	return
+}
+
+func uniqueLetterString3(s string) (ans int) {
+	last0, last1, total := [26]int{}, [26]int{}, 0
+	for i := range last0 {
+		last0[i] = -1
+		last1[i] = -1
+	}
+	for i, c := range s {
+		c -= 'A'
+		total += i - 2*last0[c] + last1[c]
+		ans += total
+		last1[c] = last0[c]
+		last0[c] = i
+	}
+	return
+}
+
 func main() {
 	fmt.Println(uniqueLetterString("LEETCODE"))
 }
