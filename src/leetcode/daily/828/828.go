@@ -35,6 +35,9 @@ func uniqueLetterString(s string) int {
 				v.one ^= 1 << cur
 				v.two ^= 1 << cur
 			}
+			if bits.OnesCount(uint(v.two)) == 26 {
+				continue
+			}
 			ans += bits.OnesCount(uint(v.one)) * v.cnt
 			if len(pre) > 0 && pre[len(pre)-1].one == v.one && pre[len(pre)-1].two == v.two {
 				pre[len(pre)-1].cnt += v.cnt
