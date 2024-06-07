@@ -65,6 +65,9 @@ func uniqueLetterString2(s string) (ans int) {
 	return
 }
 
+/*
+太六了，直接维护变化量
+*/
 func uniqueLetterString3(s string) (ans int) {
 	last0, last1, total := [26]int{}, [26]int{}, 0
 	for i := range last0 {
@@ -73,7 +76,7 @@ func uniqueLetterString3(s string) (ans int) {
 	}
 	for i, c := range s {
 		c -= 'A'
-		total += i - 2*last0[c] + last1[c]
+		total += i - last0[c] - (last0[c] - last1[c])
 		ans += total
 		last1[c] = last0[c]
 		last0[c] = i
