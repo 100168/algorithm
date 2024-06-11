@@ -34,17 +34,18 @@ func scoreOfParentheses(s string) int {
 
 func scoreOfParentheses2(s string) int {
 
-	var st []int
+	st := []int{0}
 
 	for i := 0; i < len(s); i++ {
 		if s[i] == '(' {
 			st = append(st, 0)
 		} else {
 			cur := st[len(st)-1]
-			st = append(st, cur+max(cur*2, 1))
+			st = st[:len(st)-1]
+			st[len(st)-1] += max(cur*2, 1)
 		}
 	}
-	return st[len(st)-1]
+	return st[0]
 }
 
 func main() {
