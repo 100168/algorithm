@@ -15,9 +15,10 @@ import (
 比方说，"acb dfe" 是 "abc def" 的同位异构字符串，但是 "def cab" 和 "adc bef" 不是。
 请你返回 s 的同位异构字符串的数目，由于答案可能很大，请你将它对 109 + 7 取余 后返回。
 */
-func countAnagrams(s string) int {
 
-	mod := int(1e9 + 7)
+const mod = int(1e9 + 7)
+
+func countAnagrams(s string) int {
 
 	split := strings.Split(s, " ")
 
@@ -29,6 +30,8 @@ func countAnagrams(s string) int {
 	comb := make([]int, maxLen+1)
 	comb[1] = 1
 	ans := 1
+
+	div := 1
 
 	for i := 2; i <= maxLen; i++ {
 
@@ -43,26 +46,11 @@ func countAnagrams(s string) int {
 		}
 
 		for _, v := range cntMap {
-			ans /= comb[v]
+			div = div * comb[v] % mod
 		}
 
 	}
-	return ans
-}
-
-const mod int = 1e9 + 7
-
-func countAnagrams2(s string) int {
-	ans, mul := 1, 1
-	for _, s := range strings.Split(s, " ") {
-		cnt := [26]int{}
-		for i, c := range s {
-			cnt[c-'a']++
-			mul = mul * cnt[c-'a'] % mod
-			ans = ans * (i + 1) % mod
-		}
-	}
-	return ans * pow(mul, mod-2) % mod
+	return ans * pow(div, mod-2) % mod
 }
 
 func pow(x, n int) int {
