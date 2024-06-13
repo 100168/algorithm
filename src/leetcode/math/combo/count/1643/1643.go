@@ -35,6 +35,7 @@ func kthSmallestPath(destination []int, k int) string {
 
 	comb[0][0] = 1
 
+	//先预处理
 	for i := 1; i < h+v; i++ {
 		comb[i][0] = 1
 		for j := 1; j <= i && j < h; j++ {
@@ -45,9 +46,10 @@ func kthSmallestPath(destination []int, k int) string {
 
 	up := h + v
 	for i := 0; i < up; i++ {
-
 		if h > 0 {
+			//先获取当前位置如果是H的组合数是多少。
 			o := comb[h+v-1][h-1]
+			//如果组合数小于k则说明当前位置是V
 			if k > o {
 				ans += "V"
 				v--
