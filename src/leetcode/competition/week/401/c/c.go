@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/big"
 	"math/bits"
 	"slices"
 )
@@ -76,6 +77,22 @@ func maxTotalReward(rewardValues []int) int {
 	return f.lastIndex1()
 }
 
+func maxTotalReward3(rewardValues []int) int {
+	slices.Sort(rewardValues)
+	rewardValues = slices.Compact(rewardValues) // 去重
+
+	one := big.NewInt(1)
+	f := big.NewInt(1)
+	p := new(big.Int)
+	for _, v := range rewardValues {
+		//取mask
+		mask := p.Sub(p.Lsh(one, uint(v)), one)
+		f.Or(f, p.Lsh(p.And(f, mask), uint(v)))
+	}
+	return f.BitLen() - 1
+}
+
 func main() {
-	fmt.Println(bits.Len(10))
+	fmt.Println(maxTotalReward3([]int{1, 2, 3, 4, 5, 6}))
+
 }
