@@ -22,49 +22,51 @@ Bob 站在单元格 (0, 0) ，想要前往目的地 destination ：(row, column)
 解释：能前往 (2, 3) 的所有导航指令 按字典序排列后 如下所示：
 ["HHHVV", "HHVHV", "HHVVH", "HVHHV", "HVHVH", "HVVHH", "VHHHV", "VHHVH", "VHVHH", "VVHHH"].
 */
+
 func kthSmallestPath(destination []int, k int) string {
-	//
 
-	h := destination[0]
-	v := destination[1]
+	h := destination[1]
+	v := destination[0]
+	up := h + v
 
-	comb := make([][]int, h+v)
+	comb := make([][]int, up)
+
 	for i := range comb {
 		comb[i] = make([]int, h)
 	}
 
 	comb[0][0] = 1
 
-	//先预处理
-	for i := 1; i < h+v; i++ {
+	for i := 1; i < up; i++ {
 		comb[i][0] = 1
 		for j := 1; j <= i && j < h; j++ {
 			comb[i][j] = comb[i-1][j-1] + comb[i-1][j]
 		}
 	}
+
 	ans := ""
 
-	up := h + v
 	for i := 0; i < up; i++ {
+
 		if h > 0 {
-			//先获取当前位置如果是H的组合数是多少。
+
 			o := comb[h+v-1][h-1]
-			//如果组合数小于k则说明当前位置是V
 			if k > o {
 				ans += "V"
 				v--
 				k -= o
 			} else {
-				ans += "H"
 				h--
+				ans += "H"
 			}
 		} else {
 			ans += "V"
 			v--
 		}
-	}
-	return ans
 
+	}
+
+	return ans
 }
 
 func main() {
