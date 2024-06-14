@@ -59,7 +59,7 @@ func countKSubsequencesWithMaxBeauty(s string, k int) int {
 	})
 	for _, v := range kv {
 		if v.num >= k {
-			return ans * (pow(v.cnt, k) % mod * comb(v.num, k)) % mod
+			return ans * (pow(v.cnt, k) * comb(v.num, k) % mod) % mod
 		}
 		ans = (ans * pow(v.cnt, v.num)) % mod
 		k -= v.num
@@ -72,7 +72,7 @@ func countKSubsequencesWithMaxBeauty(s string, k int) int {
 
 func pow(x, n int) int {
 	res := 1
-	for ; n > 0; n /= 2 {
+	for ; n > 0; n >>= 1 {
 		if n&1 > 0 {
 			res = res * x % mod
 		}
@@ -83,12 +83,15 @@ func pow(x, n int) int {
 
 func comb(n, k int) int {
 	res := n
+	div := 1
 	for i := 2; i <= k; i++ {
-		res = res * (n - i + 1) / i // n,n-1,n-2,... 中的前 i 个数至少有一个因子 i
+		res = res * (n - i + 1) % mod
+		div = div * i % mod
 	}
-	return res % mod
+
+	return res * pow(div, mod-2) % mod
 }
 
 func main() {
-	fmt.Println(countKSubsequencesWithMaxBeauty("abbbdd", 2))
+	fmt.Println(countKSubsequencesWithMaxBeauty("xmfykrfjvnazcrytjpzmimmfqyutsmlzwiprlsyjvbadgpqogzttcrfbevjwnigmfiykajzjzuxbhumtfhlnvtbvuunvatzqknektuthhfhoiypqkciojaedonhgqagygkvtxvxbonncuqcynmxsompedarstrmxboqvqtnfksmlmswhlobesenebkmsijzrhonllglarndkjjdridqvmrmgjuikrtdaksmzdrrybggiezhsdkegtrhqzouwcfwkybtlewxndua", 18))
 }
