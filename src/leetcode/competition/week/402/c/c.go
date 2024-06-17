@@ -22,20 +22,11 @@ func maximumTotalDamage(power []int) int64 {
 	for i := range power {
 		yes[i] = power[i] * cnt[power[i]]
 		maxVal := 0
-		if i > 0 {
-			maxVal = no[i-1]
-			if power[i-1] < power[i]-2 {
-				maxVal = max(maxVal, yes[i-1])
+		for j := max(i-3, 0); j < i; j++ {
+			maxVal = max(maxVal, no[j])
+			if power[j] < power[i]-2 {
+				maxVal = max(maxVal, yes[j])
 			}
-		}
-		if i > 1 {
-			maxVal = max(maxVal, no[i-2])
-			if power[i-2] < power[i]-2 {
-				maxVal = max(maxVal, yes[i-2])
-			}
-		}
-		if i > 2 {
-			maxVal = max(yes[i-3], maxVal)
 		}
 		yes[i] += maxVal
 		no[i] = maxVal
@@ -45,6 +36,25 @@ func maximumTotalDamage(power []int) int64 {
 
 }
 
+func maximumTotalDamage2(power []int) int64 {
+	cnt := map[int]int{}
+	for _, x := range power {
+		cnt[x]++
+	}
+
+	sort.Ints(power)
+	power = slices.Compact(power)
+	n := len(power)
+	f := make([]int, n+1)
+	j := 0
+	for i, x := range power {
+		for power[j] < x-2 {
+			j++
+		}
+		f[i+1] = max(f[i], f[j]+x*cnt[x])
+	}
+	return int64(f[n])
+}
 func main() {
 	fmt.Println(maximumTotalDamage([]int{7, 1, 6, 3}))
 }
