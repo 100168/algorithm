@@ -42,10 +42,7 @@ n 个点分隔出 n-1 条单位线段。
 该题等价于：把 n-1 条单位线段切分成 2k+1 份，其中第 2, 4,..., 2k 共 k 份的总长度 ≥1 ，其余 2k+1 份的长度可为零，求分割方法总数。
 
 解决该问题可以使用高中排列组合时学过的“隔板法”。
-
-c(n-1+n-1-k)(n-1-k)
-
-c(n-1+k)(k-1)
+https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/solutions/2627221/ge-ban-fa-gao-zhong-pai-lie-zu-he-by-jer-1xxh/
 */
 
 const mod = int(1e9 + 7)
