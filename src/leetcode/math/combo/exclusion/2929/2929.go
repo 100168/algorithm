@@ -34,26 +34,21 @@ package main
 //
 // Related Topics 数学 组合数学 枚举 👍 12 👎 0
 
-func distributeCandies(n int, limit int) int64 {
-
-	ans := int64(0)
-	//先枚举第一个数
-	for x := 0; x <= min(limit, n); x++ {
-		//for y:=max(n-x-limit,0);y<=min(n-x,limit);y++{
-		//
-		//}
-		//然后确定第二个数范围
-		//计算范围内的值
-		//left := max(n-x-limit, 0)
-		//right := min(n-x, limit)
-
-		ans += int64(max(min(n-x, limit)-max(n-x-limit, 0)+1, 0))
+func c2(n int) int64 {
+	if n < 2 {
+		return 0
 	}
-
-	//n-x-limit
-	return ans
+	return int64(n) * int64(n-1) / 2
 }
 
+/*
+*
+
+思路：先算出总的数目然后减去不合法数目
+*/
+func distributeCandies(n int, limit int) int64 {
+	return c2(n+2) - (3*c2(n-limit+1) - 3*c2(n-2*limit) + c2(n-3*limit-1))
+}
 func main() {
 	println(distributeCandies(4, 1))
 }
