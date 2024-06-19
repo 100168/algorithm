@@ -6,7 +6,48 @@ package main
 
 请你返回 无法互相到达 的不同 点对数目 。
 */
+
 func countPairs(n int, edges [][]int) int64 {
+
+	g := make([][]int, n)
+	for _, v := range edges {
+		x, y := v[0], v[1]
+
+		g[x] = append(g[x], y)
+		g[y] = append(g[y], x)
+	}
+
+	visited := make([]bool, n)
+	var dfs func(int) int
+
+	dfs = func(x int) int {
+
+		visited[x] = true
+		size := 1
+
+		for _, y := range g[x] {
+			if !visited[y] {
+				size += dfs(y)
+			}
+
+		}
+
+		return size
+	}
+
+	total := 0
+	ans := 0
+	for i := 0; i < n; i++ {
+		if !visited[i] {
+			size := dfs(i)
+			ans += total * size
+			total += size
+
+		}
+	}
+	return int64(ans)
+}
+func countPairs2(n int, edges [][]int) int64 {
 
 	unitFind := new(UnitFind)
 	unitFind.init(n)
