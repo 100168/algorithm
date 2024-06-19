@@ -11,5 +11,5 @@ func brace(s string) string {
 }
 func main() {
 
-	println(brace("[[0,0],[4,5],[7,8],[8,9],[5,6],[3,4],[1,1]]"))
+	println(brace("[[3,1,6],[-9,5,7]]"))
 }
