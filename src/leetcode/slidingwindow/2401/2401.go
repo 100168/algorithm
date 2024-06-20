@@ -13,6 +13,7 @@ import "fmt"
 
 注意：长度为 1 的子数组始终视作优雅子数组。
 */
+
 func longestNiceSubarray(nums []int) int {
 
 	n := len(nums)
