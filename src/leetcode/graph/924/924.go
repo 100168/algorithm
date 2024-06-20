@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"slices"
 	"sort"
 )
 
@@ -51,6 +52,60 @@ graph[i][i] == 1
 initial 中所有整数均不重复*/
 
 func minMalwareSpread(graph [][]int, initial []int) int {
+
+	n := len(graph)
+
+	visited := make([]bool, n)
+
+	initialMap := make(map[int]bool)
+	for i := range initial {
+		initialMap[initial[i]] = true
+	}
+	nodeId := 0
+	size := 0
+	var dfs func(int)
+
+	dfs = func(x int) {
+
+		size++
+		visited[x] = true
+
+		if nodeId != -2 && initialMap[x] {
+			if nodeId < 0 {
+				nodeId = x
+			} else {
+				nodeId = -2
+			}
+		}
+		for y, v := range graph[x] {
+			if v == 1 && !visited[y] {
+
+				dfs(y)
+
+			}
+		}
+	}
+	ans := -1
+	maxSize := 0
+	for _, x := range initial {
+		if visited[x] {
+			continue
+		}
+		nodeId = -1
+		size = 0
+		dfs(x)
+		if nodeId == x && (size > maxSize || size == maxSize && nodeId < ans) {
+			ans = nodeId
+			maxSize = size
+		}
+	}
+	if ans < 0 {
+		return slices.Min(initial)
+	}
+
+	return ans
+}
+func minMalwareSpread3(graph [][]int, initial []int) int {
 	n := len(graph)
 	u := unionFind{make([]int, n), make([]int, n)}
 
