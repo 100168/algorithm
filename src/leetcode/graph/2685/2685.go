@@ -13,5 +13,39 @@ package main
 */
 func countCompleteComponents(n int, edges [][]int) int {
 
-	return 1
+	g := make([][]int, n)
+	for _, v := range edges {
+		x, y := v[0], v[1]
+
+		g[x] = append(g[x], y)
+		g[y] = append(g[y], x)
+	}
+
+	visited := make([]bool, n)
+	cnt := 0
+	v := 0
+	var dfs func(int)
+	dfs = func(x int) {
+		visited[x] = true
+		v++
+		cnt += len(g[x])
+
+		for _, y := range g[x] {
+			if !visited[y] {
+				dfs(y)
+			}
+		}
+	}
+	ans := 0
+
+	for i := 0; i < n; i++ {
+		cnt, v = 0, 0
+		if !visited[i] {
+			dfs(i)
+			if cnt == v*(v-1) {
+				ans++
+			}
+		}
+	}
+	return ans
 }
