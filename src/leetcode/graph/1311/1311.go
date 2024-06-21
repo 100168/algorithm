@@ -32,7 +32,55 @@ C -> 2
 func watchedVideosByFriends(watchedVideos [][]string, friends [][]int, id int, level int) []string {
 
 	n := len(watchedVideos)
+
+	var queue []int
+
 	visited := make([]bool, n)
+
+	dis := make([]int, n)
+	queue = append(queue, id)
+	visited[id] = true
+	deep := 0
+	for len(queue) > 0 {
+		deep++
+		temp := queue
+		queue = nil
+		for _, v := range temp {
+			for _, next := range friends[v] {
+				if !visited[next] {
+					visited[next] = true
+					dis[next] = deep
+					queue = append(queue, next)
+				}
+			}
+		}
+	}
+	cnt := make(map[string]int)
+	ans := make([]string, 0)
+
+	for i, v := range dis {
+		if v == level {
+			for _, w := range watchedVideos[i] {
+				cnt[w]++
+			}
+		}
+	}
+	for s := range cnt {
+		ans = append(ans, s)
+	}
+	slices.SortStableFunc(ans, func(a, b string) int {
+		if cnt[a] == cnt[b] {
+			return strings.Compare(a, b)
+		}
+		return cnt[a] - cnt[b]
+	})
+	return ans
+
+}
+
+func watchedVideosByFriends2(watchedVideos [][]string, friends [][]int, id int, level int) []string {
+
+	n := len(watchedVideos)
 
 	deeps := make([]int, n)
 
@@ -44,12 +92,12 @@ func watchedVideosByFriends(watchedVideos [][]string, friends [][]int, id int, l
 	var dfs func(int, int)
 
 	dfs = func(x int, deep int) {
-		visited[x] = true
+		if deeps[x] < deep {
+			return
+		}
+		deeps[x] = deep
 		for _, v := range friends[x] {
-			deeps[v] = min(deeps[v], deep+1)
-			if !visited[v] {
-				dfs(v, deep+1)
-			}
+			dfs(v, deep+1)
 		}
 	}
 	dfs(id, 0)
@@ -75,5 +123,5 @@ func watchedVideosByFriends(watchedVideos [][]string, friends [][]int, id int, l
 }
 
 func main() {
-	fmt.Println(watchedVideosByFriends([][]string{{"A", "B"}, {"C"}, {"B", "C"}, {"D"}}, [][]int{{1, 2, 3}, {0, 2, 3}, {0, 1, 3}, {0, 1, 2}}, 0, 2))
+	fmt.Println(watchedVideosByFriends([][]string{{"A", "B"}, {"C"}, {"B", "C"}, {"D"}}, [][]int{{1, 2, 3}, {0, 2, 3}, {0, 1, 3}, {0, 1, 2}}, 0, 1))
 }
