@@ -14,7 +14,68 @@ blueEdges[j] = [uj, vj] 表示图中存在一条从节点 uj 到节点 vj 的蓝
 返回长度为 n 的数组 answer，其中 answer[X] 是从节点 0 到节点 X 的红色边和蓝色边交替出现的最短路径的长度。
 如果不存在这样的路径，那么 answer[x] = -1。
 */
+
 func shortestAlternatingPaths(n int, redEdges [][]int, blueEdges [][]int) []int {
+
+	visited := make([][]bool, n)
+
+	for i := range visited {
+		visited[i] = make([]bool, 2)
+	}
+
+	type pair struct {
+		x, color int
+	}
+
+	g := make([][]pair, n)
+
+	for _, v := range redEdges {
+		x, y := v[0], v[1]
+		g[x] = append(g[x], pair{y, 0})
+	}
+	for _, v := range blueEdges {
+		x, y := v[0], v[1]
+		g[x] = append(g[x], pair{y, 1})
+	}
+
+	queue := []pair{{0, 0}, {0, 1}}
+
+	deep := 0
+	dis := make([][]int, n)
+	for i := range dis {
+		dis[i] = []int{math.MaxInt, math.MaxInt}
+	}
+	dis[0][0] = 0
+	dis[0][1] = 0
+	visited[0][0] = true
+	visited[0][1] = true
+	for len(queue) > 0 {
+		deep++
+		temp := queue
+		queue = nil
+
+		for _, pre := range temp {
+			for _, next := range g[pre.x] {
+				if next.color == pre.color || visited[next.x][next.color] {
+					continue
+				}
+				visited[next.x][next.color] = true
+				dis[next.x][next.color] = deep
+				queue = append(queue, next)
+			}
+		}
+	}
+	ans := make([]int, n)
+
+	for i, v := range dis {
+		ans[i] = min(v[0], v[1])
+		if ans[i] == math.MaxInt {
+			ans[i] = -1
+		}
+	}
+	return ans
+}
+func shortestAlternatingPaths2(n int, redEdges [][]int, blueEdges [][]int) []int {
 
 	type pair struct {
 		to, color int
