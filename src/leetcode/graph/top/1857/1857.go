@@ -37,7 +37,6 @@ func largestPathValue(colors string, edges [][]int) int {
 	for i := 0; i < n; i++ {
 		if inDegree[i] == 0 {
 			queue = append(queue, i)
-			dp[i][colors[i]-'a'] = 1
 		}
 	}
 
@@ -47,16 +46,14 @@ func largestPathValue(colors string, edges [][]int) int {
 		cnt++
 		cur := queue[0]
 		queue = queue[1:]
+		curColor := colors[cur] - 'a'
+		dp[cur][curColor]++
+		ans = max(ans, dp[cur][curColor])
 		for _, v := range g[cur] {
 			inDegree[v]--
-			vC := colors[v] - 'a'
 			for i := 0; i < 26; i++ {
-				if i != int(vC) {
-					dp[v][i] = max(dp[v][i], dp[cur][i])
-				}
+				dp[v][i] = max(dp[v][i], dp[cur][i])
 			}
-			dp[v][vC] = max(dp[v][vC], dp[cur][vC]+1)
-			ans = max(ans, dp[v][vC])
 			if inDegree[v] == 0 {
 				queue = append(queue, v)
 			}
