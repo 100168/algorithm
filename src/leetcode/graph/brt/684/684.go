@@ -51,7 +51,49 @@ func findRedundantConnection(edges [][]int) []int {
 	return nil
 }
 
+func findRedundantConnection2(edges [][]int) []int {
+
+	uf := new(unionFind)
+	n := len(edges)
+	uf.parent = make([]int, n+1)
+
+	for i := 0; i <= n; i++ {
+		uf.parent[i] = i
+	}
+
+	for i := range edges {
+		x, y := edges[i][0], edges[i][1]
+		if !uf.union(x, y) {
+			return edges[i]
+		}
+	}
+	return nil
+}
+
+type unionFind struct {
+	parent []int
+}
+
+func (uf unionFind) find(x int) int {
+
+	for uf.parent[x] != x {
+		uf.parent[x] = uf.parent[uf.parent[x]]
+		x = uf.parent[x]
+	}
+	return x
+}
+func (uf unionFind) union(a, b int) bool {
+
+	fa := uf.find(a)
+	fb := uf.find(b)
+	if fa == fb {
+		return false
+	}
+	uf.parent[fb] = fa
+	return true
+}
 func main() {
 
 	fmt.Println(findRedundantConnection([][]int{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}}))
+	fmt.Println(findRedundantConnection2([][]int{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}}))
 }
