@@ -77,6 +77,47 @@ func specialPerm2(nums []int) (ans int) {
 	return
 }
 
+func specialPerm3(nums []int) int {
+
+	mod := int(1e9 + 7)
+	n := len(nums)
+	memo := make([][]int, n)
+
+	for i := range memo {
+		memo[i] = make([]int, 1<<n)
+		for j := range memo[i] {
+			memo[i][j] = -1
+		}
+	}
+
+	var dfs func(int, int) int
+
+	dfs = func(pre int, mask int) int {
+
+		if mask == 1<<n-1 {
+			return 1
+		}
+
+		if pre != -1 && memo[pre][mask] != -1 {
+			return memo[pre][mask]
+		}
+		cur := 0
+		for j := 0; j < n; j++ {
+			if pre == -1 || 1<<j&mask == 0 && (nums[j]%nums[pre] == 0 || nums[pre]%nums[j] == 0) {
+				cur += dfs(j, 1<<j|mask)
+				cur %= mod
+			}
+		}
+		if pre != -1 {
+			memo[pre][mask] = cur
+		}
+		return cur
+
+	}
+
+	return dfs(-1, 0)
+}
+
 func main() {
 	println(specialPerm([]int{1, 4, 3}))
 }
