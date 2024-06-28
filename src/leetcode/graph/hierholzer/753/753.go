@@ -1,7 +1,7 @@
 package main
 
 import (
-	"math"
+	"fmt"
 	"strconv"
 )
 
@@ -25,15 +25,22 @@ f[0][1] f[0][2] f[0][3]
 func crackSafe(n int, k int) string {
 	seen := map[int]bool{}
 	ans := ""
-	highest := int(math.Pow(10, float64(n-1)))
+	p := 10
+	h := 1
+	for c := n - 1; c > 0; c >>= 1 {
+		if c&1 != 0 {
+			h *= p
+		}
+		p *= p
+	}
 
 	var dfs func(int)
 	dfs = func(node int) {
-		for x := 0; x < k; x++ {
+		for x := k - 1; x >= 0; x-- {
 			nei := node*10 + x
 			if !seen[nei] {
 				seen[nei] = true
-				dfs(nei % highest)
+				dfs(nei % h)
 				ans += strconv.Itoa(x)
 			}
 		}
@@ -43,4 +50,8 @@ func crackSafe(n int, k int) string {
 		ans += "0"
 	}
 	return ans
+}
+
+func main() {
+	fmt.Println(crackSafe(4, 2))
 }
