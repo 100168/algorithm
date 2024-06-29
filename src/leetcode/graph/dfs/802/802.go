@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 *
 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示，
@@ -37,4 +39,52 @@ func eventualSafeNodes(graph [][]int) (ans []int) {
 		}
 	}
 	return
+}
+
+/*
+*
+top排序
+*/
+func eventualSafeNodes2(graph [][]int) (ans []int) {
+	n := len(graph)
+	inDegree := make([]int, n)
+
+	reg := make([][]int, n)
+
+	for i := range graph {
+		for _, v := range graph[i] {
+			reg[v] = append(reg[v], i)
+			inDegree[i]++
+		}
+	}
+
+	var queue []int
+
+	for i, v := range inDegree {
+		if v == 0 {
+			queue = append(queue, i)
+
+		}
+	}
+
+	for len(queue) > 0 {
+		cur := queue[0]
+		queue = queue[1:]
+		for _, v := range reg[cur] {
+			inDegree[v]--
+			if inDegree[v] == 0 {
+				queue = append(queue, v)
+			}
+		}
+	}
+	for i := 0; i < n; i++ {
+		if inDegree[i] == 0 {
+			ans = append(ans, i)
+		}
+	}
+	return
+}
+
+func main() {
+	fmt.Println(eventualSafeNodes2([][]int{{1, 2}, {2, 3}, {5}, {0}, {5}, {}, {}}))
 }
