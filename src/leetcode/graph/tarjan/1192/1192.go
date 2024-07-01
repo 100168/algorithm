@@ -40,6 +40,7 @@ func criticalConnections(n int, connections [][]int) [][]int {
 		for _, v := range g[x] {
 			if dfn[v] == 0 {
 				next := dfs(v, x)
+				//割边为什么要小于，如果等于的话说明有其他路径到这个节点
 				if next > dfn[x] {
 					ans = append(ans, []int{x, v})
 				}

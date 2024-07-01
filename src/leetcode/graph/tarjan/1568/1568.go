@@ -126,6 +126,7 @@ func minDays(grid [][]int) int {
 				childCnt++
 				lowW := tarjan(w, v)
 				low[v] = min(low[v], lowW)
+				//为什么要等于说明到这个点没有其他路径到祖先节点
 				if lowW >= dfn[v] {
 					isCut[v] = true
 					cnt++
