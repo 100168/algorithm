@@ -12,6 +12,9 @@ import "fmt"
 关键连接 是在该集群中的重要连接，假如我们将它移除，便会导致某些服务器无法访问其他服务器。
 
 请你以任意顺序返回该集群内的所有 关键连接 。
+
+1.割点: 删掉这个点和这个点有关的边,图就不是连通图,分裂成为了多个不相连的子图
+2.割边: 删除这条边后,图就不是连通图,分裂成为多个不相连的子图
 */
 func criticalConnections(n int, connections [][]int) [][]int {
 
@@ -23,27 +26,29 @@ func criticalConnections(n int, connections [][]int) [][]int {
 	}
 
 	t := 0
-	times := make([]int, n)
+	dfn := make([]int, n)
+	low := make([]int, n)
 
 	ans := make([][]int, 0)
 	var dfs func(int, int) int
 
 	dfs = func(x int, fa int) int {
-		if times[x] > 0 {
-			return times[x]
-		}
+
 		t++
-		cur := t
-		times[x] = t
+		dfn[x] = t
+		low[x] = t
 		for _, v := range g[x] {
-			if v != fa {
-				times[x] = min(dfs(v, x), times[x])
+			if dfn[v] == 0 {
+				next := dfs(v, x)
+				if next > dfn[x] {
+					ans = append(ans, []int{x, v})
+				}
+				low[x] = min(low[x], next)
+			} else if v != fa {
+				low[x] = min(low[x], dfn[v])
 			}
 		}
-		if times[x] == cur && fa != -1 {
-			ans = append(ans, []int{x, fa})
-		}
-		return times[x]
+		return low[x]
 	}
 	dfs(0, -1)
 
