@@ -11,6 +11,8 @@ import (
 请你返回你需要移除的最短子数组的长度，如果无法满足题目要求，返回 -1 。
 
 子数组 定义为原数组中连续的一组元素。
+
+//       p     (c+k-p  - s)mod k = p
 */
 func minSubarray(nums []int, p int) int {
 

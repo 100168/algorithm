@@ -11,6 +11,10 @@ package main
 你可以选择树中任意一个节点作为根节点 root 。选择 root 为根的 开销 是以 root 为起点的所有路径中，价值和 最大的一条路径与最小的一条路径的差值。
 
 请你返回所有节点作为根节点的选择中，最大 的 开销 为多少。
+思路：
+1.问题转换：选单前节点为根和不选单前节点为根
+2.所以需要返回两个值，m1(含叶子节点最大值),m2（不含叶子节点最大值）
+3.ans = max(ans,m1+s2,m2+s1)
 */
 func maxOutput(n int, edges [][]int, price []int) int64 {
 
@@ -27,6 +31,7 @@ func maxOutput(n int, edges [][]int, price []int) int64 {
 
 	dfs = func(x, fa int) (int, int) {
 		p := price[x]
+		//m2必须是0，因为可能只有一个节点
 		m1, m2 := p, 0
 		for _, y := range g[x] {
 			if y == fa {
