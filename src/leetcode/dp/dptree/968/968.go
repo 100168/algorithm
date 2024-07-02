@@ -32,7 +32,7 @@ func minCameraCover(root *TreeNode) int {
 		lChoose, lByFa, lByChild := dfs(node.Left)
 		rChoose, rByFa, rByChild := dfs(node.Right)
 		//当前节点装监控 == 子节点装或不装最小值相加
-		choose := min(lChoose, lByFa) + min(rChoose, rByFa) + 1
+		choose := min(lChoose, lByFa, lByChild) + min(rChoose, rByFa, lByChild) + 1
 		//当前节点被父节点监控==子节点监控或者子节点被自己儿子监控相加
 		byFa := min(lChoose, lByChild) + min(rChoose, rByChild)
 		byChild := min(lChoose+min(rChoose, rByChild), rChoose+min(lChoose, lByChild))
