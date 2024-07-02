@@ -27,26 +27,26 @@ func countAnagrams(s string) int {
 		maxLen = max(maxLen, len(v))
 	}
 
-	comb := make([]int, maxLen+1)
-	comb[1] = 1
+	fac := make([]int, maxLen+1)
+	fac[1] = 1
 	ans := 1
 
 	div := 1
 
 	for i := 2; i <= maxLen; i++ {
 
-		comb[i] = comb[i-1] * i % mod
+		fac[i] = fac[i-1] * i % mod
 	}
 	for _, v := range split {
 
 		cntMap := make(map[rune]int)
-		ans = ans * comb[len(v)] % mod
+		ans = ans * fac[len(v)] % mod
 		for i := range v {
 			cntMap[rune(v[i])]++
 		}
 
 		for _, v := range cntMap {
-			div = div * comb[v] % mod
+			div = div * fac[v] % mod
 		}
 
 	}
