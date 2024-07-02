@@ -28,26 +28,75 @@ type TreeNode struct {
 
 func minimumFlips(root *TreeNode, result bool) int {
 
-	var dfs func(*TreeNode) (int, int)
-	dfs = func(node *TreeNode) (int, int) {
+	type pair struct {
+		node   *TreeNode
+		status bool
+	}
+	dp := make(map[pair]int)
+	var dfs func(*TreeNode, bool) int
+	dfs = func(node *TreeNode, status bool) int {
 		if node == nil {
-			return 0, 0
+			return 0
+		}
+		p := pair{node, status}
+		if _, ok := dp[p]; ok {
+			return dp[p]
 		}
 
 		if node.Val == 1 {
-			return 1, 0
+			if status {
+				dp[p] = 0
+			} else {
+				dp[p] = 1
+			}
+			return dp[p]
 		}
 		if node.Val == 0 {
-			return 0, 1
+			if status {
+				dp[p] = 1
+			} else {
+				dp[p] = 0
+			}
+			return dp[p]
 		}
-		lFalse, lTrue := dfs(node.Left)
-		rFalse, rTrue := dfs(node.Left)
-
-		if node.Val == 5 {
-			return lFalse + rFalse, lTrue + rTrue
+		cur := 0
+		/*
+			非叶节点的值为 2、3、4、5，分别表示布尔运算 OR, AND, XOR, NOT。*/
+		if status {
+			switch node.Val {
+			case 2:
+				cur = min(dfs(node.Left, true), dfs(node.Right, true))
+			case 3:
+				cur = dfs(node.Left, true) + dfs(node.Right, true)
+			case 4:
+				cur = min(dfs(node.Left, false)+dfs(node.Right, true), dfs(node.Left, true)+dfs(node.Right, false))
+			case 5:
+				if node.Left != nil {
+					cur = dfs(node.Left, false)
+				} else {
+					cur = dfs(node.Right, false)
+				}
+			}
+		} else {
+			switch node.Val {
+			case 2:
+				cur = min(dfs(node.Left, false) + dfs(node.Right, false))
+			case 3:
+				cur = min(dfs(node.Left, false), dfs(node.Right, false))
+			case 4:
+				cur = min(dfs(node.Left, false)+dfs(node.Right, false), dfs(node.Left, true)+dfs(node.Right, true))
+			case 5:
+				if node.Left != nil {
+					cur = dfs(node.Left, true)
+				} else {
+					cur = dfs(node.Right, true)
+				}
+			}
 		}
+		dp[p] = cur
+		return cur
 	}
-	return 1
+	return dfs(root, result)
 }
 
 func main() {
