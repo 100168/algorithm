@@ -31,51 +31,43 @@ Alice 和 Bob 对石子价值有 不一样的的评判标准 。双方都知道�
 不管 Alice 怎么操作，Bob 都可以得到比 Alice 更高的得分。
 比方说，Alice 拿石子 1 ，Bob 拿石子 2 ， Alice 拿石子 0 ，Alice 会得到 6 分而 Bob 得分为 7 分。
 Bob 会获胜。
+
+思路：
+1.贪心将a[i]+b[i] 从大到小排序
+
+2.为什么这样选是最优？
+3.假设只有两个数 a[i] b[i] a[j] b[j] 先选a[i] 则a-b = a[i] - b[i] 选a[j] 则 a - b a[j] - b[i]
+  最优则：a[i]-b[j]>a[j]-b[i] ==>a[i]+b[i]>a[j]+b[j] ==>将a[i]+b[i] 从大到小排序
+
+
 */
 
 func stoneGameVI(aliceValues []int, bobValues []int) int {
 
 	n := len(aliceValues)
-	s1 := 0
-	s2 := 0
-
-	type pair struct {
-		alice, bob int
-	}
-	pairs := make([]pair, n)
+	a := 0
+	b := 0
+	sum := make([]int, n)
 
 	for i := 0; i < n; i++ {
-		s1 += aliceValues[i]
-		s2 += bobValues[i]
-		pairs[i] = pair{aliceValues[i], bobValues[i]}
+		b += bobValues[i]
+		sum[i] = aliceValues[i] + bobValues[i]
 	}
-	sort.Slice(pairs, func(i, j int) bool {
-		return pairs[i].alice-pairs[i].bob > pairs[j].alice-pairs[j].bob
+	sort.Slice(sum, func(i, j int) bool {
+		return sum[i] > sum[j]
 	})
+	s := a - b
 
-	l, r := 0, n-1
-
-	for l < r {
-		alice := pairs[l]
-		bob := pairs[r]
-		s2 -= alice.bob
-		s1 -= bob.alice
-		l++
-		r--
-
+	for i := 0; i < n; i += 2 {
+		s += sum[i]
 	}
 
-	if l == r {
-		alice := pairs[l]
-		s2 -= alice.bob
-	}
-
-	if s1 < s2 {
+	if s < 0 {
 		return -1
 	}
-	if s1 == s2 {
-		return 0
+	if s > 0 {
+		return 1
 	}
-	return 1
+	return 0
 
 }
