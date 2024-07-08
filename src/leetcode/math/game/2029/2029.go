@@ -37,10 +37,32 @@ func stoneGameIX(stones []int) bool {
 			if s%2 == 0 {
 				return true
 			}
+		} else {
+			s := cnt[2]*2 + cnt[0] + 1
+			if s%2 == 0 {
+				return true
+			}
 		}
 	}
 
-	//112121212121212121212
+	cnt[1], cnt[2] = cnt[2], cnt[1]
+	if cnt[1] > 2 {
+		if cnt[2] < cnt[1]-2 {
+			s := cnt[2]*2 + cnt[0]
+			if s%2 == 0 {
+				return true
+			}
+		} else {
+			s := cnt[2]*2 + cnt[0] + 1
+			if s%2 == 0 {
+				return true
+			}
+		}
+	}
+
+	return false
+
+	//11 2121212121212121212
 	//221212121212121212121
 
 }
