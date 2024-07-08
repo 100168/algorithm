@@ -64,4 +64,5 @@ func stoneGameIII(stoneValue []int) string {
 
 func main() {
 	fmt.Println(stoneGameIII([]int{1, 2, 3, 7}))
+	fmt.Println(1 << 20)
 }
