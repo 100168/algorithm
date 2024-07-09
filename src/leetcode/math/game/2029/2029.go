@@ -19,54 +19,51 @@ stones = [2,1]
 - 回合 1：Alice 可以移除任意一个石子。
 - 回合 2：Bob 移除剩下的石子。
 已移除的石子的值总和为 1 + 2 = 3 且可以被 3 整除。因此，Bob 输，Alice 获胜。
+
+思路：
+1.构造题 想好怎么构造序列
+2.然后1先还是2先分类讨论
 */
 func stoneGameIX(stones []int) bool {
 	cnt := make([]int, 3)
-
-	type pair struct {
-		x, y, z int
-	}
-
 	for _, v := range stones {
 		cnt[v%3]++
 	}
 
-	if cnt[1] > 2 {
-		if cnt[2] < cnt[1]-2 {
-			s := cnt[2]*2 + cnt[0]
-			if s%2 == 0 {
-				return true
-			}
-		} else {
-			s := cnt[2]*2 + cnt[0] + 1
-			if s%2 == 0 {
-				return true
-			}
-		}
-	}
+	//1 12121212121212121212
+	//2 21212121212121212121
 
-	cnt[1], cnt[2] = cnt[2], cnt[1]
-	if cnt[1] > 2 {
-		if cnt[2] < cnt[1]-2 {
-			s := cnt[2]*2 + cnt[0]
-			if s%2 == 0 {
-				return true
-			}
-		} else {
-			s := cnt[2]*2 + cnt[0] + 1
-			if s%2 == 0 {
-				return true
-			}
-		}
-	}
-
-	return false
-
-	//11 2121212121212121212
-	//221212121212121212121
+	return check([]int{cnt[0], cnt[2], cnt[1]}) || check(cnt)
 
 }
 
+func stoneGameIX2(stones []int) bool {
+	cnt := make([]int, 3)
+	for _, v := range stones {
+		cnt[v%3]++
+	}
+
+	if cnt[0]%2 == 0 {
+
+	}
+
+	return check([]int{cnt[0], cnt[2], cnt[1]}) || check(cnt)
+
+}
+
+func check(c []int) bool {
+	if c[1] == 0 {
+		return false
+	}
+	c[1]--                               // 开头为 1
+	turn := 1 + min(c[1], c[2])*2 + c[0] // 计算回合数
+	if c[1] > c[2] {                     // 序列末尾可以再加个 1
+		turn++
+		c[1]--
+	}
+	return turn%2 == 1 && c[1] != c[2] // 回合数为奇数，且还有剩余石子
+}
+
 func main() {
-	fmt.Println(stoneGameIX([]int{2, 3}))
+	fmt.Println(stoneGameIX([]int{15, 20, 10, 13, 14, 15, 5, 2, 3}))
 }
