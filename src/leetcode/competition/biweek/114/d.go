@@ -15,7 +15,7 @@ package main
 我是废物
 */
 
-func maxKDivisibleComponents3(n int, edges [][]int, values []int, k int) int {
+func maxKDivisibleComponents(n int, edges [][]int, values []int, k int) int {
 
 	g := make([][]int, n)
 	for _, v := range edges {
