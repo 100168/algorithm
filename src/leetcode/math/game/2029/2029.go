@@ -37,6 +37,7 @@ func stoneGameIX(stones []int) bool {
 
 }
 
+// todo
 func stoneGameIX2(stones []int) bool {
 	cnt := make([]int, 3)
 	for _, v := range stones {
