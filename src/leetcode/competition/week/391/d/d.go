@@ -1,40 +1,51 @@
 package main
 
 import (
+	"fmt"
+	"github.com/emirpasic/gods/v2/trees/redblacktree"
 	"math"
-	"sort"
 )
 
 func minimumDistance(points [][]int) int {
 
-	sort.Slice(points, func(i, j int) bool {
-		if points[i][0] == points[j][0] {
-			return points[i][1] < points[j][1]
-		}
-		return points[i][0] < points[j][0]
-	})
+	lx := redblacktree.New[int, int]()
+	ly := redblacktree.New[int, int]()
 
-	n := len(points)
-	l, r := 0, n-1
+	for _, v := range points {
+		x, y := v[0]+v[1], v[0]-v[1]
+		put(lx, x)
+		put(ly, y)
+
+	}
 	ans := math.MaxInt
 
-	for l < r {
-		curL := points[l]
-		curR := points[r]
-		diff := abs(curL[0]-curR[0]) + abs(curL[1]-curR[1])
-		ans = min(diff, ans)
-		if curL[0] > curR[0] {
-			r--
-		} else {
-			l++
-		}
+	for _, v := range points {
+		x, y := v[0]+v[1], v[0]-v[1]
+		remove(lx, x)
+		remove(ly, y)
+		ans = min(ans, max(lx.Right().Key-lx.Left().Key, ly.Right().Key-ly.Left().Key))
+		put(lx, x)
+		put(ly, y)
 	}
 	return ans
 }
 
-func abs(a int) int {
-	if a < 0 {
-		return -a
+func put(t *redblacktree.Tree[int, int], k int) {
+	value, _ := t.Get(k)
+	t.Put(k, value+1)
+
+}
+
+func remove(t *redblacktree.Tree[int, int], k int) {
+
+	value, _ := t.Get(k)
+	if value == 1 {
+		t.Remove(k)
+	} else {
+		t.Put(k, value-1)
 	}
-	return a
+}
+
+func main() {
+	fmt.Println(minimumDistance([][]int{{1, 1}, {1, 1}, {1, 1}}))
 }
