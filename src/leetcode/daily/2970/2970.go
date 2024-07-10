@@ -45,13 +45,10 @@ func incremovableSubarrayCount(nums []int) int {
 			r = i
 		}
 	}
-
 	if l == n-1 {
 		return n * (n + 1) / 2
 	}
-
 	ans := l + 2
-
 	// 6, 5, 7, 8
 	//[5], [6], [5,7], [6,5], [5,7,8], [6,5,7] 和 [6,5,7,8] 。
 	for i := n - 1; i >= r; i-- {
