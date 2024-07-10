@@ -14,13 +14,15 @@ Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除
 假设两个玩家每步都使用最优解，当且仅当 Alice 获胜时返回 true。
 
 1,1,1,2,2,2,
+
+思路：
+贪心：
+1.特判初始值是否为0，如果为0则直接获胜
+2.判断长度是否为奇数，如果为奇数最后一个数一定是alice拿
 */
 func xorGame(nums []int) bool {
-
 	n := len(nums)
-
 	s := 0
-
 	for i := 0; i < n; i++ {
 		s ^= nums[i]
 	}
