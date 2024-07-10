@@ -18,33 +18,21 @@ Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除
 func xorGame(nums []int) bool {
 
 	n := len(nums)
+
 	s := 0
-	cntMap := make(map[int]int)
-	for _, v := range nums {
-		s ^= v
-		cntMap[v]++
+
+	for i := 0; i < n; i++ {
+		s ^= nums[i]
 	}
-
-	maxCnt := 0
-	maxCntV := 0
-	for k, v := range cntMap {
-		if v > maxCnt {
-			maxCnt = v
-			maxCntV = k
-		}
-
-	}
-
 	if s == 0 {
 		return true
 	}
-
-	return n%2 == 0 || n-maxCntV == 1
+	return n%2 == 0
 }
 
 func main() {
-	//fmt.Println(xorGame([]int{1, 1, 2}))
-	//fmt.Println(xorGame([]int{0, 1}))
-	//fmt.Println(xorGame([]int{0, 0, 0, 0, 0, 0, 0, 1, 3}))
+	fmt.Println(xorGame([]int{1, 1, 2}))
+	fmt.Println(xorGame([]int{0, 1}))
+	fmt.Println(xorGame([]int{0, 0, 1, 1}))
 	fmt.Println(xorGame([]int{105, 33, 53, 20, 9, 50, 16, 9, 4, 94, 66, 83, 30, 57, 11, 76, 15, 68, 51, 74, 79, 62, 109, 53, 50, 46, 66, 127, 123, 94, 89, 39, 30, 49, 49, 101, 59, 36, 16, 117, 102, 97, 81, 43, 44, 109, 116, 36, 50, 106, 19}))
 }
