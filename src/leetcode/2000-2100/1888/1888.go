@@ -49,7 +49,7 @@ func solve(s string, head byte) int {
 	tail := head ^ 1
 	for i := n - 1; i >= 0; i-- {
 		ans = min(ans, left[i]+diff)
-		if s[i] != tail^byte((n-i+1)&1) {
+		if s[i] != tail^byte((n-i-1)&1) {
 			diff++
 		}
 	}
