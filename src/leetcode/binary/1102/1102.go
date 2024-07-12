@@ -29,11 +29,11 @@ func check(gird [][]int, t int) bool {
 	st = append(st, pair{0, 0})
 
 	visited := make([][]bool, m)
-	visited[0][0] = true
 	for i := range visited {
 		visited[i] = make([]bool, n)
 	}
 
+	visited[0][0] = true
 	for len(st) > 0 {
 		temp := st
 		st = nil
