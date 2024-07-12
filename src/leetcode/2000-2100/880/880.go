@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
 
 /**
 给定一个编码字符串 s 。请你找出 解码字符串 并将其写入磁带。解码时，从编码字符串中 每次读取一个字符 ，并采取以下步骤：
@@ -25,8 +28,9 @@ func decodeAtIndex(s string, k int) string {
 
 	l := 0
 	index := 0
-	for i := range s {
-		if s[i] >= 'a' && s[i] <= 'z' {
+	for i, v := range s {
+
+		if unicode.IsLetter(v) {
 			l++
 		} else {
 			l *= int(s[i] - '0')
@@ -37,7 +41,7 @@ func decodeAtIndex(s string, k int) string {
 		}
 	}
 	for {
-		if s[index] >= 'a' && s[index] <= 'z' {
+		if unicode.IsLetter(rune(s[index])) {
 			if l == k {
 				return string(s[index])
 			}
