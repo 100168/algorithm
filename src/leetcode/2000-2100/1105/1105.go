@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"math"
+)
+
 /*
 *
 给定一个数组 books ，其中 books[i] = [thicknessi, heighti] 表示第 i 本书的厚度和高度。你也会得到一个整数 shelfWidth 。
@@ -17,6 +22,43 @@ package main
 */
 func minHeightShelves(books [][]int, shelfWidth int) int {
 
-	return 1
+	n := len(books)
+	memo := make([]int, n)
+	for i := range memo {
+		memo[i] = -1
+	}
 
+	var dfs func(int) int
+
+	dfs = func(i int) int {
+		if i < 0 {
+			return 0
+		}
+
+		if memo[i] != -1 {
+			return memo[i]
+		}
+		cur := math.MaxInt
+		sw := 0
+		sh := 0
+		for j := i; j >= 0; j-- {
+			c := books[j]
+			cw, ch := c[0], c[1]
+			sh = max(sh, ch)
+			sw += cw
+			if sw > shelfWidth {
+				break
+			}
+			cur = min(cur, dfs(j-1)+sh)
+		}
+		memo[i] = cur
+		return cur
+
+	}
+	return dfs(n - 1)
+}
+
+func main() {
+
+	fmt.Println(minHeightShelves([][]int{{1, 1}, {2, 3}, {2, 3}, {1, 1}, {1, 1}, {1, 1}, {1, 2}}, 4))
 }
