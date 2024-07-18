@@ -12,5 +12,10 @@ func brace(s string) string {
 }
 func main() {
 
-	fmt.Println(brace("[[1,1],[1,1],[1,1]]"))
+	//{{1,5},
+	//{1,5},
+	//{1,5},
+	//{2,3},
+	//{2,3}}
+	fmt.Println(brace("[[1,5],[1,5],[1,5],[2,3],[2,3]]"))
 }
