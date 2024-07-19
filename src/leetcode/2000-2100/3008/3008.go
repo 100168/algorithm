@@ -67,11 +67,11 @@ func beautifulIndices(s string, a string, b string, k int) []int {
 		}
 		if ja == la {
 			findA = append(findA, i-ja+1)
-			ja--
+			ja = nexta[ja-1]
 		}
 		if jb == lb {
 			findB = append(findB, i-jb+1)
-			jb--
+			jb = nextb[jb-1]
 		}
 	}
 
