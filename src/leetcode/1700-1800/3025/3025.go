@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"sort"
 )
 
@@ -19,36 +20,20 @@ import (
 
 func numberOfPairs(points [][]int) int {
 
-	ans := 0
 	sort.Slice(points, func(i, j int) bool {
 
-		p1, p2 := points[i], points[j]
-
-		if p1[0] == p2[0] {
-			return p1[1] > p2[1]
-		}
-		return p1[0] < p2[0]
+		return points[i][0] < points[j][0] || points[i][0] == points[j][0] && points[i][1] > points[j][1]
 	})
+	ans := 0
 	n := len(points)
-
-	for i, alice := range points {
-
+	for i := range points {
+		up := points[i]
+		m := math.MinInt
 		for j := i + 1; j < n; j++ {
-			bob := points[j]
-			if bob[1] > alice[1] {
-				continue
-			}
-			flag := true
-			for k := i + 1; k < j; k++ {
-				cur := points[k]
-				x, y := cur[0], cur[1]
-				if x >= alice[0] && x <= bob[0] && y <= alice[1] && y >= bob[1] {
-					flag = false
-					break
-				}
-			}
-			if flag {
+			down := points[j]
+			if down[1] <= up[1] && down[1] > m {
 				ans++
+				m = down[1]
 			}
 		}
 	}
