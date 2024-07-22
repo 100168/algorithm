@@ -125,7 +125,7 @@ func lengthOfLIS(nums []int, k int) int {
 }
 
 func main() {
-	fmt.Println(lengthOfLIS([]int{1, 5}, 4))
+	fmt.Println(lengthOfLIS([]int{2, 3, 6}, 2))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
