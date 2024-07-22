@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"slices"
+	"sort"
+)
+
 /*
 *
 给你一个下标从 0 开始的二维整数数组 flowers ，
@@ -101,4 +107,99 @@ func (sg segmentTree) pushDown(cur *node) {
 		cur.right.sum += cur.sum
 		cur.sum = 0
 	}
+}
+func fullBloomFlowers2(flowers [][]int, people []int) []int {
+
+	nums := make([]int, 0)
+	for _, v := range flowers {
+		nums = append(nums, v[0], v[1])
+	}
+	for _, v := range people {
+		nums = append(nums, v)
+	}
+	rankMap := make(map[int]int)
+
+	sort.Ints(nums)
+	nums = slices.Compact(nums)
+	for i, v := range nums {
+		rankMap[v] = i
+	}
+
+	diff := make([]int, len(nums)+1)
+
+	for _, v := range flowers {
+		s, e := rankMap[v[0]], rankMap[v[1]]
+		diff[s] += 1
+		diff[e+1] -= 1
+	}
+
+	for i := 1; i < len(diff); i++ {
+		diff[i] += diff[i-1]
+	}
+
+	for i, v := range people {
+		people[i] = diff[rankMap[v]]
+	}
+	return people
+}
+
+func fullBloomFlowers3(flowers [][]int, people []int) []int {
+
+	nums := make([]int, 0)
+	for _, v := range flowers {
+		nums = append(nums, v[0], v[1])
+	}
+	for _, v := range people {
+		nums = append(nums, v)
+	}
+	rankMap := make(map[int]int)
+
+	sort.Ints(nums)
+	nums = slices.Compact(nums)
+	for i, v := range nums {
+		rankMap[v] = i + 1
+	}
+
+	bt := new(bitTree)
+	bt.n = len(nums) + 2
+	bt.sum = make([]int, len(nums)+2)
+	for _, v := range flowers {
+		s, e := rankMap[v[0]], rankMap[v[1]]
+		bt.updateRange(s, e)
+	}
+
+	for i, v := range people {
+		people[i] = bt.query(rankMap[v])
+	}
+	return people
+}
+
+type bitTree struct {
+	sum []int
+	n   int
+}
+
+func (b bitTree) query(index int) int {
+	ans := 0
+	for index > 0 {
+		ans += b.sum[index]
+		index -= index & -index
+	}
+	return ans
+}
+
+func (b bitTree) updateRange(l, r int) {
+	b.update(l, 1)
+	b.update(r+1, -1)
+}
+func (b bitTree) update(index int, value int) {
+	for index < b.n {
+		b.sum[index] += value
+		index += index & -index
+	}
+}
+
+func main() {
+	fmt.Println(fullBloomFlowers2([][]int{{43, 50}, {31, 39}, {37, 42}, {38, 47}, {22, 25}, {31, 42}, {29, 43}, {15, 30}, {37, 42}}, []int{47, 4, 12, 12, 30, 18, 17}))
+	fmt.Println(fullBloomFlowers3([][]int{{43, 50}, {31, 39}, {37, 42}, {38, 47}, {22, 25}, {31, 42}, {29, 43}, {15, 30}, {37, 42}}, []int{47, 4, 12, 12, 30, 18, 17}))
 }
