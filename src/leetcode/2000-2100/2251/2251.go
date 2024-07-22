@@ -66,7 +66,7 @@ func (sg segmentTree) query(cur *node, l, r int) int {
 func (sg segmentTree) update(cur *node, l, r, val int) {
 
 	if cur.l >= l && cur.r <= r {
-		cur.val += val
+		cur.val += (cur.r - cur.l + 1) * val
 		cur.add = true
 		cur.sum += val
 		return
