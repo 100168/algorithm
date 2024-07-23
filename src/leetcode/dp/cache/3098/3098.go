@@ -3,7 +3,6 @@ package main
 import (
 	"math"
 	"sort"
-	"strconv"
 )
 
 //给你一个长度为 n 的整数数组 nums 和一个 正 整数 k 。
@@ -68,36 +67,42 @@ import (
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func sumOfPowers(nums []int, k int) int {
-
+	const mod int = 1e9 + 7
 	sort.Ints(nums)
-	mod := 1_000_000_007
 	n := len(nums)
-
-	cache := make(map[string]int)
-	var dfs func(int, int, int, int) int
-
-	dfs = func(i int, cnt int, pre int, minDiff int) int {
-		if i+1 < cnt {
+	f := map[int]int{}
+	var dfs func(i, j, k, mi int) int
+	dfs = func(i, j, k, mi int) int {
+		if i >= n {
+			if k == 0 {
+				return mi
+			}
 			return 0
 		}
-		if cnt == 0 {
-			return minDiff
+		if n-i < k {
+			return 0
 		}
-		cur := strconv.Itoa(i) + "-" + strconv.Itoa(cnt) + "-" + strconv.Itoa(pre) + "-" + strconv.Itoa(minDiff)
-
-		if _, ok := cache[cur]; ok {
-			return cache[cur]
+		key := mi<<18 | (i << 12) | (j << 6) | k
+		if v, ok := f[key]; ok {
+			return v
 		}
-
-		sum := (dfs(i-1, cnt, pre, minDiff) + dfs(i-1, cnt-1, nums[i], min(pre-nums[i], minDiff))) % mod
-		cache[cur] = sum
-		return sum
+		ans := dfs(i+1, j, k, mi)
+		if j == n {
+			ans += dfs(i+1, i, k-1, mi)
+		} else {
+			ans += dfs(i+1, i, k-1, min(mi, nums[i]-nums[j]))
+		}
+		ans %= mod
+		f[key] = ans
+		return ans
 	}
-	return dfs(n-1, k, math.MaxInt/2, math.MaxInt/2)
+	return dfs(0, n, k, math.MaxInt)
 }
 
 func main() {
-	println(sumOfPowers([]int{-8, -2}, 2))
+	//println(sumOfPowers([]int{-8, -2}, 2))
+	//println(sumOfPowers([]int{-13, 9, -16, -12}, 3))
+	println(sumOfPowers([]int{10, 5, 8, 7, 9}, 3))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
