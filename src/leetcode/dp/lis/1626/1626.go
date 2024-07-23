@@ -77,6 +77,32 @@ func bestTeamScore(scores []int, ages []int) int {
 	return ans
 }
 
+func bestTeamScore2(scores []int, ages []int) int {
+	n := len(scores)
+
+	type pair struct{ x, y int }
+
+	mx := 0
+	pairs := make([]pair, n)
+	for i := 0; i < n; i++ {
+		mx = max(mx, ages[i])
+		pairs[i] = pair{scores[i], ages[i]}
+	}
+	sort.Slice(pairs, func(i, j int) bool {
+		if pairs[i].x == pairs[j].x {
+			return pairs[i].y < pairs[j].y
+		}
+		return pairs[i].x < pairs[j].x
+	})
+	bt := new(bitSet)
+	bt.sum = make([]int, mx+1)
+	bt.len = mx + 1
+	for _, v := range pairs {
+		bt.update(v.y, bt.query(v.y)+v.x)
+	}
+	return bt.query(mx)
+}
+
 type bitSet struct {
 	sum []int
 	len int
@@ -87,21 +113,22 @@ func lowBit(index int) int {
 }
 func (b *bitSet) query(index int) int {
 
-	s := 0
+	ans := 0
 	for index > 0 {
-		s += b.sum[index]
+		ans = max(ans, b.sum[index])
 		index -= lowBit(index)
 	}
-	return s
+	return ans
 }
 
 func (b *bitSet) update(index int, val int) {
 	for b.len > index {
-		b.sum[index] += val
+		b.sum[index] = max(val, b.sum[index])
 		index += lowBit(index)
 	}
 }
 func main() {
 
 	println(bestTeamScore([]int{4, 5, 6, 5}, []int{2, 1, 2, 1}))
+	println(bestTeamScore2([]int{4, 5, 6, 5}, []int{2, 1, 2, 1}))
 }
