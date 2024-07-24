@@ -27,7 +27,6 @@ func maximumPoints(enemyEnergies []int, currentEnergy int) int64 {
 	if currentEnergy < enemyEnergies[0] {
 		return 0
 	}
-	ans := 0
 
 	s := 0
 
