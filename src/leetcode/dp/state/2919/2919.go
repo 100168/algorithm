@@ -1,5 +1,7 @@
 package main
 
+import "slices"
+
 /*
 *给你一个下标从 0 开始、长度为 n 的整数数组 nums ，和一个整数 k 。
 
@@ -57,7 +59,16 @@ func minIncrementOperations(nums []int, k int) int64 {
 	}
 	return dfs(n-1, 2)
 }
+func minIncrementOperations2(nums []int, k int) int64 {
+	f := make([]int64, 3)
+	for i := range nums {
+		cur := int64(max(k-nums[i], 0))
+		f[0], f[1], f[2] = f[2]+cur, min(f[2]+cur, f[0]), min(f[2]+cur, f[1])
+	}
+	return slices.Min(f)
+}
 
 func main() {
 	println(minIncrementOperations([]int{1, 1, 2, 1}, 3))
+	println(minIncrementOperations2([]int{1, 1, 2, 1}, 3))
 }
