@@ -98,6 +98,10 @@ func minDifficulty2(a []int, d int) int {
 	return f[d-1][n-1]
 }
 
+// ops cur 10-5 = ops 5
+// ops pre   5
+// ops pre   4   10-4 = 6 ops 6
+// ops first 1
 func main() {
 	fmt.Println(minDifficulty([]int{6, 5, 4, 3, 2, 1}, 2))
 }
