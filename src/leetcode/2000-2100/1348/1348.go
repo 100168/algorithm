@@ -1,5 +1,9 @@
 package main
 
+import (
+	"sort"
+)
+
 /**
 一家社交媒体公司正试图通过分析特定时间段内出现的推文数量来监控其网站上的活动。
 这些时间段可以根据特定的频率（ 每分钟 、每小时 或 每一天 ）划分为更小的 时间段 。
@@ -57,10 +61,10 @@ func Constructor() TweetCounts {
 
 func (t *TweetCounts) RecordTweet(tweetName string, time int) {
 	t.cntMap[tweetName] = append(t.cntMap[tweetName], time)
+	sort.Ints(t.cntMap[tweetName])
 }
 
 func (t *TweetCounts) GetTweetCountsPerFrequency(freq string, tweetName string, startTime int, endTime int) []int {
-
 	nums := t.cntMap[tweetName]
 	diff := 0
 	switch freq {
@@ -81,7 +85,7 @@ func (t *TweetCounts) GetTweetCountsPerFrequency(freq string, tweetName string, 
 
 			m := (r + l) / 2
 
-			if nums[m] <= startTime {
+			if nums[m] >= t {
 				r = m - 1
 			} else {
 				l = m + 1
@@ -90,13 +94,9 @@ func (t *TweetCounts) GetTweetCountsPerFrequency(freq string, tweetName string, 
 		return l
 	}
 
-	pre := startTime
 	for i := startTime; i <= endTime; i += diff {
-		l := find(pre)
-		r := i + diff
-		if l == r {
-			break
-		}
+		l := find(i)
+		r := find(min(i+diff, endTime+1))
 		ans = append(ans, r-l)
 	}
 
