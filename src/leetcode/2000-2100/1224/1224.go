@@ -62,22 +62,30 @@ func remove(t *redblacktree.Tree[int, int], k int) {
 // 最大频率数
 // 最大数的率*最大数
 func maxEqualFreq2(nums []int) (ans int) {
-	freq := map[int]int{}
-	count := map[int]int{}
+
+	countMap := make(map[int]int)
+	freqMap := make(map[int]int)
+
 	maxCount := 0
-	for i, num := range nums {
-		if count[num] > 0 {
-			freq[count[num]]--
+
+	for i, v := range nums {
+		if countMap[v] > 0 {
+			freqMap[countMap[v]]--
 		}
-		count[num]++
-		maxCount = max(maxCount, count[num])
-		freq[count[num]]++
-		//
-		if maxCount == 1 ||
-			freq[maxCount]*maxCount+freq[maxCount-1]*(maxCount-1) == i+1 && freq[maxCount] == 1 ||
-			freq[maxCount]*maxCount+1 == i+1 && freq[1] == 1 {
+		countMap[v]++
+		maxCount = max(maxCount, countMap[v])
+
+		freqMap[countMap[v]]++
+		// 分类讨论:
+		//1. 每个数出现一次 maxCount ==1
+		//2.去掉最小数满足 :freq[maxCount]*maxCount == i
+		//3.去掉最大数满足: freqMap[maxCount-1]+1)*(maxCount-1)==i
+		//4.只有一个数：maxCount = i+1
+
+		if maxCount == 1 || maxCount == i+1 || freqMap[maxCount]*maxCount == i || (freqMap[maxCount-1]+1)*(maxCount-1) == i {
 			ans = max(ans, i+1)
 		}
+
 	}
 	return
 }
@@ -85,5 +93,9 @@ func maxEqualFreq2(nums []int) (ans int) {
 func main() {
 	//fmt.Println(maxEqualFreq([]int{2, 2, 1, 1, 5, 3, 3, 5}))
 	//fmt.Println(maxEqualFreq([]int{1, 2}))
-	fmt.Println(maxEqualFreq([]int{1, 1}))
+	//fmt.Println(maxEqualFreq([]int{1, 1}))
+	//fmt.Println(maxEqualFreq2([]int{2, 2, 1, 1, 5, 3, 3, 5}))
+	//fmt.Println(maxEqualFreq2([]int{1, 2}))
+	//fmt.Println(maxEqualFreq2([]int{1, 1}))
+	fmt.Println(maxEqualFreq2([]int{1, 1, 1, 2, 2, 2}))
 }
