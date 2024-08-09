@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"sort"
+)
+
 /*
 *
 在一个小城市里，有 m 个房子排成一排，你需要给每个房子涂上 n 种颜色之一（颜色编号为 1 到 n ）。有的房子去年夏天已经涂过颜色了，所以这些房子不可以被重新涂色。
@@ -23,4 +29,47 @@ cost[i][j]：是将第 i 个房子涂成颜色 j+1 的花费。
 func minCost(houses []int, cost [][]int, m int, n int, target int) int {
 
 	return 1
+}
+
+func compute() {
+
+	type pair struct {
+		unitPrice float64
+		qty       float64
+	}
+	posit := make([]pair, 10)
+	amount1 := float64(0)
+	qty1 := float64(0)
+	unitPrice := float64(0)
+	for i := range posit {
+		price := float64(rand.Intn(100))
+		qty := float64(rand.Intn(100))
+		posit[i] = pair{price, qty}
+		curAmount := amount1 + price*qty
+		curQty := qty1 + qty
+		curUnitPrice := curAmount / curQty
+		amount1, qty1, unitPrice = curAmount, curQty, curUnitPrice
+	}
+	fmt.Printf("总价:%f,总数:%f,单价:%f", amount1, qty1, unitPrice)
+	sort.Slice(posit, func(i, j int) bool {
+		return posit[i].unitPrice < posit[i].unitPrice
+	})
+
+	amount1 = float64(0)
+	qty1 = float64(0)
+	unitPrice = float64(0)
+	for i := range posit {
+		price := posit[i].unitPrice
+		qty := posit[i].qty
+		posit[i] = pair{price, qty}
+		curAmount := amount1 + price*qty
+		curQty := qty1 + qty
+		curUnitPrice := curAmount / curQty
+		amount1, qty1, unitPrice = curAmount, curQty, curUnitPrice
+	}
+	fmt.Printf("总价:%f,总数:%f,单价:%f", amount1, qty1, unitPrice)
+}
+
+func main() {
+	compute()
 }
