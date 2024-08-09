@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"sort"
 )
 
 /*
 *
-在一个小城市里，有 m 个房子排成一排，你需要给每个房子涂上 n 种颜色之一（颜色编号为 1 到 n ）。有的房子去年夏天已经涂过颜色了，所以这些房子不可以被重新涂色。
+在一个小城市里，有 m 个房子排成一排，你需要给每个房子涂上 n 种颜色之一（颜色编号为 1 到 n ）。
+有的房子去年夏天已经涂过颜色了，所以这些房子不可以被重新涂色。
 
 我们将连续相同颜色尽可能多的房子称为一个街区。（比方说 houses = [1,2,2,3,3,2,1,1] ，它包含 5 个街区  [{1}, {2,2}, {3,3}, {2}, {1,1}] 。）
 
@@ -28,6 +30,53 @@ cost[i][j]：是将第 i 个房子涂成颜色 j+1 的花费。
 */
 func minCost(houses []int, cost [][]int, m int, n int, target int) int {
 
+	memo := make([][][]int, m)
+
+	for i := range memo {
+		memo[i] = make([][]int, n+1)
+		for j := range memo[i] {
+			memo[i][j] = make([]int, m)
+
+			for x := range memo[i][j] {
+				memo[i][j][x] = -1
+			}
+		}
+	}
+
+	var dfs func(int, int, int) int
+	dfs = func(i int, preColor int, rest int) int {
+		if rest < 0 {
+			return math.MaxInt
+		}
+		if i < 0 {
+			if rest == 0 {
+				return 0
+			}
+			return math.MaxInt / 2
+		}
+		if memo[i][preColor][rest] != -1 {
+			return memo[i][preColor][rest]
+		}
+
+		cur := math.MaxInt / 2
+		for j := 0; j < n; j++ {
+			if j != preColor {
+				cur = min(cur, dfs(i-1, j, rest-1)+cost[i][j])
+			} else {
+				cur = min(cur, dfs(i-1, j, rest)+cost[i][j])
+			}
+		}
+		if houses[i] != 0 {
+			if j != preColor {
+				cur = min(cur, dfs(i-1, j, rest-1)+cost[i][j])
+			} else {
+				cur = min(cur, dfs(i-1, j, rest)+cost[i][j])
+			}
+		}
+
+		memo[i][preColor][rest] = cur
+		return cur
+	}
 	return 1
 }
 

@@ -15,6 +15,14 @@ import (
 返回能够实现数组相等的 最小 整数 x 。
 
 测试用例以这样的方式生成：存在一个整数 x，nums1 中的每个元素都与 x 相加后，再移除两个元素，nums1 可以与 nums2 相等。
+
+输入：nums1 = [4,20,16,12,8], nums2 = [14,18,10]
+
+输出：-2
+
+解释：
+
+移除 nums1 中下标为 [0,4] 的两个元素，并且每个元素与 -2 相加后，nums1 变为 [18,14,10] ，与 nums2 相等。
 */
 func minimumAddedInteger(nums1, nums2 []int) int {
 	slices.Sort(nums1)
