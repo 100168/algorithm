@@ -60,33 +60,22 @@ func maxUncrossedLines(nums1 []int, nums2 []int) int {
 
 	m, n := len(nums1), len(nums2)
 
-	var dfs func(int, int) int
+	f := make([][]int, m+1)
+	for i := range f {
+		f[i] = make([]int, n+1)
+	}
 
-	cache := make([][]int, m)
-	for i := range cache {
-		cache[i] = make([]int, n)
-		for j := range cache[i] {
-			cache[i][j] = -1
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if nums1[i] == nums2[j] {
+				f[i+1][j+1] = f[i][j] + 1
+			} else {
+				f[i+1][j+1] = max(f[i+1][j], f[i][j+1])
+			}
+
 		}
 	}
-	dfs = func(i, j int) int {
-		if i < 0 || j < 0 {
-			return 0
-		}
-
-		if cache[i][j] != -1 {
-			return cache[i][j]
-		}
-		cur := 0
-		if nums1[i] == nums2[j] {
-			cur = dfs(i-1, j-1) + 1
-		} else {
-			cur = max(dfs(i-1, j), dfs(i, j-1))
-		}
-		cache[i][j] = cur
-		return cur
-	}
-	return dfs(m-1, n-1)
+	return f[m][n]
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

@@ -45,8 +45,9 @@ func minCost(houses []int, cost [][]int, m int, n int, target int) int {
 
 	var dfs func(int, int, int) int
 	dfs = func(i int, preColor int, rest int) int {
+
 		if rest < 0 {
-			return math.MaxInt
+			return math.MaxInt / 2
 		}
 		if i < 0 {
 			if rest == 0 {
@@ -59,25 +60,42 @@ func minCost(houses []int, cost [][]int, m int, n int, target int) int {
 		}
 
 		cur := math.MaxInt / 2
-		for j := 0; j < n; j++ {
-			if j != preColor {
-				cur = min(cur, dfs(i-1, j, rest-1)+cost[i][j])
-			} else {
-				cur = min(cur, dfs(i-1, j, rest)+cost[i][j])
-			}
-		}
+
 		if houses[i] != 0 {
-			if j != preColor {
-				cur = min(cur, dfs(i-1, j, rest-1)+cost[i][j])
+			if houses[i]-1 != preColor {
+				cur = min(cur, dfs(i-1, houses[i]-1, rest-1))
 			} else {
-				cur = min(cur, dfs(i-1, j, rest)+cost[i][j])
+				cur = min(cur, dfs(i-1, houses[i]-1, rest))
+			}
+		} else {
+			for j := 0; j < n; j++ {
+				if j != preColor {
+					cur = min(cur, dfs(i-1, j, rest-1)+cost[i][j])
+				} else {
+					cur = min(cur, dfs(i-1, j, rest)+cost[i][j])
+				}
 			}
 		}
+
+		//fmt.Println("i:", i, "preColor:", preColor, "rest:", rest, "cur:", cur)
 
 		memo[i][preColor][rest] = cur
 		return cur
 	}
-	return 1
+
+	ans := math.MaxInt / 2
+
+	if houses[m-1] != 0 {
+		ans = min(ans, dfs(m-2, houses[m-1]-1, target-1))
+	} else {
+		for i := 0; i < n; i++ {
+			ans = min(ans, dfs(m-2, i, target-1)+cost[m-1][i])
+		}
+	}
+	if ans == math.MaxInt/2 {
+		return -1
+	}
+	return ans
 }
 
 func compute() {
@@ -120,5 +138,6 @@ func compute() {
 }
 
 func main() {
-	compute()
+	//fmt.Println(minCost([]int{0, 0, 0, 0, 0}, [][]int{{1, 10}, {10, 1}, {10, 1}, {1, 10}, {5, 1}}, 5, 2, 3))
+	fmt.Println(minCost([]int{0, 2, 1, 2, 0}, [][]int{{1, 10}, {10, 1}, {10, 1}, {1, 10}, {5, 1}}, 5, 2, 3))
 }
