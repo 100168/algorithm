@@ -20,57 +20,41 @@ import (
 func minSumSquareDiff(nums1 []int, nums2 []int, k1 int, k2 int) int64 {
 
 	n := len(nums1)
-	diff := make([]int, n)
-	for i := 0; i < n; i++ {
-		diff[i] = abs(nums1[i] - nums2[i])
-	}
-	t := k1 + k2
-	sort.Ints(diff)
+	a := make([]int, n+1)
 
-	l, r := 0, diff[n-1]
-
-	check := func(m int) bool {
-
-		s := 0
-		for i := n - 1; i >= 0; i-- {
-			if diff[i] <= m {
-				break
-			}
-			s += diff[i] - m
-
-		}
-		return t >= s
-	}
-
-	for l <= r {
-		m := l + (r-l)/2
-		if check(m) {
-			r = m - 1
-		} else {
-			l = m + 1
-		}
-	}
-	for i := n - 1; i >= 0; i-- {
-		if diff[i] <= l {
-			break
-		}
-		t -= diff[i] - l
-		diff[i] = l
-	}
-	if diff[n-1] == 0 {
-		return 0
-
-	}
-	for i := n - 1; i >= 0 && t > 0; i-- {
-		diff[i]--
-		t--
-	}
 	ans := 0
+	s := 0
+	for i := 0; i < n; i++ {
+		a[i+1] = abs(nums1[i] - nums2[i])
+		ans += abs(nums1[i]-nums2[i]) * abs(nums1[i]-nums2[i])
+		s += abs(nums1[i] - nums2[i])
+	}
 
-	for _, v := range diff {
-		ans += v * v
+	k := k1 + k2
+	if k >= s {
+		return 0
+	}
+
+	sort.Slice(a, func(i, j int) bool {
+		return a[i] > a[j]
+	})
+
+	for i, v := range a {
+		ans -= v * v
+		i++
+		if k >= i*(v-a[i]) {
+			k -= i * (v - a[i])
+			continue
+		}
+
+		v -= k / i
+
+		ans += (v-1)*(v-1)*(k%i) + v*v*(i-k%i)
+		break
+
 	}
 	return int64(ans)
+
 }
 
 func abs(a int) int {
@@ -81,5 +65,9 @@ func abs(a int) int {
 }
 
 func main() {
-	fmt.Println(minSumSquareDiff([]int{10, 10, 10, 11, 5}, []int{1, 0, 6, 6, 1}, 11, 27))
+	//fmt.Println(minSumSquareDiff([]int{1, 2, 3, 4}, []int{2, 10, 20, 19}, 0, 0))
+	//fmt.Println(minSumSquareDiff2([]int{1, 2, 3, 4}, []int{2, 10, 20, 19}, 0, 0))
+	fmt.Println(minSumSquareDiff([]int{1, 4, 10, 12}, []int{5, 8, 6, 9}, 1, 1))
+	//fmt.Println(minSumSquareDiff([]int{10, 10, 10, 11, 5}, []int{1, 0, 6, 6, 1}, 11, 27))
+	fmt.Println(minSumSquareDiff([]int{11, 12, 13, 14, 15}, []int{13, 16, 16, 12, 14}, 3, 6))
 }
