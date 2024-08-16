@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"slices"
 	"sort"
 )
@@ -76,6 +77,39 @@ func minCost(basket1 []int, basket2 []int) int64 {
 
 	return int64(ans)
 
+}
+
+func minCost2(basket1, basket2 []int) (ans int64) {
+	cnt := map[int]int{}
+	for i, x := range basket1 {
+		cnt[x]++
+		cnt[basket2[i]]--
+	}
+
+	var a []int
+	mn := math.MaxInt
+	for x, c := range cnt {
+		if c%2 != 0 {
+			return -1
+		}
+		mn = min(mn, x)
+		for c = abs(c) / 2; c > 0; c-- {
+			a = append(a, x)
+		}
+	}
+
+	sort.Ints(a) // 也可以用快速选择
+	for _, x := range a[:len(a)/2] {
+		ans += int64(min(x, mn*2))
+	}
+	return
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 
 // [8 14 43 43 80 80 84 88 88 100]
