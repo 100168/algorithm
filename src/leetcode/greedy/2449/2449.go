@@ -28,73 +28,60 @@ import (
 - 选择 i = 0 和 j = 2 ，nums = [10,12,4] 。
 - 选择 i = 1 和 j = 2 ，nums = [10,14,2] 。
 2 次操作是最少需要的操作次数。
+思路：贪心
+1.先从小到大排序
+2.从左到右匹配
+3.奇数跟奇数匹配，偶数跟偶数匹配
+4.使用一个数组来存奇数跟偶数下一个匹配下标
+5.只计算》target的值
 */
 func makeSimilar(nums []int, target []int) int64 {
 
 	sort.Ints(nums)
 	sort.Ints(target)
-
-	n := len(nums)
-	r := n - 1
-
-	add := 0
-	sub := 0
-	for i := n - 1; i >= 0; i-- {
-
-		if nums[i]%2 == 1 {
-			continue
+	index := []int{0, 0}
+	ans := 0
+	for _, v := range nums {
+		p := index[v&1]
+		for target[p]&1 != v&1 {
+			p++
 		}
-		for r >= 0 && target[r]%2 == 1 {
-			r--
+		index[v&1] = p + 1
+		if v >= target[p] {
+			ans += (v - target[p]) / 2
 		}
-		if r < 0 {
-			break
-		}
-
-		if nums[i] >= target[r] {
-			ops := (nums[i] - target[r]) / 2
-			add += ops
-			sub -= ops
-		} else {
-			ops := (target[r] - nums[i]) / 2
-			sub += ops
-			add -= ops
-		}
-		r--
-
 	}
-	r = n - 1
-	for i := n - 1; i >= 0; i-- {
+	return int64(ans)
+}
 
-		if nums[i]%2 == 0 {
-			continue
+func f(a []int) {
+	for i, x := range a {
+		if x&1 > 0 {
+			a[i] = -x // 由于元素都是正数，把奇数变成相反数，这样排序后奇偶就自动分开了
 		}
-		for r >= 0 && target[r]%2 == 0 {
-			r--
-		}
-		if r < 0 {
-			break
-		}
-
-		if nums[i] >= target[r] {
-			ops := (nums[i] - target[r]) / 2
-			add += ops
-			sub -= ops
-		} else {
-			ops := (target[r] - nums[i]) / 2
-			sub += ops
-			add -= ops
-		}
-
-		r--
 	}
-	return int64(max(sub, add))
+	sort.Ints(a)
+}
 
+func makeSimilar2(nums, target []int) (ans int64) {
+	f(nums)
+	f(target)
+	for i, x := range nums {
+		ans += int64(abs(x - target[i]))
+	}
+	return ans / 4
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 
 // {1, 2, 5}
 // {1, 3, 4}
 func main() {
-	//fmt.Println(makeSimilar([]int{8, 12, 6}, []int{2, 14, 10}))
+	fmt.Println(makeSimilar([]int{8, 12, 6}, []int{2, 14, 10}))
 	fmt.Println(makeSimilar([]int{1, 2, 5}, []int{4, 1, 3}))
 }
