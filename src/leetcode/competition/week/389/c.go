@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"sort"
 )
 
 /*
@@ -14,40 +15,49 @@ import (
 此处，freq(x) 表示字符 x 在 word 中的出现频率，而 |y| 表示 y 的绝对值。
 
 返回使 word 成为 k 特殊字符串 需要删除的字符的最小数量。
+
+输入：word = "aabcaba", k = 0
+
+输出：3
+解释：可以删除 2 个 "a" 和 1 个 "c" 使 word 成为 0 特殊字符串。word 变为 "baba"，
+
+此时 freq('a') == freq('b') == 2。
 */
 func minimumDeletions(word string, k int) int {
 
-	cntMap := make(map[uint8]int)
+	cnt := make([]int, 26)
 
-	n := len(word)
-	for i := range word {
-		cur := word[i] - 'a'
-		cntMap[cur]++
-	}
-	cnt := make([]int, 1)
-
-	for _, v := range cntMap {
-		cnt = append(cnt, v)
+	for _, v := range word {
+		cnt[v-'a']++
 	}
 
 	ans := math.MaxInt
-	for i := 1; i <= n; i++ {
-		sb := 0
-		for j := 0; j < len(cnt); j++ {
-			if cnt[j] < i {
-				sb += cnt[j]
+	sort.Ints(cnt)
+
+	s := 0
+	for i, v := range cnt {
+
+		if v == 0 {
+			continue
+		}
+
+		cur := s
+
+		for j := 25; j > i; j-- {
+			if v+k < cnt[j] {
+				cur += cnt[j] - v - k
 			} else {
-				sb += max(cnt[j]-i-k, 0)
+				break
 			}
 		}
-		ans = min(ans, sb)
+		ans = min(ans, cur)
+		s += v
 	}
-
 	return ans
 
 }
 
 func main() {
-	minimum := minimumDeletions("aamcaba", 0)
-	fmt.Println(minimum)
+	//fmt.Println(minimumDeletions("aamcaba", 0))
+	fmt.Println(minimumDeletions("aabcaba", 0))
 }

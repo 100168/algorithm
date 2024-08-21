@@ -19,6 +19,7 @@ func findMaximumNumber(k int64, x int) int64 {
 	return int64(r)
 }
 
+// mask   1...1...  =>...==k-1
 func check(n int, k int64, x int) bool {
 
 	s := strconv.FormatInt(int64(n), 2)

@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 /*
 给你一个字符串 s ，它每一位都是 1 到 9 之间的数字组成，同时给你一个整数 k 。
@@ -64,7 +67,29 @@ func dfs(index int, s string, k int) int {
 	return cnt
 }
 
+func minimumPartition2(s string, k int) int {
+	pre := 0
+	ans := 0
+	for _, v := range s {
+		c := int(v - '0')
+		if pre*10+c <= k {
+			pre = pre*10 + c
+			continue
+		}
+		if c > k {
+			return -1
+		}
+		pre = c
+		ans++
+	}
+	if pre > 0 {
+		ans++
+	}
+	return ans
+
+}
+
 func main() {
-	partition := minimumPartition("165462", 60)
-	println(partition)
+	fmt.Println(minimumPartition("165462", 60))
+	fmt.Println(minimumPartition2("165462", 60))
 }
