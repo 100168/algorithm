@@ -52,28 +52,44 @@ md, 题都看不懂
 
 func maxNumOfSubstrings(s string) []string {
 
-	pairs := make([][]int, 0)
-	for i := 'a'; i < 'z'; i++ {
+	indexMap := make(map[rune][]int)
+	for i := 'a'; i <= 'z'; i++ {
 		first := strings.Index(s, string(i))
 		last := strings.LastIndex(s, string(i))
 		if first == -1 {
 			continue
 		}
-		pairs = append(pairs, []int{first, last})
+		indexMap[i] = []int{first, last}
 	}
-	sort.Slice(pairs, func(i, j int) bool {
-		return pairs[i][0] < pairs[j][0]
-	})
 
-	newPair := [][]int{pairs[0]}
+	newPair := make([][]int, 0)
+	for _, v := range indexMap {
 
-	for _, v := range pairs {
-		for len(newPair) > 0 && v[0] < newPair[len(newPair)-1][1] && v[1] > newPair[len(newPair)-1][1] {
-			end := newPair[len(newPair)-1]
-			newPair = newPair[:len(newPair)-1]
-			v[0] = end[0]
-		}
 		newPair = append(newPair, v)
+
+	}
+	sort.Slice(newPair, func(i, j int) bool {
+		return newPair[i][0] < newPair[j][0]
+	})
+	for _, v := range newPair {
+		k := s[v[0]]
+
+		if _, ok := indexMap[rune(k)]; !ok {
+			continue
+		}
+		for i := v[0]; i <= v[1]; i++ {
+			cur := indexMap[rune(s[i])]
+			v[0] = min(v[0], cur[0])
+			v[1] = max(cur[1], v[1])
+		}
+		indexMap[rune(k)] = v
+	}
+
+	newPair = make([][]int, 0)
+	for _, v := range indexMap {
+
+		newPair = append(newPair, v)
+
 	}
 
 	sort.Slice(newPair, func(i, j int) bool {
@@ -94,8 +110,11 @@ func maxNumOfSubstrings(s string) []string {
 }
 
 func main() {
-	//fmt.Println(maxNumOfSubstrings("adefaddaccc"))
-	//fmt.Println(maxNumOfSubstrings("abbaccd"))
-	//fmt.Println(maxNumOfSubstrings("abab"))
+	fmt.Println(maxNumOfSubstrings("adefaddaccc"))
+	fmt.Println(maxNumOfSubstrings("abbaccd"))
+	fmt.Println(maxNumOfSubstrings("abab"))
 	fmt.Println(maxNumOfSubstrings("ababa"))
+	fmt.Println(maxNumOfSubstrings("abcdefghijklmnopqrstuvwxyz"))
+	fmt.Println(maxNumOfSubstrings("cabcccbaa"))
+	fmt.Println(maxNumOfSubstrings("bbcacbaba"))
 }
