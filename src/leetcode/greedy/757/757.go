@@ -21,30 +21,32 @@ import (
 解释：nums = [2, 3, 4, 8, 9].
 可以证明不存在元素数量为 4 的包含集合。
 */
-func intersectionSizeTwo(intervals [][]int) int {
-
+func intersectionSizeTwo(intervals [][]int) (ans int) {
 	sort.Slice(intervals, func(i, j int) bool {
-		return intervals[i][0] < intervals[j][0]
+		a, b := intervals[i], intervals[j]
+		return a[1] < b[1] || a[1] == b[1] && a[0] > b[0]
 	})
 
-	cnt := 2
-	mostR := intervals[0][1]
+	l, r := intervals[0][1]-1, intervals[0][1]
 
-	//
+	ans = 2
 	for _, v := range intervals[1:] {
 		s, e := v[0], v[1]
-		if s >= mostR {
-			cnt += 2
-			mostR = e
-		} else {
-			mostR = min(mostR, e)
+		if s > r {
+			l, r = v[1]-1, v[1]
+			ans += 2
+		} else if s > l {
+			ans += 1
+			l, r = r, e
 		}
 	}
-	return cnt
 
+	return
 }
 
 func main() {
 	//fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {3, 7}, {8, 9}}))
 	fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {3, 7}, {5, 7}, {7, 8}}))
+	//fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {1, 4}, {2, 5}, {3, 5}}))
+	//fmt.Println(intersectionSizeTwo([][]int{{1, 2}, {2, 3}, {2, 4}, {4, 5}}))
 }
