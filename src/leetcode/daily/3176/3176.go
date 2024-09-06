@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 /*
 *
@@ -16,41 +19,47 @@ import "fmt"
 2.相邻相关
 3.相邻无关
 4.选或不选。枚举选哪个，枚举选哪个空间复杂度更低
+
+1-1
 */
 func maximumLength(nums []int, k int) int {
-
 	n := len(nums)
-
-	memo := make([][]int, n+1)
-
-	for i := range memo {
-		memo[i] = make([]int, k+1)
-		for j := range memo[i] {
-			memo[i][j] = -1
+	f := make([][]int, n)
+	for i := range f {
+		f[i] = make([]int, k+1)
+		for j := range f[i] {
+			f[i][j] = -1
 		}
 	}
 	var dfs func(int, int) int
-
-	dfs = func(i, rest int) int {
-		if i < 0 {
+	dfs = func(i int, rest int) int {
+		if rest < 0 {
+			return math.MinInt / 2
+		}
+		if i <= 0 {
 			return 0
 		}
-		if memo[i][rest] != -1 {
-			return memo[i][rest]
+		if f[i][rest] != -1 {
+			return f[i][rest]
 		}
-
 		cur := 0
-		for j := 0; j < i; j++ {
-			if i == n || nums[i] == nums[j] {
-				cur = max(cur, dfs(j, rest)+1)
-			} else if rest > 0 {
-				cur = max(cur, dfs(j, rest-1)+1)
+		for t := i - 1; t >= 0; t-- {
+			if nums[t] == nums[i] {
+				cur = max(dfs(t, rest)+1, cur)
+			} else {
+				cur = max(dfs(t, rest-1)+1, cur)
 			}
 		}
-		memo[i][rest] = cur
+		f[i][rest] = cur
 		return cur
 	}
-	return dfs(n, k)
+
+	ans := 0
+	for i := n - 1; i >= 0; i-- {
+		ans = max(ans, dfs(i, k)+1)
+	}
+	return ans
+
 }
 
 /*
@@ -62,6 +71,7 @@ f[x][j]以x结尾最多j对不一样最长子序列长度
 */
 func maximumLength2(nums []int, k int) int {
 	fs := map[int][]int{}
+	//mx：最大个数 mx2次大个数 nums:最大对应的值
 	records := make([]struct{ mx, mx2, num int }, k+1)
 	for _, x := range nums {
 		if fs[x] == nil {
@@ -71,6 +81,7 @@ func maximumLength2(nums []int, k int) int {
 		for j := k; j >= 0; j-- {
 			f[j]++
 			if j > 0 {
+				//前一个数最大决策
 				p := records[j-1]
 				m := p.mx
 				if x == p.num {
@@ -114,4 +125,6 @@ func maximumLength3(nums []int, k int) int {
 func main() {
 	fmt.Println(maximumLength([]int{1, 2, 1, 1, 3}, 2))
 	fmt.Println(maximumLength([]int{1, 2, 2, 1, 1, 2}, 0))
+	fmt.Println(maximumLength2([]int{1, 2, 1, 1, 3}, 2))
+	fmt.Println(maximumLength2([]int{1, 2, 2, 1, 1, 2}, 0))
 }

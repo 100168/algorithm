@@ -57,4 +57,5 @@ func main() {
 	fmt.Println(countWays([]int{1, 1, 1}))
 	fmt.Println(countWays([]int{6, 0, 3, 3, 6, 7, 2, 7}))
 	fmt.Println(countWays([]int{6, 0, 3, 3, 6, 4, 4, 5, 5, 6, 6, 4, 4, 5, 6, 6, 7, 20, 7, 2, 7}))
+
 }
