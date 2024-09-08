@@ -17,59 +17,49 @@ arr2 是单调 非递增 的，换句话说 arr2[0] >= arr2[1] >= ... >= arr2[n 
 请你返回所有 单调 数组对的数目。
 
 由于答案可能很大，请你将它对 109 + 7 取余 后返回。
+
+思路：前缀和优化dp
 */
 
 func countOfPairs(nums []int) int {
 
-	mod := int(1e9 + 7)
 	n := len(nums)
-	count := 0
 
 	maxVal := slices.Max(nums)
-	f1 := make([]int, maxVal+1)
-	f2 := make([]int, maxVal+1)
 
-	for i := 0; i <= nums[0]; i++ {
-		if i == 0 {
-			f2[i] = 1
-			f1[nums[0]-i] = +1
+	ans := 0
 
-		} else {
-			f2[i] = f2[i-1] + 1
-			f1[nums[0]-i] = f1[nums[0]-i+1] + 1
+	mod := int(1e9 + 7)
+
+	f := make([][]int, n)
+	s := make([]int, nums[0]+2)
+
+	for i := range f {
+		f[i] = make([]int, maxVal+1)
+		for j := 0; j <= nums[0]; j++ {
+			f[0][j] = 1
+			s[j+1] = s[j] + f[0][j]
 		}
 	}
 
-	for i := 1; i < n; i++ {
-		c := nums[i]
-		f11 := make([]int, c+1)
-		f22 := make([]int, c+1)
-		pre := nums[i-1]
-		for j := 0; j <= c; j++ {
-			less := 0
-			more := f2[c-j]
-			if j > pre {
-				less = f1[0]
-			} else {
-				less = f1[j]
+	for i, v := range nums[1:] {
+		s2 := make([]int, v+2)
+		for j := 0; j <= v; j++ {
+
+			k := min(nums[i]-v+j, j)
+			if k >= 0 {
+				f[i+1][j] = s[k+1]
 			}
-			if more != 0 && less != 0 {
-				f11[j] = min(less, more)
-				f22[c-j] = min(less, more)
-			}
+			s2[j+1] = (s2[j] + f[i+1][j]) % mod
 		}
-		f1 = f11
-		f2 = f22
-
+		s = s2
 	}
 
-	for _, v := range f1 {
-		count += v
-		v %= mod
+	for i := 0; i <= nums[n-1]; i++ {
+		ans += f[n-1][i]
 	}
 
-	return count
-
+	return ans % mod
 }
 
 func main() {
