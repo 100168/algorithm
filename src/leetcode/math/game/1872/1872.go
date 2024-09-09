@@ -1,7 +1,5 @@
 package main
 
-import "math/bits"
-
 /*
 *
 Alice 和 Bob 玩一个游戏，两人轮流操作， Alice 先手 。
@@ -29,6 +27,5 @@ func stoneGameVIII(a []int) int {
 	for i := n - 1; i > 1; i-- {
 		f = max(f, sum[i]-f)
 	}
-	bits.OnesCount()
 	return f
 }
