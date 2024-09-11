@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 /**
@@ -32,65 +31,39 @@ import (
 */
 
 func maximizeWin(prizePositions []int, k int) int {
-
-	cnt := make(map[int]int)
-
-	for _, v := range prizePositions {
-		cnt[v]++
-	}
-
-	type pair struct {
-		x, y int
-	}
-
-	var pairs []pair
-
-	for i, j := range cnt {
-		pairs = append(pairs, pair{i, j})
-	}
-	sort.Slice(pairs, func(i, j int) bool {
-		return pairs[i].x < pairs[j].x
-	})
-
-	n := len(pairs)
+	n := len(prizePositions)
 	left := make([]int, n)
 
 	right := make([]int, n)
 
-	right[n-1] = pairs[n-1].y
+	right[n-1] = 1
 
-	left[0] = pairs[0].y
+	left[0] = 1
 
 	l := 0
 
-	s := pairs[0].y
+	s := 1
 
-	for i, v := range pairs[1:] {
-
-		s += v.y
-		for v.x-pairs[l].x > k {
-			s -= pairs[l].y
+	for i, v := range prizePositions[1:] {
+		s += 1
+		for v-prizePositions[l] > k {
+			s--
 			l++
 		}
 		left[i+1] = max(left[i], s)
 
 	}
-
-	s = pairs[n-1].y
-
+	s = 1
 	r := n - 1
-
 	for i := n - 2; i >= 0; i-- {
-		v := pairs[i]
-		s += v.y
-
-		for pairs[r].x-v.x > k {
-			s -= pairs[r].y
+		v := prizePositions[i]
+		s++
+		for prizePositions[r]-v > k {
+			s--
 			r--
 		}
 		right[i] = max(right[i+1], s)
 	}
-
 	ans := left[0]
 
 	for i := 0; i < n-1; i++ {
@@ -100,6 +73,6 @@ func maximizeWin(prizePositions []int, k int) int {
 }
 
 func main() {
-	//fmt.Println(maximizeWin([]int{1, 1, 2, 2, 3, 3, 5}, 2))
+	fmt.Println(maximizeWin([]int{1, 1, 2, 2, 3, 3, 5}, 2))
 	fmt.Println(maximizeWin([]int{1, 2, 3, 4}, 0))
 }
