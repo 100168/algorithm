@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 *
 给你一个下标从 0 开始的字符串 word 和一个整数 k 。
@@ -27,30 +29,32 @@ package main
 func minimumTimeToInitialState(word string, k int) int {
 
 	n := len(word)
+
 	z := make([]int, n)
 
-	z[0] = n
-	//c 是中心，r 是半径
-	c, r := 1, 1
-	for i := 1; i < n; i++ {
-
+	for i, c, r := 1, 1, 1; i < n; i++ {
 		l := 0
 		if i < r {
 			l = min(r-i, z[i-c])
 		}
-
-		for i+l < n && word[i+l] == word[l] {
+		for i+l < n && word[l] == word[i+l] {
 			l++
 		}
-		if i+l > r {
-			r = i + l
-			c = i
-		}
-		z[i] = l
 
-		if i%k == 0 && i+l == n {
+		if i+l == n && i%k == 0 {
 			return i / k
 		}
+		if i+l > r {
+			c = i
+			r = i + l
+		}
+		z[i] = l
 	}
 	return (n-1)/k + 1
+}
+
+func main() {
+	fmt.Println(minimumTimeToInitialState("aa", 1))
+
+	fmt.Println(500 * 500)
 }
