@@ -41,6 +41,30 @@ func gcd(a, b int) int {
 	return a
 }
 
+/*
+*
+扩展欧几里得
+
+1.求系数
+2.求gcd
+3.求逆元   a跟b互质    a%b==1   =>= xa+yb=1
+4.求丢番图方程解
+*/
+func exgcd(a, b int) (int, int) {
+	if b == 0 {
+		return 1, 0
+	} else {
+		x1, y1 := exgcd(b, a%b)
+		x := y1
+		y := x1 - y1*(a/b)
+		return x, y
+	}
+}
+
 func main() {
 	fmt.Println(maxPoints([][]int{{0, 0}, {4, 5}, {7, 8}, {8, 9}, {5, 6}, {3, 4}, {1, 1}}))
+
+	x, y := exgcd(4, 6)
+
+	fmt.Println(x, y)
 }
