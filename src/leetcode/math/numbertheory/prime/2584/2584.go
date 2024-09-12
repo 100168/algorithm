@@ -97,3 +97,39 @@ func findValidSplit2(nums []int) int {
 	}
 	return -1
 }
+
+func findValidSplit3(nums []int) int {
+
+	indexMap := make(map[int]int)
+
+	for i, v := range nums {
+		for j := 2; j*j <= v; j++ {
+			for ; v%j == 0; v /= j {
+				indexMap[j] = i
+			}
+		}
+		if v > 1 {
+			indexMap[v] = i
+		}
+	}
+
+	r := 0
+
+	for i := 0; i <= r; i++ {
+		v := nums[i]
+		for j := 2; j*j <= v; j++ {
+			for ; v%j == 0; v /= j {
+				r = max(r, indexMap[j])
+			}
+		}
+		if v > 1 {
+			r = max(r, indexMap[v])
+		}
+	}
+
+	if r == len(nums)-1 {
+		return -1
+	}
+	return r
+
+}
