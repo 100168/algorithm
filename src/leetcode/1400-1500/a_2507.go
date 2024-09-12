@@ -28,7 +28,6 @@ import "fmt"
 */
 func smallestValue(n int) int {
 
-	pre := n
 	for {
 		c := n
 		s := 0
@@ -42,14 +41,11 @@ func smallestValue(n int) int {
 			s += c
 		}
 
-		if s == pre {
+		if s == n {
 			return n
 		}
-
-		pre = n
 		n = s
 	}
-
 }
 
 func main() {
