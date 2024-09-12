@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 给你一个正整数 n 。
 
@@ -26,32 +28,30 @@ package main
 */
 func smallestValue(n int) int {
 
-	l := 0
+	pre := n
 	for {
-		for i := 2; i*i <= n; i++ {
-			cur, re := n/i, n%i
-			if re == 0 {
-				flag := true
-				for j := 2; j*j <= cur; j++ {
-					if cur%j == 0 {
-						flag = false
-						break
-					}
-				}
-				if flag {
-					l += cur
-				}
+		c := n
+		s := 0
+		for i := 2; i*i <= c; i++ {
+			for c%i == 0 {
+				s += i
+				c /= i
 			}
-
 		}
-		if l == 0 {
+		if c > 1 {
+			s += c
+		}
+
+		if s == pre {
 			return n
 		}
-		if l == n {
-			return l
-		}
-		n = l
 
+		pre = n
+		n = s
 	}
 
+}
+
+func main() {
+	fmt.Println(smallestValue(4))
 }
