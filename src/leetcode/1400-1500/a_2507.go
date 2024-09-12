@@ -32,9 +32,8 @@ func smallestValue(n int) int {
 		c := n
 		s := 0
 		for i := 2; i*i <= c; i++ {
-			for c%i == 0 {
+			for ; c%i == 0; c /= i {
 				s += i
-				c /= i
 			}
 		}
 		if c > 1 {
