@@ -36,112 +36,62 @@ caod
 
 */
 
-func waysToFillArray(queries [][]int) []int {
+const mod = int(1e9 + 7)
 
-	n := len(queries)
+var p [10015]int
 
-	mod := int(1e9 + 7)
+const k = 10015
 
-	ans := make([]int, n)
-
-	for i, v := range queries {
-
-		c := v[0]
-		x := v[1]
-
-		s := 0
-		for j := 2; j*j <= x; j++ {
-			for x%j == 0 {
-
-				s++
-				x /= j
-			}
-		}
-		if x > 1 {
-			s++
-		}
-		cur := 1
-
-		for ; s > 0; s >>= 1 {
-
-			if s&1 != 0 {
-
-				cur = cur * c % mod
-			}
-			c = c * c % mod
-		}
-		ans[i] = cur
-
-	}
-	return ans
-}
-
-func waysToFillArray2(queries [][]int) []int {
-
-	n := len(queries)
-
-	maxV := 10000 + 1
-	mod := int(1e9 + 7)
-
-	ans := make([]int, n)
-
-	comb := make([][]int, maxV)
-
-	for i := range comb {
-		comb[i] = make([]int, maxV)
-	}
-
-	comb[0][0] = 1
-
-	for i := 1; i < 16; i++ {
-		comb[i][i] = 1
-		for j := 1; j < i; j++ {
-			comb[i][j] = (comb[i-1][j] + comb[i-1][j-1]) % mod
-		}
-	}
-
-	p := make([]int, maxV)
-	p[0] = 0
-	for i := 1; i < maxV; i++ {
+func init() {
+	p[0] = 1
+	for i := 1; i < k; i++ {
 		p[i] = p[i-1] * i % mod
 	}
+}
+
+func comb(n, m int) int {
+	return p[n] * pow(p[m]*p[n-m]%mod, mod-2) % mod
+}
+
+func waysToFillArray(queries [][]int) []int {
+
+	l := len(queries)
+
+	ans := make([]int, l)
 
 	for i, v := range queries {
-
 		c := v[0]
 		x := v[1]
 
-		primeCnt := make([]int, 0)
+		cur := 1
 
-		curCnt := 0
-		s := 0
 		for j := 2; j*j <= x; j++ {
+			curCnt := 0
 			for x%j == 0 {
 				curCnt++
 				x /= j
 			}
-			s += curCnt
+
 			if curCnt > 0 {
-				primeCnt = append(primeCnt, curCnt)
-				curCnt = 0
+				//总个数
+				cur = cur * comb(c+curCnt-1, c-1) % mod
 			}
 		}
-		if x > 0 {
-			primeCnt = append(primeCnt, 1)
-			s += 1
+		if x > 1 {
+			cur = cur * comb(c, c-1) % mod
 		}
-		cur := 1
+		ans[i] = cur
+	}
+	return ans
+}
 
-		for ; s > 0; s >>= 1 {
-
-			if s&1 == 0 {
-
-				cur = cur * c % mod
-			}
-			c = c * c % mod
+func pow(a, b int) int {
+	ans := 1
+	for ; b > 0; b >>= 1 {
+		if b&1 != 0 {
+			ans = ans * a % mod
 		}
-		ans[i] = c
-
+		a = a * a % mod
 	}
 	return ans
 }
