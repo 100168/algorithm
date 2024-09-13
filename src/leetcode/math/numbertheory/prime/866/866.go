@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"strconv"
 )
 
 /*
@@ -29,73 +28,46 @@ import (
 输出：101
 */
 func primePalindrome(n int) int {
-	for l := 1; l <= 5; l++ {
-		for i := 1; i < int(math.Pow10(l)); i++ {
-			leftS := strconv.Itoa(i)
-			for j := len(leftS) - 2; j >= 0; j-- {
-				leftS += string(leftS[j])
-			}
-			curV, _ := strconv.Atoi(leftS)
-			if curV >= n && isPrime(curV) {
-				return curV
-			}
-		}
-		for i := 1; i < int(math.Pow10(l)); i++ {
-			leftS := strconv.Itoa(i)
-			for j := len(leftS) - 1; j >= 0; j-- {
-				leftS += string(leftS[j])
-			}
-			curV, _ := strconv.Atoi(leftS)
-			if curV >= n && isPrime(curV) {
-				return curV
-			}
-		}
-	}
-	return n
-}
-func isPrime(n int) bool {
 
-	if n == 1 {
-		return false
-	}
-	for i := 2; i*i <= n; i++ {
-		if n%i == 0 {
+	isPrime := func(x int) bool {
+
+		if x < 2 {
 			return false
 		}
+		for i := 2; i*i <= x; i++ {
+
+			if x%i == 0 {
+				return false
+			}
+
+		}
+		return true
 	}
-	return true
+
+	for i := 1; i < 9; i++ {
+		up := int(math.Pow10((i + 1) / 2))
+		for j := up / 10; j < up; j++ {
+			x := j
+			c := j
+			if i%2 != 0 {
+				x /= 10
+			}
+
+			for x > 0 {
+				c = c*10 + x%10
+				x /= 10
+			}
+
+			if c >= n && isPrime(c) {
+				return c
+			}
+
+		}
+	}
+
+	return -1
+
 }
-
-/*
-	class Solution {
-	    public int primePalindrome(int N) {
-	        while (true) {
-	            if (N == reverse(N) && isPrime(N))
-	                return N;
-	            N++;
-	            if (10_000_000 < N && N < 100_000_000)
-	                N = 100_000_000;
-	        }
-	    }
-
-	    public boolean isPrime(int N) {
-	        if (N < 2) return false;
-	        int R = (int) Math.sqrt(N);
-	        for (int d = 2; d <= R; ++d)
-	            if (N % d == 0) return false;
-	        return true;
-	    }
-
-	    public int reverse(int N) {
-	        int ans = 0;
-	        while (N > 0) {
-	            ans = 10 * ans + (N % 10);
-	            N /= 10;
-	        }
-	        return ans;
-	    }
-	}
-*/
 func main() {
 	fmt.Println(primePalindrome(80283903))
 	fmt.Println(primePalindrome(13))
