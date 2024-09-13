@@ -180,4 +180,6 @@ func main() {
 	//fmt.Println(maximumScore2([]int{8, 3, 9, 3, 8}, 2))
 	fmt.Println(maximumScore2([]int{2, 1, 14, 5, 18, 1, 8, 5}, 32))
 	fmt.Println(maximumScore([]int{2, 1, 14, 5, 18, 1, 8, 5}, 32))
+
+	fmt.Println(1 << 14)
 }
