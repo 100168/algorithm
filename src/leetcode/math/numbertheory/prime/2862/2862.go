@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"slices"
 )
 
 /*
@@ -27,41 +26,35 @@ import (
 func maximumSum(nums []int) int64 {
 
 	n := len(nums)
-	primeMap := make(map[int]bool)
+	primeMap := make(map[int]int)
 
-	for i := 2; i <= n; i++ {
+	for i := 1; i <= n; i++ {
 		cur := i
-		for j := 2; j*j <= cur; j++ {
+		core := 1
 
+		for j := 2; j*j <= cur; j++ {
+			cnt := 0
 			if cur%j == 0 {
-				primeMap[j] = true
 				for cur%j == 0 {
+					cnt++
 					cur /= j
+				}
+				if cnt%2 == 1 {
+					core *= j
 				}
 			}
 		}
 		if cur > 1 {
-			primeMap[cur] = true
+			core *= cur
 		}
+		primeMap[core] += nums[i-1]
 	}
-
-	ans := slices.Max(nums)
-	for p := range primeMap {
-		cur := 0
-		for k := p; k <= n; k *= p * p {
-			cur += nums[k-1]
-		}
-		ans = max(ans, cur)
+	ans := 0
+	for _, v := range primeMap {
+		ans = max(ans, v)
 	}
-
-	cnt := nums[0]
-	for p := range primeMap {
-		for k := p * p; k <= n; k *= p * p {
-			cnt += nums[k-1]
-		}
-	}
-	ans = max(ans, cnt)
 	return int64(ans)
+
 }
 
 func main() {
