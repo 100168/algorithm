@@ -50,7 +50,7 @@ func init() {
 }
 
 func comb(n, m int) int {
-	return p[n] * pow(p[m]*p[n-m]%mod, mod-2) % mod
+	return p[n] * getRp(p[m]*p[n-m]%mod, mod) % mod
 }
 
 func waysToFillArray(queries [][]int) []int {
@@ -96,6 +96,26 @@ func pow(a, b int) int {
 	return ans
 }
 
+func exgGcd(a, b int) (int, int, int) {
+	if b == 0 {
+		return a, 0, a
+	} else {
+		x1, y1, d := exgGcd(b, a%b)
+		x := y1
+		y := x1 - y1*(a/b)
+		return x, y, d
+	}
+}
+
+func getRp(a, b int) int {
+
+	x, _, _ := exgGcd(a, b)
+	return (x + mod) % mod
+}
 func main() {
 	fmt.Println(waysToFillArray([][]int{{2, 6}, {5, 1}, {73, 660}}))
+
+	x, _, _ := exgGcd(1024305, mod)
+	fmt.Println((x + mod) % mod)
+	fmt.Println(pow(1024305, mod-2))
 }
