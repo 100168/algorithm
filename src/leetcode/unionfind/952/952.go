@@ -1,16 +1,25 @@
 package main
 
-import "slices"
+import (
+	"fmt"
+	"slices"
+)
 
+/*
+*
+给定一个由不同正整数的组成的非空数组 nums ，考虑下面的图：
+
+有 nums.length 个节点，按从 nums[0] 到 nums[nums.length - 1] 标记；
+只有当 nums[i] 和 nums[j] 共用一个大于 1 的公因数时，nums[i] 和 nums[j]之间才有一条边。
+返回 图中最大连通组件的大小 。
+*/
 func largestComponentSize(nums []int) int {
 
 	n := len(nums)
 	parent := make([]int, n)
 	size := make([]int, n)
-
 	for i := range parent {
 		parent[i] = i
-		size[i] = 1
 	}
 	find := func(a int) int {
 		for parent[a] != a {
@@ -23,20 +32,7 @@ func largestComponentSize(nums []int) int {
 	union := func(a, b int) {
 		fa := find(a)
 		fb := find(b)
-		if fa == fb {
-			return
-		}
-
-		if size[fa] < size[fb] {
-			parent[fa] = fb
-			size[fb] += size[fa]
-			size[fa] = 0
-		} else {
-			parent[fb] = fa
-			size[fa] += size[fb]
-			size[fb] = 0
-		}
-
+		parent[fa] = fb
 	}
 
 	maxVal := slices.Max(nums)
@@ -45,8 +41,8 @@ func largestComponentSize(nums []int) int {
 	for i := range indexNums {
 		indexNums[i] = -1
 	}
-
 	for j, v := range nums {
+
 		for i := 2; i*i <= v; i++ {
 			if v%i != 0 {
 				continue
@@ -68,5 +64,14 @@ func largestComponentSize(nums []int) int {
 
 	}
 
-	return slices.Max(size)
+	ans := 0
+	for i := range nums {
+		size[find(i)]++
+		ans = max(ans, size[parent[i]])
+	}
+	return ans
+}
+
+func main() {
+	fmt.Println(largestComponentSize([]int{4, 6, 15, 35}))
 }

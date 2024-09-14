@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 /*
 *
@@ -14,42 +17,52 @@ func numberOfPairs(nums1 []int, nums2 []int, k int) int64 {
 
 	nums2Map := make(map[int]int)
 
-	for _, n := range nums2 {
-		nums2Map[n]++
+	for _, v := range nums2 {
+		nums2Map[v]++
 	}
-
 	ans := 0
+	for _, v := range nums1 {
 
-	for _, n := range nums1 {
-		if n%k == 0 {
-			cur := n / k
-			for j := 1; j*j <= cur; j++ {
+		if v%k != 0 {
+			continue
+		}
+		v /= k
 
-				if cur%j == 0 {
-					ans += nums2Map[j]
-					if j != cur/j {
-						ans += nums2Map[cur/j]
-					}
+		for i := 1; i*i <= v; i++ {
+			if v%i == 0 {
+				ans += nums2Map[i]
+				if v/i != i {
+					ans += nums2Map[v/i]
 				}
-
 			}
 
 		}
+
 	}
 	return int64(ans)
 }
 
-func numberOfPairs2(nums1 []int, nums2 []int, k int) int {
-
-	ans := 0
-	for i := range nums1 {
-		for j := range nums2 {
-			if nums1[i]%(nums2[j]*k) == 0 {
-				ans++
-			}
+func numberOfPairs2(nums1, nums2 []int, k int) (ans int64) {
+	cnt1 := map[int]int{}
+	for _, x := range nums1 {
+		if x%k == 0 {
+			cnt1[x/k]++
 		}
 	}
-	return ans
+	cnt2 := map[int]int{}
+	for _, x := range nums2 {
+		cnt2[x]++
+	}
+
+	u := slices.Max(nums1) / k
+	for i, c := range cnt2 {
+		s := 0
+		for j := i; j <= u; j += i {
+			s += cnt1[j]
+		}
+		ans += int64(s * c)
+	}
+	return
 }
 
 func main() {
