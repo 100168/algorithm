@@ -50,7 +50,7 @@ func countMatchingSubarrays(nums []int, pattern []int) int {
 	return ans
 }
 
-// kmp
+// 28
 func countMatchingSubarrays2(nums []int, pattern []int) int {
 
 	m := len(pattern)
