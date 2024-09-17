@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"math"
-	"slices"
-	"sort"
+	"math/big"
 )
 
 //给你一个大小为 m x n 的整数矩阵 mat 和一个整数 target 。
@@ -70,41 +70,6 @@ import (
 // Related Topics 数组 动态规划 矩阵 👍 66 👎 0
 
 // leetcode submit region begin(Prohibit modification and deletion)
-func minimizeTheDifference(mat [][]int, target int) int {
-
-	m := len(mat)
-	cache := make([][]int, m)
-	for i := range mat {
-		sort.Ints(mat[i])
-	}
-	for i := range cache {
-		cache[i] = make([]int, 5000)
-		for j := range cache[i] {
-			cache[i][j] = -1
-		}
-	}
-	var dfs func(int, int) int
-	dfs = func(i, j int) int {
-		if i >= m {
-			return abs(j - target)
-		}
-
-		if cache[i][j] != -1 {
-			return cache[i][j]
-		}
-
-		cur := math.MaxInt
-		for _, v := range mat[i] {
-			cur = min(cur, dfs(i+1, v+j))
-			if v+j > target {
-				break
-			}
-		}
-		cache[i][j] = cur
-		return cur
-	}
-	return dfs(0, 0)
-}
 
 func abs(a int) int {
 
@@ -114,31 +79,30 @@ func abs(a int) int {
 	return a
 }
 
-func dp(mat [][]int, target int) int {
-	dp := make([]bool, min(len(mat)*70, target*2)+1) // 需要枚举的重量不会超过 target*2
-	dp[0] = true
-	minSum, maxSum := 0, 0
-	for _, row := range mat {
-		mi, mx := slices.Min(row), slices.Max(row)
-		minSum += mi                      // 求 minSum 是为了防止 target 过小导致 dp 没有记录到
-		maxSum = min(maxSum+mx, target*2) // 前 i 组的最大重量，优化枚举时 j 的初始值
-		for j := maxSum; j >= 0; j-- {
-			dp[j] = false
-			for _, v := range row {
-				if v <= j && dp[j-v] {
-					dp[j] = true
-					break
-				}
-			}
+func minimizeTheDifference(mat [][]int, target int) int {
+
+	f := big.NewInt(1)
+	p := new(big.Int)
+
+	for _, c := range mat {
+		g := big.NewInt(0)
+		for _, v := range c {
+			g.Or(g, p.Lsh(f, uint(v)))
 		}
+		f = g
 	}
-	ans := abs(minSum - target)
-	for i, ok := range dp {
-		if ok {
+
+	ans := math.MaxInt / 2
+
+	for i := f.BitLen() - 1; i >= 0; i-- {
+
+		if f.Bit(i) == 1 {
 			ans = min(ans, abs(i-target))
 		}
 	}
 	return ans
 }
 
-//leetcode submit region end(Prohibit modification and deletion)
+func main() {
+	fmt.Println(minimizeTheDifference([][]int{{3, 5}, {5, 10}}, 47))
+}
