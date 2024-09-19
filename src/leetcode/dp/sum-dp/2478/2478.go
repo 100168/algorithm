@@ -42,47 +42,41 @@ s 被分成 k 段互不相交的子字符串。
 1 <= k, minLength <= s.length <= 1000
 s 每个字符都为数字 '1' 到 '9' 之一。
 */
-func beautifulPartitions(s string, k int, l int) int {
+func beautifulPartitions(s string, k int, minLength int) int {
 
 	n := len(s)
 	mod := int(1e9 + 7)
 
-	f := make([][]int, k+1)
+	sum := make([][]int, n+1)
 
-	for i := range f {
-		f[i] = make([]int, n+1)
+	f := make([][]int, n+1)
+
+	for i := range sum {
+		sum[i] = make([]int, k+1)
+		f[i] = make([]int, k+1)
 	}
 
 	isPrime := func(c byte) bool {
-		return strings.ContainsRune("2357", rune(c))
+		return strings.IndexByte("2357", c) >= 0
 	}
-
-	if !isPrime(s[0]) || isPrime(s[n-1]) || k*l > n {
+	if !isPrime(s[0]) || isPrime(s[n-1]) || minLength*k > n {
 		return 0
 	}
-
-	canPart := func(j int) bool {
-		return j == 0 || j == n || !isPrime(s[j-1]) && isPrime(s[j])
-	}
-	f[0][0] = 1
-
-	for i := 1; i <= k; i++ {
-
-		sum := 0
-		//枚举切割点
-		for j := i * l; j+(l*(k-i)) <= n; j++ {
-			//判断是否可以切割
-			if canPart(j - l) {
-				sum = (sum + f[i-1][j-l]) % mod
-			}
-
-			if canPart(j) {
-				f[i][j] = sum
+	sum[0][0] = 1
+	t := 1
+	//  可以把i看成长度
+	for i := 1; i <= n; i++ {
+		for j := 0; j <= k; j++ {
+			sum[i][j] = sum[i-1][j]
+		}
+		if i >= minLength && !isPrime(s[i-1]) && (i == n || isPrime(s[i])) {
+			for j := 1; j <= k; j++ {
+				t = sum[i-minLength][j-1]
+				sum[i][j] = (sum[i-1][j] + t) % mod
 			}
 		}
 	}
-
-	return f[k][n]
+	return t
 }
 
 func beautifulPartitions2(s string, k, l int) (ans int) {
