@@ -28,78 +28,32 @@ import (
 
 1 <= n <= 1000
 0 <= k <= 1000
+
+思路：前缀和优化dp
+
+思路：需要沿途累加，需要注意取值范围
 */
 
 const mod = 1_000_000_007
 
 func kInversePairs(n int, k int) int {
 
-	f := make([][]int, n+1)
-
-	for i := range f {
-		f[i] = make([]int, k+1)
-	}
-	f[0][0] = 0
-
+	f := make([]int, k+1)
 	s := make([]int, k+2)
 	for i := range s {
 		s[i] = 1
 	}
 	s[0] = 0
-
-	//f[i][z]  sum[z-i]
 	for i := 1; i <= n; i++ {
 		t := make([]int, k+2)
 		for j := 0; j <= k; j++ {
-			//for z := i; z >= 1 && i-z <= j; z-- {
-			//	f[i][j] = (f[i][j] + f[i-1][j-(i-z)]) % mod
-			//}
-			f[i][j] = s[j+1] - s[max(j-i, 0)]
-			t[j+1] = (t[j] + f[i][j]) % mod
+			f[j] = (s[j+1] - s[max(j-i+1, 0)] + mod) % mod
+			t[j+1] = (t[j] + f[j]) % mod
 		}
 		s = t
 	}
-	return f[n][k]
-
+	return f[k]
 }
-
-func kInversePairs2(n int, k int) int {
-	f := make([][]int, n+1)
-
-	for i := range f {
-		f[i] = make([]int, k+1)
-		for j := range f[i] {
-			f[i][j] = -1
-		}
-	}
-
-	var dfs func(int, int) int
-
-	dfs = func(i int, j int) int {
-
-		if i == 0 {
-			if j == 0 {
-				return 1
-			}
-			return 0
-		}
-		if f[i][j] != -1 {
-			return f[i][j]
-		}
-		cur := 0
-		for t := 1; t <= i; t++ {
-			if i-t <= j {
-				cur = (cur + dfs(i-1, j-(i-t))) % mod
-			}
-		}
-		f[i][j] = cur
-		return cur
-	}
-	return dfs(n, k)
-}
-
 func main() {
-	//fmt.Println(kInversePairs2(3, 0))
-	//fmt.Println(kInversePairs2(3, 1))
 	fmt.Println(kInversePairs(3, 1))
 }
