@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 *
 爱丽丝参与一个大致基于纸牌游戏 “21点” 规则的游戏，描述如下：
@@ -25,22 +27,21 @@ package main
 解释：爱丽丝得到一张牌，然后停止。 在 10 种可能性中的 6 种情况下，她的得分不超过 6 分。
 */
 func new21Game(n int, k int, maxPts int) float64 {
-
-	if maxPts >= n {
-		return 1
+	if k == 0 {
+		return 1.0
 	}
-
-	f := make([]int, k+1)
-
-	f[0] = 1
-
-	s := make([]int, k+1)
-	for i := 1; i <= k; i++ {
-		f[i] += s[i-1]
-		s[i] += f[i]
+	dp := make([]float64, k+maxPts)
+	for i := k; i <= n && i < k+maxPts; i++ {
+		dp[i] = 1.0
 	}
+	for i := k - 1; i >= 0; i-- {
+		for j := 1; j <= maxPts; j++ {
+			dp[i] += dp[i+j] / float64(maxPts)
+		}
+	}
+	fmt.Println(dp)
 
-	return 1
+	return dp[0]
 }
 
 func new21Game2(n int, k int, maxPts int) float64 {
@@ -48,17 +49,16 @@ func new21Game2(n int, k int, maxPts int) float64 {
 		return 1.0
 	}
 	dp := make([]float64, k+maxPts)
-	//小于n的都为1
-	for i := k; i <= n && i < k+maxPts; i++ {
+	s := make([]float64, k+maxPts+1)
+	//小于n的都为1且大于等于k的都为1
+	for i := min(n, k+maxPts-1); i >= k; i-- {
 		dp[i] = 1.0
+		s[i] = s[i+1] + 1.0
 	}
-
 	//从后往前计算
 	for i := k - 1; i >= 0; i-- {
-
-		for j := 1; j <= maxPts; j++ {
-			dp[i] += dp[i+j] / float64(maxPts)
-		}
+		dp[i] = (s[i+1] - s[i+maxPts+1]) / float64(maxPts)
+		s[i] = s[i+1] + dp[i]
 	}
 	return dp[0]
 }
@@ -78,4 +78,9 @@ func new21Game3(n int, k int, maxPts int) float64 {
 		dp[i] = dp[i+1] - (dp[i+maxPts+1]-dp[i+1])/float64(maxPts)
 	}
 	return dp[0]
+}
+
+func main() {
+	fmt.Println(new21Game2(5, 4, 4))
+	fmt.Println(new21Game(5, 4, 4))
 }
