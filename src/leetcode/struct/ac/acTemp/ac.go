@@ -48,6 +48,7 @@ func (t *trie) buildFail() {
 				continue
 			}
 			son.fail = cur.fail.son[i]
+			//为什么需要记录last，因为fail节点不一定是单词节点
 			if son.fail.len > 0 {
 				son.last = son.fail
 			} else {
