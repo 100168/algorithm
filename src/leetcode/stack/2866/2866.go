@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 *
@@ -30,60 +32,43 @@ heights 是一个 山脉 数组。
 func maximumSumOfHeights(maxHeights []int) int64 {
 
 	n := len(maxHeights)
-	sumL := make([]int, n)
-	sumR := make([]int, n)
-	st := make([]int, 0)
+
+	left := make([]int, n)
+
+	st := []int{-1}
 	s := 0
-	for i := 0; i < n; i++ {
-		for len(st) > 0 && maxHeights[st[len(st)-1]] > maxHeights[i] {
-			pop := st[len(st)-1]
+	for i, v := range maxHeights {
+		for len(st) > 1 && maxHeights[st[len(st)-1]] >= v {
+			cur := st[len(st)-1]
 			st = st[:len(st)-1]
-			l := -1
-			if len(st) > 0 {
-				l = st[len(st)-1]
-			}
-			s -= maxHeights[pop] * (pop - l)
+			next := st[len(st)-1]
+			s -= (cur - next) * maxHeights[cur]
 		}
+		next := st[len(st)-1]
 
-		l := -1
-
-		if len(st) > 0 {
-			l = st[len(st)-1]
-		}
+		s += (i - next) * v
+		left[i] = s
 		st = append(st, i)
-		s += maxHeights[i] * (i - l)
-		sumL[i] = s
 	}
-
-	st = st[:0]
-	s = 0
-	for i := n - 1; i >= 0; i-- {
-		for len(st) > 0 && maxHeights[st[len(st)-1]] > maxHeights[i] {
-			pop := st[len(st)-1]
-			st = st[:len(st)-1]
-			l := n
-			if len(st) > 0 {
-				l = st[len(st)-1]
-			}
-			s -= maxHeights[pop] * (l - pop)
-		}
-
-		l := n
-
-		if len(st) > 0 {
-			l = st[len(st)-1]
-		}
-		st = append(st, i)
-		s += maxHeights[i] * (l - i)
-		sumR[i] = s
-	}
+	st = []int{n}
 
 	ans := 0
-	for i := 0; i < n; i++ {
-		ans = max(ans, sumL[i]+sumR[i]-maxHeights[i])
+	s = 0
+	for i := n - 1; i >= 0; i-- {
+		v := maxHeights[i]
+		for len(st) > 1 && maxHeights[st[len(st)-1]] >= v {
+			cur := st[len(st)-1]
+			st = st[:len(st)-1]
+			next := st[len(st)-1]
+			s -= (next - cur) * maxHeights[cur]
+		}
+		next := st[len(st)-1]
+		s += (next - i) * v
+		ans = max(ans, left[i]+s-v)
+		st = append(st, i)
+
 	}
 	return int64(ans)
-
 }
 
 func main() {
