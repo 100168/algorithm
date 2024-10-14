@@ -53,40 +53,68 @@ word[7..12]，即 "ieaouq"。
 5 <= word.length <= 250
 word 仅由小写英文字母组成。
 0 <= k <= word.length - 5
+
+1.每个元音字母最少出现一次
+2.恰好k个非原因字符
+
+思路：
+1.
 */
 func countOfSubstrings(word string, k int) int {
 
-	cnt := 0
-
+	cntF := 0
 	ans := 0
 
 	n := len(word)
+	//有几个连续Z
+	pre := make([]int, n)
 
-	cntY := make(map[byte]int)
+	cntY := make(map[byte][]int)
+
+	minIndex := -1
+	l := -1
+	for i, v := range word {
+		if strings.ContainsRune("aeiou", v) {
+			if l == -1 {
+				l = i
+			}
+			cntY[byte(v)] = append(cntY[byte(v)], i)
+			if len(cntY) == 5 && minIndex == -1 {
+				minIndex = i
+			}
+		} else {
+			for l <= i {
+				cur := cntY[word[l]]
+				cur = cur[1:]
+				if cur[0] <= minIndex {
+					pre[l] = i - minIndex
+				}
+				cntY[word[l]] = cur
+			}
+			minIndex = -1
+			l = -1
+		}
+	}
+
+	l = 0
+
 	for i, v := range word {
 		if !strings.ContainsRune("aeiou", v) {
-			cnt++
-		} else {
-			cntY[byte(v)]++
+			cntF++
 		}
-		for cnt > k {
+		for cntF > k {
 			if !strings.ContainsRune("aeiou", rune(word[l])) {
-				cnt--
-			} else {
-				cntY[word[l]]--
-				if cntY[word[l]] == 0 {
-					delete(cntY, word[l])
-				}
+				cntF--
 			}
 			l++
 		}
-		if cnt == k && len(cntY) > 0 {
-			ans++
+		if i-l+1-cntF > 0 && cntF == k {
+			ans += pre[l]
 		}
 	}
 
 	return ans
 }
 func main() {
-	fmt.Println(countOfSubstrings("aeioqoq", 1))
+	fmt.Println(countOfSubstrings("aeioqq", 1))
 }
