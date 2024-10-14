@@ -56,7 +56,7 @@ func cal(nums []int, k int) int {
 		}
 
 		if len(cnt) == k {
-			ans += l + 1
+			ans += l
 		}
 
 	}
