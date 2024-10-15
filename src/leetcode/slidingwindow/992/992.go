@@ -30,10 +30,11 @@ import "fmt"
 1 <= nums.length <= 2 * 104
 1 <= nums[i], k <= nums.length
 
+思路：恰好型
+1.转换为>=k ->=k+1
 */
 
 func subarraysWithKDistinct(nums []int, k int) int {
-
 	return cal(nums, k-1) - cal(nums, k)
 }
 
