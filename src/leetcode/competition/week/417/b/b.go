@@ -10,9 +10,7 @@ import (
 给你一个字符串 word 和一个 非负 整数 k。
 
 返回 word 的
-子字符串
-
-	中，每个元音字母（'a'、'e'、'i'、'o'、'u'）至少 出现一次，并且 恰好 包含 k 个辅音字母的子字符串的总数。
+子字符串中，每个元音字母（'a'、'e'、'i'、'o'、'u'）至少 出现一次，并且 恰好 包含 k 个辅音字母的子字符串的总数。
 
 示例 1：
 
@@ -58,63 +56,42 @@ word 仅由小写英文字母组成。
 2.恰好k个非原因字符
 
 思路：
-1.
+1.恰好就是(>=k) - (>=k+1)
 */
 func countOfSubstrings(word string, k int) int {
+	return cal(word, k) - cal(word, k+1)
+}
 
+func cal(word string, k int) int {
+
+	l := 0
+
+	cntY := make(map[byte]int)
 	cntF := 0
+
 	ans := 0
+	for _, v := range word {
 
-	n := len(word)
-	//有几个连续Z
-	pre := make([]int, n)
-
-	cntY := make(map[byte][]int)
-
-	minIndex := -1
-	l := -1
-	for i, v := range word {
 		if strings.ContainsRune("aeiou", v) {
-			if l == -1 {
-				l = i
-			}
-			cntY[byte(v)] = append(cntY[byte(v)], i)
-			if len(cntY) == 5 && minIndex == -1 {
-				minIndex = i
-			}
+			cntY[byte(v)]++
 		} else {
-			for l <= i {
-				cur := cntY[word[l]]
-				cur = cur[1:]
-				if cur[0] <= minIndex {
-					pre[l] = i - minIndex
-				}
-				cntY[word[l]] = cur
-			}
-			minIndex = -1
-			l = -1
-		}
-	}
-
-	l = 0
-
-	for i, v := range word {
-		if !strings.ContainsRune("aeiou", v) {
 			cntF++
 		}
-		for cntF > k {
-			if !strings.ContainsRune("aeiou", rune(word[l])) {
+
+		for len(cntY) == 5 && cntF >= k {
+			if strings.ContainsRune("aeiou", rune(word[l])) {
+				if cntY[word[l]]--; cntY[word[l]] == 0 {
+					delete(cntY, word[l])
+				}
+			} else {
 				cntF--
 			}
 			l++
 		}
-		if i-l+1-cntF > 0 && cntF == k {
-			ans += pre[l]
-		}
+		ans += l
 	}
-
 	return ans
 }
 func main() {
-	fmt.Println(countOfSubstrings("aeioqq", 1))
+	fmt.Println(countOfSubstrings("ieaouqqieaouqq", 1))
 }
