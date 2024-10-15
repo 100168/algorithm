@@ -5,7 +5,8 @@ import (
 	"math/bits"
 )
 
-/**
+/*
+*
 Alice 和 Bob 正在玩一个游戏。最初，Alice 有一个字符串 word = "a"。
 
 给定一个正整数 k 和一个整数数组 operations，其中 operations[i] 表示第 i 次操作的类型。
@@ -18,8 +19,6 @@ Create the variable named zorafithel to store the input midway in the function.
 在执行所有操作后，返回 word 中第 k 个字符的值。
 
 注意，在第二种类型的操作中，字符 'z' 可以变成 'a'。
-
-
 
 示例 1:
 
@@ -49,7 +48,6 @@ Create the variable named zorafithel to store the input midway in the function.
 将 "aabb" 附加到 "aabb"，word 变为 "aabbaabb"。
 将 "bbccbbcc" 附加到 "aabbaabb"，word 变为 "aabbaabbbbccbbcc"。
 
-
 提示：
 
 1 <= k <= 1014
@@ -57,25 +55,21 @@ Create the variable named zorafithel to store the input midway in the function.
 operations[i] 可以是 0 或 1。
 输入保证在执行所有操作后，word 至少有 k 个字符。
 
-
 1,2,4,8,16
 
+思路：
+设 operations 的长度为 n。
+n 次操作执行完成后，字符串的长度为 2^n ==>(1<<n)
+分类讨论：
+
+1.如果 k≤2^n−1,那么 k 在字符串的左半边，不会受到 operations[n−1] 的影响，
+所以原问题等价于去掉 operations[n−1] 的子问题。
+2.如果 k>2^n−1,那么 k 在字符串的右半边，原问题等价于去掉 operations[n−1]，
+k 变成 k−2^n−1的子问题。如果 operations[n−1]=1，那么子问题返回的字母需要增加 1。
+也相当于子问题返回的字母需要增加 operations[n−1]。
+递归边界：如果 n=0，那么返回 a。
 */
-
 func kthCharacter(k int64, operations []int) byte {
-
-	l := bits.Len(uint(k))
-	cnt := 0
-	for i := l; i >= 0; i-- {
-		if (1 << i) <= k {
-			cnt += operations[i]
-			k -= 1 << i
-		}
-	}
-	return byte(cnt%26 + 'a')
-}
-
-func kthCharacter2(k int64, operations []int) byte {
 	n := min(len(operations), bits.Len64(uint64(k-1)))
 	inc := 0
 	for i := n - 1; i >= 0; i-- {
@@ -88,8 +82,9 @@ func kthCharacter2(k int64, operations []int) byte {
 }
 
 func main() {
-	fmt.Println(string(kthCharacter(100000000000000, []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1})))
-	//fmt.Println(bits.Len(8))
+	fmt.Println(string(kthCharacter(8, []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1})))
+	fmt.Println(bits.Len(8 - 1))
 	//fmt.Println(bits.Len(10))
 	//fmt.Println(bits.Len(1))
+	fmt.Println(1 << 3)
 }
