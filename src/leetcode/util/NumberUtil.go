@@ -12,5 +12,5 @@ func brace(s string) string {
 }
 func main() {
 
-	fmt.Println(brace("[[6,8],[6,9],[8,9]]"))
+	fmt.Println(brace("[[1,2],[0,2],[0,1],[3,4]]"))
 }
