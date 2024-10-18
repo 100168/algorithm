@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"slices"
 )
 
@@ -30,18 +31,53 @@ gcdPairs = [gcd(nums[0], nums[1]), gcd(nums[0], nums[2]), gcd(nums[1], nums[2])]
 升序排序后得到gcdPairs = [1, 1, 2]。
 
 所以答案为[gcdPairs[queries[0]], gcdPairs[queries[1]], gcdPairs[queries[2]]] = [1, 2, 2]。
+
+思路：容斥+前缀和+二分
+
+
 */
+
 func gcdValues(nums []int, queries []int64) []int {
-	cntMap := make(map[int]int)
-
-	for _, v := range nums {
-		cntMap[v]++
+	mx := slices.Max(nums)
+	cntX := make([]int, mx+1)
+	for _, x := range nums {
+		cntX[x]++
 	}
-	maxV := slices.Max(nums)
 
-	cnt := make([]int, maxV+1)
-	sum := make([]int, maxV+2)
+	cntGcd := make([]int, mx+1)
+	for i := mx; i > 0; i-- {
+		c := 0
+		for j := i; j <= mx; j += i {
+			c += cntX[j]
+			cntGcd[i] -= cntGcd[j] // gcd 是 2i,3i,4i,... 的数对不能统计进来
+		}
+		cntGcd[i] += c * (c - 1) / 2 // c 个数选 2 个，组成 c*(c-1)/2 个数对
+	}
 
-	//2,4,6,8
+	for i := 2; i <= mx; i++ {
+		cntGcd[i] += cntGcd[i-1] // 原地求前缀和
+	}
 
+	ans := make([]int, len(queries))
+	for i, q := range queries {
+		ans[i] = find(cntGcd, int(q)+1)
+	}
+	return ans
+}
+func find(nums []int, t int) int {
+	// find >=t most left
+	l, r := 0, len(nums)
+	for l <= r {
+		m := (r + l) / 2
+		if nums[m] < t {
+			l = m + 1
+		} else {
+			r = m - 1
+		}
+	}
+	return l
+}
+
+func main() {
+	fmt.Println(gcdValues([]int{2, 3, 4}, []int64{0, 2, 2}))
 }
