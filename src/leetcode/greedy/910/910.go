@@ -69,9 +69,9 @@ func smallestRangeII2(nums []int, k int) int {
 
 	return ans
 }
+
 func main() {
 	//fmt.Println(smallestRangeII([]int{0, 10}, 2))
 	//fmt.Println(smallestRangeII([]int{1, 3, 6}, 3))
 	fmt.Println(smallestRangeII([]int{1, 4, 6, 4}, 3))
-	fmt.Println(smallestRangeII2([]int{1, 4, 6, 4}, 3))
 }
