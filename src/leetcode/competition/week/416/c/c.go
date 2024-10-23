@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 *
 给你两个字符串 word1 和 word2 。
@@ -29,39 +31,38 @@ package main
 
 func validSubstringCount(word1 string, word2 string) int64 {
 
-	cntC := make([]int, 26)
-
+	cnt := make([]int, 26)
 	for _, v := range word2 {
-		cntC[v-'a']++
+		cnt[v-'a']++
 	}
 
-	n := len(word1)
-	l := 0
-	ans := 0
+	cntC := make([]int, 26)
 
-	check := func(cnt []int) bool {
+	check := func() bool {
+		for i, v := range cnt {
 
-		for i, v := range cntC {
-			if cnt[i] < v {
+			if v > cntC[i] {
 				return false
 			}
 		}
 		return true
 	}
 
-	cnt := make([]int, 26)
-
-	for i, v := range word1 {
-		cnt[v-'a']++
-		for check(cnt) {
-			cnt[word1[l]-'a']--
+	//l左边都是满足条件
+	l := 0
+	ans := 0
+	for _, v := range word1 {
+		cntC[v-'a']++
+		for check() {
+			cntC[word1[l]-'a']--
 			l++
-			ans += n - i
 		}
-
+		ans += l
 	}
 	return int64(ans)
 }
 func main() {
+
+	fmt.Println(validSubstringCount("bcca", "abc"))
 
 }
