@@ -1,124 +1,88 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
-	"github.com/emirpasic/gods/trees/redblacktree"
-	"github.com/emirpasic/gods/utils"
+	"github.com/emirpasic/gods/v2/trees/redblacktree"
 )
 
-type pair struct {
-	v   int
-	cnt int
+type pair struct{ c, x int } // 出现次数，元素值
+
+func less(p, q pair) int {
+	return cmp.Or(p.c-q.c, p.x-q.x)
 }
 
-func findXSum(nums []int, k int, x int) []int64 {
+func findXSum(nums []int, k, x int) []int64 {
+	L := redblacktree.NewWith[pair, struct{}](less)
+	R := redblacktree.NewWith[pair, struct{}](less)
 
-	n := len(nums)
-	left := redblacktree.NewWith(func(x, y interface{}) int {
-		a, b := x.(pair), y.(pair)
-		if a.cnt != b.cnt {
-			return utils.IntComparator(a.cnt, b.cnt)
+	sumL := 0 // L 的元素和
+	cnt := map[int]int{}
+	add := func(x int) {
+		p := pair{cnt[x], x}
+		if p.c == 0 {
+			return
 		}
-		return utils.IntComparator(a.v, b.v)
-	})
-
-	right := redblacktree.NewWith(func(x, y interface{}) int {
-		a, b := x.(pair), y.(pair)
-		if a.cnt != b.cnt {
-			return utils.IntComparator(a.cnt, b.cnt)
+		if !L.Empty() && less(p, L.Left().Key) > 0 { // p 比 L 中最小的还大
+			sumL += p.c * p.x
+			L.Put(p, struct{}{})
+		} else {
+			R.Put(p, struct{}{})
 		}
-		return utils.IntComparator(a.v, b.v)
-	})
-
-	ans := make([]int64, n-k+1)
-
-	cntMap := make(map[int]int)
-	for i := 0; i < k; i++ {
-		right.Remove(pair{nums[i], cntMap[nums[i]]})
-		cntMap[nums[i]]++
-		curPair := pair{nums[i], cntMap[nums[i]]}
-		right.Put(curPair, pair{})
+	}
+	del := func(x int) {
+		p := pair{cnt[x], x}
+		if p.c == 0 {
+			return
+		}
+		if _, ok := L.Get(p); ok {
+			sumL -= p.c * p.x
+			L.Remove(p)
+		} else {
+			R.Remove(p)
+		}
+	}
+	l2r := func() {
+		p := L.Left().Key
+		sumL -= p.c * p.x
+		L.Remove(p)
+		R.Put(p, struct{}{})
+	}
+	r2l := func() {
+		p := R.Right().Key
+		sumL += p.c * p.x
+		R.Remove(p)
+		L.Put(p, struct{}{})
 	}
 
-	sum := 0
-	for left.Size() < x && right.Size() > 0 {
-		node := right.Right()
-		p := node.Key.(pair)
-		sum += p.v * p.cnt
-		left.Put(p, pair{})
-		right.Remove(p)
-	}
+	ans := make([]int64, len(nums)-k+1)
+	for r, in := range nums {
+		// 添加 in
+		del(in)
+		cnt[in]++
+		add(in)
 
-	for i := k; i < n; i++ {
-
-		//分两步
-		//先删再加
-		//
-		ans[i-k] = int64(sum)
-
-		if nums[i] == nums[i-k] {
+		l := r + 1 - k
+		if l < 0 {
 			continue
 		}
 
-		delPre := pair{nums[i-k], cntMap[nums[i-k]]}
-		cntMap[nums[i-k]]--
-
-		addPre := pair{nums[i], cntMap[nums[i]]}
-		cntMap[nums[i]]++
-
-		_, foundDel := right.Get(delPre)
-		_, foundAdd := left.Get(addPre)
-		if foundDel { //在右边
-			put(right, delPre, -1)
-		} else { //在左边
-			sum -= delPre.v
-			put(left, delPre, -1)
+		// 维护大小
+		for !R.Empty() && L.Size() < x {
+			r2l()
 		}
-		if !foundAdd {
-			put(right, addPre, 1)
-		} else {
-			sum += addPre.v
-			put(left, addPre, 1)
+		for L.Size() > x {
+			l2r()
 		}
-		for left.Size() < x && right.Size() > 0 {
-			node := right.Right()
-			p := node.Key.(pair)
-			sum += p.v * p.cnt
-			left.Put(p, pair{})
-			right.Remove(p)
-		}
+		ans[l] = int64(sumL)
 
-		if right.Size() > 0 {
-			l := left.Left()
-			r := right.Right()
-			lk := l.Key.(pair)
-			rk := r.Key.(pair)
-			if cmp(lk, rk) {
-				sum -= lk.v * lk.cnt
-				sum += rk.v * rk.cnt
-				left.Remove(lk)
-				right.Remove(rk)
-				left.Put(rk, pair{})
-				right.Put(lk, pair{})
-			}
-
-		}
-
+		// 移除 out
+		out := nums[l]
+		del(out)
+		cnt[out]--
+		add(out)
 	}
-	ans[n-k] = int64(sum)
 	return ans
-
-}
-
-func put(tree *redblacktree.Tree, p pair, v int) {
-	tree.Remove(p)
-	if p.cnt+v != 0 {
-		tree.Put(pair{p.v, p.cnt + v}, pair{})
-	}
-}
-
-func cmp(pair1, pair2 pair) bool {
-	return pair1.cnt < pair2.cnt || pair1.cnt == pair2.cnt && pair1.v < pair2.v
 }
 
 func main() {
