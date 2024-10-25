@@ -18,7 +18,7 @@ func longestPalindrome(s string) string {
 	for i := 0; i < n; i++ {
 		//自己也是回文串
 		l := 1
-		if r < i {
+		if r > i {
 			l = min(r-i, p[2*c-i])
 		}
 

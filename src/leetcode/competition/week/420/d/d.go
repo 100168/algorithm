@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"time"
 )
 
 /*
@@ -30,59 +30,64 @@ import (
 */
 func findAnswer(parent []int, s string) []bool {
 
-	g := make(map[int][]int)
-
 	n := len(s)
+
+	g := make([][]int, n)
+
 	left := make([]int, n)
 	right := make([]int, n)
-	for i, v := range parent {
-		g[v] = append(g[v], i)
+
+	for i := 1; i < n; i++ {
+
+		p := parent[i]
+
+		g[p] = append(g[p], i)
 	}
 	ans := make([]bool, n)
 
-	str := ""
-	var dfs func(x int) int
+	chars := make([]byte, n)
+	var dfs func(x int)
 
-	dfs = func(x int) int {
-		sort.Ints(g[x])
-		size := 1
-		for _, v := range g[x] {
-			size += dfs(v)
+	t := 0
+	fmt.Println(time.Now())
+	dfs = func(x int) {
+		left[x] = t
+		for _, y := range g[x] {
+			dfs(y)
 		}
-		str = str + string(s[x])
-		left[x] = len(str) - size
-		right[x] = len(str) - 1
-		return size
+		chars[t] = s[x] // 后序遍历
+		t++
+		right[x] = t
 	}
-
 	dfs(0)
+	fmt.Println(time.Now())
 
 	// 0123456789
 	// #a#b#a#a#b#a#
 	// abaaba
 
-	p := longestPalindrome(str)
-
+	p := longestPalindrome(chars)
+	fmt.Println(time.Now())
 	for i := 0; i < n; i++ {
-
-		cur := (right[i] + left[i] + 1) / 2 * 2
-
-		if (right[i]-left[i]+1)%2 == 1 {
-			cur++
-		}
-		ans[i] = p[cur] >= right[i]-left[i]+1
-
+		cur := right[i] + left[i]
+		ans[i] = p[cur] >= right[i]-left[i]
 	}
 	return ans
 
 }
 
-func longestPalindrome(s string) []int {
-	manaChar := "#"
-	for _, v := range s {
-		manaChar = manaChar + string(v) + "#"
+func longestPalindrome(s []byte) []int {
+
+	n := 2*len(s) + 1
+
+	str := make([]byte, n)
+
+	str[len(str)-1] = '#'
+
+	for i, v := range s {
+		str[i*2] = '#'
+		str[i*2+1] = v
 	}
-	n := len(manaChar)
 	//每个点的最长回文半径
 	p := make([]int, n)
 	//c回文中心,r是回问半径（）
@@ -90,11 +95,11 @@ func longestPalindrome(s string) []int {
 	for i := 0; i < n; i++ {
 		//自己也是回文串
 		l := 1
-		if r < i {
+		if r > i {
 			l = min(r-i, p[2*c-i])
 		}
 
-		for i+l < n && i-l >= 0 && manaChar[i+l] == manaChar[i-l] {
+		for i+l < n && i-l >= 0 && str[i+l] == str[i-l] {
 			l++
 		}
 
@@ -108,5 +113,5 @@ func longestPalindrome(s string) []int {
 }
 
 func main() {
-	fmt.Println(findAnswer([]int{-1, 0, 0, 1, 1, 2}, "aababa"))
+	fmt.Println(findAnswer([]int{-1, 0, 0, 1, 1, 2}, "zzzzz"))
 }
