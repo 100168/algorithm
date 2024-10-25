@@ -31,8 +31,8 @@ import "fmt"
 评委可以给这唯一一个有表演者的节目打分 1 ，2 或者 3 。
 示例 2：
 
-输入：n = 5, x = 2, y = 1
-
+输入：n = 5, x = 2, y = 2
+//x*y
 输出：32
 
 解释：
@@ -50,29 +50,32 @@ import "fmt"
 1 <= n, x, y <= 1000
 */
 
-const mod = int(1e9 + 7)
+const mod = 1_000_000_007
+const mx = 1001
 
-func numberOfWays(n int, x int, y int) int {
+var s [mx][mx]int
 
-	return pow(x, n) * y % mod
-	// y^(x^n)
+func init() {
+	s[0][0] = 1
+	for i := 1; i < mx; i++ {
+		for j := 1; j <= i; j++ {
+			s[i][j] = (s[i-1][j-1] + j*s[i-1][j]) % mod
+		}
+	}
 }
 
-func pow(a, b int) int {
-
-	ans := 1
-	for ; b > 0; b >>= 1 {
-
-		if b&1 == 1 {
-			ans = ans * a % mod
-		}
-		a = a * a % mod
+func numberOfWays(n, x, y int) (ans int) {
+	perm, powY := 1, 1
+	for i := 1; i <= min(n, x); i++ {
+		perm = perm * (x + 1 - i) % mod
+		powY = powY * y % mod
+		ans = (ans + perm*s[n][i]%mod*powY) % mod
 	}
-	return ans
+	return
 }
 
 func main() {
 
 	//3*3*3
-	fmt.Println(684/27, 27*25)
+	fmt.Println(numberOfWays(2, 2, 2))
 }
