@@ -64,7 +64,6 @@ func findSubtreeSizes(parent []int, s string) []int {
 
 	dfs = func(x int) int {
 		c := 1
-
 		for _, v := range g[x] {
 			c += dfs(v)
 		}
