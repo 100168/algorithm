@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"slices"
 )
 
 /*
@@ -21,24 +20,41 @@ import (
 请你返回一个长度为 n 的数组 answer ，其中 answer[i] 是 最终 树中，节点 i 为根的子树的 大小 。
 */
 func findSubtreeSizes(parent []int, s string) []int {
-
-	newParent := slices.Clone(parent)
 	n := len(parent)
-	ans := make([]int, n)
-
-	for i := 1; i < n; i++ {
-		y := parent[parent[i]]
-		if y == -1 {
-			continue
-		}
-		if s[i] == s[y] {
-			newParent[i] = y
-		}
-	}
 
 	g := make([][]int, n)
+	for i, v := range parent {
+		if i == 0 {
+			continue
+		}
+		g[v] = append(g[v], i)
+	}
+	ans := make([]int, n)
 
-	for i, v := range newParent {
+	charMap := make([]int, 26)
+
+	for i := range charMap {
+		charMap[i] = -1
+	}
+
+	var reboot func(int)
+
+	reboot = func(x int) {
+		pre := charMap[s[x]-'a']
+		if pre >= 0 {
+			parent[x] = pre
+		}
+		charMap[s[x]-'a'] = x
+		for _, y := range g[x] {
+			reboot(y)
+		}
+		charMap[s[x]-'a'] = pre
+	}
+
+	reboot(0)
+
+	g = make([][]int, n)
+	for i, v := range parent {
 		if i == 0 {
 			continue
 		}
@@ -47,13 +63,11 @@ func findSubtreeSizes(parent []int, s string) []int {
 	var dfs func(int) int
 
 	dfs = func(x int) int {
-
 		c := 1
 
 		for _, v := range g[x] {
 			c += dfs(v)
 		}
-
 		ans[x] = c
 		return c
 	}
@@ -63,5 +77,6 @@ func findSubtreeSizes(parent []int, s string) []int {
 
 }
 func main() {
+	fmt.Println(findSubtreeSizes([]int{1, 0, 0, 1, 1, 1}, "abaabc"))
 	fmt.Println(findSubtreeSizes([]int{-1, 10, 0, 12, 10, 18, 11, 12, 2, 3, 2, 2, 2, 0, 4, 11, 4, 2, 0}, "babadabbdabcbaceeda"))
 }
