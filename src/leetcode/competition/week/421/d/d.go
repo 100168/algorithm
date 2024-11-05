@@ -87,10 +87,13 @@ func (a matrix) powMul(n int, f0 matrix) matrix {
 
 func lengthAfterTransformations(s string, t int, nums []int) (ans int) {
 	const size = 26
+
+	//初始化列
 	f0 := newMatrix(size, 1)
 	for i := range f0 {
 		f0[i][0] = 1
 	}
+	//初始化行
 	m := newMatrix(size, size)
 	for i, c := range nums {
 		for j := i + 1; j <= i+c; j++ {
