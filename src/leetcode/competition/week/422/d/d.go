@@ -26,6 +26,8 @@ num 的不同排列包括： "123" ，"132" ，"213" ，"231" ，"312" 和 "321"
 
 */
 
+const mod = int(1e9 + 7)
+
 func countBalancedPermutations(num string) int {
 
 	cnt := make([]int, 10)
@@ -41,16 +43,12 @@ func countBalancedPermutations(num string) int {
 	if s%2 != 0 {
 		return 0
 	}
-	mod := int(1e9 + 7)
-
 	f := make([][][]int, 10)
 
 	for i := range f {
-
-		f[i] = make([][]int, n/2+1)
+		f[i] = make([][]int, (n+1)/2+1)
 		for j := range f[i] {
 			f[i][j] = make([]int, s/2+1)
-
 			for k := range f[i][j] {
 				f[i][j][k] = -1
 			}
@@ -65,7 +63,7 @@ func countBalancedPermutations(num string) int {
 			}
 			return 0
 		}
-		if rest < 0 || j < 0 || i < 0 {
+		if rest < 0 || i < 0 {
 			return 0
 		}
 
@@ -73,14 +71,18 @@ func countBalancedPermutations(num string) int {
 			return f[i][j][rest]
 		}
 		cur := 0
-		for k := 0; k <= cnt[i]; k++ {
-			cur += dfs(i-1, j-k, rest-k*i)
+		d := 1
+		for k := 0; k <= min(cnt[i], j); k++ {
+			if k == 0 {
+				cur += dfs(i-1, j-k, rest-k*i)
+			} else {
+				d = d * k % mod
+				cur = (cur + dfs(i-1, j-k, rest-k*i)*d) % mod
+			}
 		}
 		f[i][j][rest] = cur
 		return cur
 	}
-
-	sum := dfs(9, n/2, s/2)
 
 	ss := 1
 
@@ -88,20 +90,30 @@ func countBalancedPermutations(num string) int {
 		ss = ss * i % mod
 	}
 
-	ans := ss % mod
+	sum := dfs(9, n/2, s/2) * dfs(9, (n+1)/2, s/2)
 
-	if n%2 != 0 {
-		ss = ss * (n/2 + 1) % mod
-	}
-
-	ans = (ans * ss) % mod
-
-	return ans * sum % mod
+	return sum % mod
 
 }
 
+func pow(a, b int) int {
+	x := 1
+	for ; b > 0; b >>= 1 {
+
+		if b&1 == 1 {
+
+			x = x * a % mod
+		}
+
+		a = a * a % mod
+
+	}
+	return x
+}
+
 func main() {
-	fmt.Println(countBalancedPermutations("123"))
-	fmt.Println(countBalancedPermutations("12345"))
-	fmt.Println(countBalancedPermutations("112"))
+	//fmt.Println(countBalancedPermutations("123"))
+	//fmt.Println(countBalancedPermutations("12345"))
+	//fmt.Println(countBalancedPermutations("112"))
+	fmt.Println(countBalancedPermutations("1234"))
 }
