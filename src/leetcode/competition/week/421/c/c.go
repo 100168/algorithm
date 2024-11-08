@@ -50,8 +50,6 @@ seq1 元素的GCD等于 seq2 元素的 GCD。
 
 const mx = 201
 
-const mod = int(1e9 + 7)
-
 var c [mx][mx]int
 
 func init() {
@@ -64,7 +62,58 @@ func init() {
 		}
 	}
 }
+
+const mod = int(1e9 + 7)
+
 func subsequencePairCount(nums []int) int {
+
+	n := len(nums)
+
+	f := make([][][]int, n)
+	for i := range f {
+		f[i] = make([][]int, 201)
+		for j := range f[i] {
+			f[i][j] = make([]int, 201)
+
+			for k := range f[i][j] {
+				f[i][j][k] = -1
+			}
+		}
+	}
+
+	var dfs func(int, int, int) int
+
+	dfs = func(i int, l int, r int) int {
+
+		if i < 0 {
+
+			if l == r {
+				return 1
+			}
+			return 0
+		}
+
+		if f[i][l][r] != -1 {
+			return f[i][l][r]
+		}
+
+		cur := (dfs(i-1, l, r) + dfs(i-1, gcd(l, nums[i]), r) + dfs(i-1, l, gcd(r, nums[i]))) % mod
+		f[i][l][r] = cur
+
+		return cur
+	}
+
+	return dfs(n-1, 0, 0) - 1
+}
+
+func gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
+
+func subsequencePairCount2(nums []int) int {
 	cnt := make([]int, mx+1)
 	for _, v := range nums {
 		for i := 1; i*i <= v; i++ {
@@ -101,7 +150,7 @@ func subsequencePairCount(nums []int) int {
 }
 
 func main() {
-	fmt.Println(subsequencePairCount([]int{1, 2, 3, 4, 5}))
+	fmt.Println(subsequencePairCount2([]int{1, 2, 3, 4, 5}))
 
 	fmt.Println(math.Round(2.5))
 }
