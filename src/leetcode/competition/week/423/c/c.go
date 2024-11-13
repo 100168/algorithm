@@ -26,70 +26,20 @@ import "fmt"
 这些子序列的元素之和为 14。
 */
 
-func sumOfGoodSubsequences(nums []int) int {
-
-	mod := int(1e9 + 7)
-
-	n := len(nums)
-
-	f := make([]int, n)
-
-	for i := range f {
-		f[i] = -1
+func sumOfGoodSubsequences(nums []int) (ans int) {
+	const mod = 1_000_000_007
+	f := map[int]int{}
+	cnt := map[int]int{}
+	for _, x := range nums {
+		c := cnt[x-1] + cnt[x+1] + 1
+		f[x] = (f[x] + f[x-1] + f[x+1] + x*c) % mod
+		cnt[x] = (cnt[x] + c) % mod
 	}
 
-	f2 := make([]int, n)
-
-	for i := range f2 {
-		f2[i] = -1
+	for _, s := range f {
+		ans += s
 	}
-
-	var dfs1 func(int) int
-
-	dfs1 = func(i int) int {
-		if f2[i] != -1 {
-			return f[i]
-		}
-		cur := 1
-		for j := i - 1; j >= 0; j-- {
-			if abs(nums[i]-nums[j]) == 1 {
-				cur = (cur + dfs1(j)) % mod
-			}
-		}
-		f2[i] = cur
-		return cur
-	}
-
-	dfs1(n - 1)
-	var dfs func(int) int
-	dfs = func(i int) int {
-		if f[i] != -1 {
-			return f[i]
-		}
-		cur := nums[i]
-		for j := i - 1; j >= 0; j-- {
-			if abs(nums[i]-nums[j]) == 1 {
-				cur = (cur + dfs(j) + f2[j]*nums[i]%mod) % mod
-			}
-		}
-		f[i] = cur
-		return cur
-	}
-	ans := 0
-
-	for i := n - 1; i >= 0; i-- {
-
-		ans = (ans + dfs(i)) % mod
-	}
-	return ans
-}
-
-func abs(a int) int {
-
-	if a < 0 {
-		return -a
-	}
-	return a
+	return ans % mod
 }
 
 func main() {
