@@ -24,6 +24,12 @@ import "fmt"
 
 好子序列包括：[1], [2], [1], [1,2], [2,1], [1,2,1]。
 这些子序列的元素之和为 14。
+
+
+x1,y1 = a   =>b,a-(a/b) = 0
+
+x2,y2 = 0 =>  x2 = y1
+
 */
 
 func sumOfGoodSubsequences(nums []int) (ans int) {
