@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 *
 给定一组 n 人（编号为 1, 2, ..., n）， 我们想把每个人分进任意大小的两组。每个人都可能不喜欢其他人，那么他们不应该属于同一组。
@@ -32,6 +34,12 @@ func possibleBiPartition(n int, dislikes [][]int) bool {
 			return false
 		}
 	}
+
 	return true
 
+}
+func main() {
+	c := -1.0
+
+	fmt.Println(c)
 }

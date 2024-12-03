@@ -93,7 +93,6 @@ func networkDelayTime(times [][]int, n int, k int) int {
 	for _, t := range times {
 		x, y, d := t[0], t[1], t[2]
 		g[x] = append(g[x], edge{y, d})
-		g[y] = append(g[y], edge{x, d})
 	}
 
 	dis := make([]int, n+1)
