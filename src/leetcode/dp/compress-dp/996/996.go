@@ -55,4 +55,6 @@ func main() {
 	nums := []int{3}
 
 	fmt.Println(numSquarefulPerms(nums))
+
+	fmt.Println(1 << 16)
 }
