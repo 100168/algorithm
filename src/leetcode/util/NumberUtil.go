@@ -54,10 +54,20 @@ func diff(s1, s2 string) string {
 }
 func main() {
 
-	s := 13
+	nums := []int{1, 1, 1, 1}
 
-	for sub := s; sub != 0; sub = s & (sub - 1) {
-		fmt.Println(sub)
+	n := len(nums)
+
+	f := make([]int, 1<<n)
+
+	for i := 0; i < n; i++ {
+
+		mask := (1<<n - 1) ^ 1<<i
+		f[1<<i] = nums[i]
+
+		for sub := mask; sub > 0; sub = mask & (sub - 1) {
+			f[sub|1<<i] = f[sub] + nums[i]
+		}
 	}
-
+	fmt.Println(f)
 }
