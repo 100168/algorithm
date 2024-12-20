@@ -35,6 +35,7 @@ func maxOutput(n int, edges [][]int, price []int) int64 {
 		m1, m2 := p, 0
 		for _, y := range g[x] {
 			if y == fa {
+
 				continue
 			}
 			// 前面最大带叶子的路径和 + 当前不带叶子的路径和
