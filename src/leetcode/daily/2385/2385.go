@@ -41,3 +41,40 @@ func amountOfTime(root *TreeNode, start int) int {
 	dfs(root)
 	return dfs2(start, -1)
 }
+
+func amountOfTime2(root *TreeNode, start int) int {
+
+	var dfs func(*TreeNode) (int, bool)
+	ans := 0
+
+	dfs = func(node *TreeNode) (int, bool) {
+
+		if node == nil {
+			return 0, false
+		}
+		l, fl := dfs(node.Left)
+
+		r, fr := dfs(node.Right)
+
+		if node.Val == start {
+
+			ans = max(ans, l, r)
+			return 1, true
+		}
+
+		if fl || fr {
+			ans = max(ans, l+r)
+		}
+
+		if fl {
+			return l + 1, true
+		}
+		if fr {
+			return r + 1, true
+		}
+		return max(l, r) + 1, false
+	}
+
+	dfs(root)
+	return ans
+}

@@ -6,15 +6,12 @@ func maximumANDSum(nums []int, numSlots int) int {
 
 	n := len(nums)
 
-	memo := make([][]int, n)
-
 	numSlots *= 2
-	for i := range memo {
-		memo[i] = make([]int, 1<<numSlots)
+	memo := make([]int, 1<<numSlots)
 
-		for j := range memo[i] {
-			memo[i][j] = -1
-		}
+	for i := range memo {
+		memo[i] = -1
+
 	}
 
 	var dfs func(int) int
@@ -24,8 +21,8 @@ func maximumANDSum(nums []int, numSlots int) int {
 		if i == n {
 			return 0
 		}
-		if memo[i][mask] != -1 {
-			return memo[i][mask]
+		if memo[mask] != -1 {
+			return memo[mask]
 		}
 
 		cur := 0
@@ -35,7 +32,7 @@ func maximumANDSum(nums []int, numSlots int) int {
 				cur = max(cur, dfs(mask|1<<j)+nums[i]&((j/2)+1))
 			}
 		}
-		memo[i][mask] = cur
+		memo[mask] = cur
 		return cur
 	}
 	return dfs(0)

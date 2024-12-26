@@ -49,6 +49,10 @@ func gcd(a, b int) int {
 2.求gcd
 3.求逆元   a跟b互质    a%b==1   =>= xa+yb=1
 4.求丢番图方程解
+
+gcd(a,b) = ax1+by1
+
+gcd(a,a%b) =bx2+(a-(a/b)*b)*y2 = a*y2-b(x2-(a/b)*y2)  =>x1 = y2  y1=x2-(a/b)*y2
 */
 func exgcd(a, b int) (int, int) {
 	if b == 0 {
@@ -61,10 +65,32 @@ func exgcd(a, b int) (int, int) {
 	}
 }
 
+const mod = int(1e9 + 7)
+
+func fermat(a, b int) int {
+
+	x := 1
+
+	for ; b > 0; b >>= 1 {
+
+		if b&1 != 0 {
+			x = x * a % mod
+		}
+		a = a * a % mod
+	}
+	return x
+}
+
 func main() {
-	fmt.Println(maxPoints([][]int{{0, 0}, {4, 5}, {7, 8}, {8, 9}, {5, 6}, {3, 4}, {1, 1}}))
+	//fmt.Println(maxPoints([][]int{{0, 0}, {4, 5}, {7, 8}, {8, 9}, {5, 6}, {3, 4}, {1, 1}}))
 
-	x, y := exgcd(4, 6)
+	for i := 1; i <= 10000; i++ {
+		g1, _ := exgcd(i, mod)
+		g1 = (g1 + mod) % mod
+		g2 := fermat(i, mod-2)
+		if g1 != g2 {
+			fmt.Println(i)
+		}
+	}
 
-	fmt.Println(x, y)
 }

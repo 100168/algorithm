@@ -23,8 +23,7 @@ func subsets2(nums []int) [][]int {
 	ans := make([][]int, 0)
 
 	mask := 1<<n - 1
-	next := mask
-	for next > 0 {
+	for next := mask; next > 0; next = mask & (next - 1) {
 		cur := make([]int, 0)
 		for i := 0; i < n; i++ {
 			if 1<<i&next != 0 {
@@ -32,7 +31,6 @@ func subsets2(nums []int) [][]int {
 			}
 
 		}
-		next = (next - 1) & mask
 		ans = append(ans, cur)
 	}
 	ans = append(ans, []int{})
