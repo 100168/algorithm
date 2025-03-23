@@ -1,0 +1,36 @@
+sequenceDiagram
+    autonumber
+    participant a1 as 定时任务
+    participant a2 as STK订单日历
+    participant a3 as 库存服务
+    participant a4 as 订单服务
+
+    activate a1
+    a1 ->> a1: 每半小时执行一次
+
+    opt 整点
+        a1 ->> a1: 获取需要处理的 VOR 缺件订单
+    end
+
+    opt 20 点
+        a1 ->> a1: 获取需要处理的 RO 缺件订单
+    end
+
+    opt STK订单
+        a1 ->> a1: 获取需要处理的 STK 缺件订单
+        a1 ->>+ a2: 获取对于门店的订单日历
+        a2 -->>- a1: 返回
+        a1 ->> a1: 根据转单时间, 过滤STK缺件订单
+    end
+
+    a1 ->> a1: 根据转单时间, 订单类型<br/> 采购订单创建时间排序,根据采购订单分组
+
+    loop
+        a1 ->>+ a3: 按采购订单维度占用库存
+        a3 -->>- a1: 返回
+        a1 ->>+ a4: 占用成功部分生成新的 SO, 发送MQ
+        a4 -->>- a1: 返回
+        a1 ->>+ a4: 更新缺件订单状态, 发送MQ
+        a4 -->>- a1: 返回
+    end
+    deactivate a1
