@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    participant a2 as 门店
+    participant a3 as 订单服务
+    participant a4 as SAP
+    participant a5 as 消息队列
+
+    activate a2
+    a2 ->>+ a3: 创建采购订单
+    a3 ->> a3: 校验业务逻辑
+    a3 ->> a3: 保存到数据库, 待审核
+    a3 ->>+ a4: 提交到SAP
+    a4 -->>- a3: 返回结果
+
+    opt 提交SAP失败
+        a3 -->> a2: 返回创建失败消息
+
+    end
+
+    a3 ->>+ a5: 发送半事务消息(已审核)
+    a5 -->>- a3: 发送成功
+
+    a3 ->> a3: 更新订单状态, 已审核
+    a3 ->>+ a5: 提交事务消息(已审核)
+    a5 -->>- a3: 发送成功
+
+

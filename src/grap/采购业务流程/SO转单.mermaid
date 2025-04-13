@@ -1,0 +1,49 @@
+flowchart TD
+    A[开始] --> B[保存有效核销记录]
+    B --> C{deletedPerformanceRecords是否为空?}
+    C -->|是| D[返回saveCount]
+    C -->|否| E[构建幂等ID到消息的映射]
+
+    E --> F[查询数据库中的权益核销记录]
+    F --> G[构建幂等ID到实体的映射]
+
+    G --> H[初始化存在和不存在的记录列表]
+    H --> I[遍历待删除记录]
+
+    I --> J{记录是否存在?}
+    J -->|是| K{记录是否有效?}
+    J -->|否| L[构建新的履约记录]
+
+    K -->|是| M[添加到existDeletedRecords]
+    K -->|否| N[跳过处理]
+    M --> O[执行invalidGiftedEquity]
+
+    L --> P[设置记录为无效]
+    P --> Q[添加到notExistDeletedRecords]
+
+    subgraph 数据更新处理
+        R{existDeletedRecords是否为空?}
+        R -->|否| S[批量逻辑删除记录]
+        R -->|是| T[跳过处理]
+
+        U{notExistDeletedRecords是否为空?}
+        U -->|否| V[批量保存新记录]
+        U -->|是| W[跳过处理]
+
+        X{是否有未使用的记录?}
+        X -->|是| Y[更新权益使用次数]
+        X -->|否| Z[跳过处理]
+    end
+
+    O --> R
+    Q --> R
+    S --> U
+    V --> X
+    Y --> AA[计算总处理数量]
+
+    AA --> BB[返回saveCount + invalidCount]
+    D --> CC[结束]
+    BB --> CC
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style CC fill:#f9f,stroke:#333,stroke-width:2px

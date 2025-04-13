@@ -63,6 +63,31 @@ func maximumOr(nums []int, k int) int64 {
 
 }
 
+func maximumOr2(nums []int, k int) int64 {
+
+	n := len(nums)
+	//前后缀分解
+	suffix := make([]int, n)
+	suffix[n-1] = 0
+	for i := n - 2; i >= 0; i-- {
+
+		suffix[i] = suffix[i+1] | nums[i+1]
+
+	}
+
+	pre := 0
+	ans := 0
+
+	for i, v := range nums {
+
+		ans = max(ans, pre|suffix[i]|v<<k)
+		pre |= v
+	}
+
+	return int64(ans)
+
+}
+
 func main() {
 	fmt.Println(maximumOr([]int{12, 9}, 1))
 	fmt.Println(maximumOr([]int{4, 100, 76, 37, 99, 79, 39}, 4))
