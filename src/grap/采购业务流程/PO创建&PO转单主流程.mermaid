@@ -1,0 +1,72 @@
+sequenceDiagram
+    autonumber
+    participant a1 as 门店
+    participant a2 as 订单服务
+    participant a3 as SAP
+    participant a4 as 消息队列
+    participant a5 as 库存服务
+    participant a6 as 发件箱
+    participant a7 as dhl服务
+    activate a1
+    a1 ->>+ a2: 创建采购订单
+    a2 ->> a2: 校验业务逻辑
+    a2 ->> a2: 保存到数据库, 待审核
+    a2 ->>+ a3: 提交到SAP
+    a3 -->>- a2: 返回结果
+
+    opt 提交SAP失败
+        a2 -->> a1: 返回创建失败消息
+    end
+
+    a2 ->>+ a4: 发送半事务消息(已审核)
+    a4 -->>- a2: 发送成功
+    a2 ->> a2: 更新订单状态, 已审核
+    a2 ->>+ a4: 提交事务消息(已审核)
+    a4 -->>- a2: 发送成功
+    a4 ->>+ a2: 消费采购订单已审核消息
+    a2 ->>+ a5: 基础数据校验
+    activate a2
+    alt 校验失败
+        a2 ->>+ a4: 发送半事务消息(转单失败)
+        a4 -->>- a2: 发送成功
+        a2 ->> a2: 更新订单状态，转单失败
+        a2 ->>+ a4: 提交事务消息(转单失败)
+        a2 ->> a4: commit
+        deactivate a2
+
+    else 校验成功
+        activate a2
+        a2 ->>+ a4: 发送半事务消息(转单成功)
+        a4 -->> a2: 发送成功
+        critical
+            a2 ->>+ a5: 占用库存
+            a5 -->>- a2: 返回占用结果
+            opt BO
+                a2 ->> a2: 根据占用情况构建BO列表
+            end
+            opt SO
+                a2 ->> a2: 根据占用情况构建SO列表
+                a2 ->> + a6: 保存到发件箱
+                a6 -->> - a2: 返回保存结果
+                activate a6
+                loop 保存成功自动执行&<br/>定时任务重试
+                    a6 ->> + a7: 下发出库指令
+                    alt 下发成功
+                        a7 -->> a6: 返回成功
+                        a6 ->> a6: 删除发件箱数据
+
+                    else 下发失败
+                        a7 -->> - a6: 返回失败
+                        a6 ->> a6: 更新重试次数
+                    end
+                    deactivate a6
+                end
+            end
+        end
+        a2 ->> a2: 更新订单状态, 转单成功
+        a2 ->> a4: 提交采购订单事务消息(转单成功)
+        a2 ->>+ a4: commit
+        a4 ->> a1: 订单状态变更通知
+        deactivate a2
+    end
+    deactivate a1

@@ -1,36 +1,49 @@
-sequenceDiagram
-    autonumber
-    participant a1 as 定时任务
-    participant a2 as STK订单日历
-    participant a3 as 库存服务
-    participant a4 as 订单服务
+flowchart TD
+    A[开始] --> B{检查 performanceMsgList 是否为空?}
+    B -->|是| C[返回 0]
+    B -->|否| D[获取所有 implAbilityIds]
 
-    activate a1
-    a1 ->> a1: 每半小时执行一次
+    D --> E[查询有效的权益发放详情]
+    E --> F[获取所有权益发放ID]
+    F --> G[查询有效的权益发放记录]
 
-    opt 整点
-        a1 ->> a1: 获取需要处理的 VOR 缺件订单
+    G --> H[过滤轮胎券权益]
+    H --> I{是否存在轮胎券权益?}
+    I -->|否| J[返回 0]
+    I -->|是| K[过滤权益发放详情]
+
+    K --> L[获取轮胎包 packageGrantIds]
+    L --> M[获取所有 vid]
+    M --> N[查询用户有效的套餐发放记录]
+
+    N --> O[构建主套餐映射]
+    O --> P[遍历套餐发放记录]
+
+    P --> Q{是否需要下发轮胎存储权益?}
+    Q -->|否| R[继续循环]
+    Q -->|是| S[添加到待下发映射]
+
+    S --> T[调用 saveAndIssueTireStorageEquity]
+
+    subgraph saveAndIssueTireStorageEquity
+        T --> U{待下发映射是否为空?}
+        U -->|是| V[返回 0]
+        U -->|否| W[遍历待下发映射]
+
+        W --> X[获取车辆配置信息]
+        X --> Y[获取权益包配置]
+
+        Y --> Z{配置是否存在?}
+        Z -->|否| AA[记录错误日志]
+        Z -->|是| AB[构建订单信息]
+
+        AB --> AC[保存权益发放记录]
+        AC --> AD[同步下发用户权益]
+        AD --> AE[记录成功日志]
     end
 
-    opt 20 点
-        a1 ->> a1: 获取需要处理的 RO 缺件订单
-    end
+    AE --> AF[返回处理成功数量]
 
-    opt STK订单
-        a1 ->> a1: 获取需要处理的 STK 缺件订单
-        a1 ->>+ a2: 获取对于门店的订单日历
-        a2 -->>- a1: 返回
-        a1 ->> a1: 根据转单时间, 过滤STK缺件订单
-    end
-
-    a1 ->> a1: 根据转单时间, 订单类型<br/> 采购订单创建时间排序,根据采购订单分组
-
-    loop
-        a1 ->>+ a3: 按采购订单维度占用库存
-        a3 -->>- a1: 返回
-        a1 ->>+ a4: 占用成功部分生成新的 SO, 发送MQ
-        a4 -->>- a1: 返回
-        a1 ->>+ a4: 更新缺件订单状态, 发送MQ
-        a4 -->>- a1: 返回
-    end
-    deactivate a1
+    C --> AG[结束]
+    J --> AG
+    AF --> AG

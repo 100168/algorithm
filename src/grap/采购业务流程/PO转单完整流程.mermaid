@@ -1,0 +1,45 @@
+sequenceDiagram
+    autonumber
+    participant a1 as 消息队列
+    participant a2 as 订单服务
+    participant a3 as 消息队列
+    participant a4 as 库存服务
+    a1 ->>+ a2: 消费采购订单已审核消息
+    break 订单类型为 CO 定制件
+        a2 ->>+ a4: 创建采购申请
+        a4 -->>- a2: 成功
+        a2 -->>- a1: commit
+    end
+    a2 ->>+ a4: 查询门店仓库列表
+    activate a2
+    alt 门店仓库为空
+        a2 ->>+ a3: 发送半事务消息(转单失败)
+        a3 -->>- a2: 发送成功
+        a2 ->> a2: 更新订单状态，转单失败
+        a2 ->>+ a3: 提交事务消息(转单失败)
+        a2 ->>+ a1: commit
+        deactivate a2
+
+    else 门店仓库不为空
+        activate a2
+        a2 ->>+ a3: 发送半事务消息(转单成功)
+        a3 -->> a2: 发送成功
+        critical 非DFS & 非管控零件转单
+            a2 ->>+ a4: 根据订单状态采用<br/>策略模式占用库存
+            a4 -->>- a2: 返回占用结果
+            loop BO
+                a2 ->> a2: 根据占用情况构建BO列表
+            end
+            loop SO
+                a2 ->> a2: 根据占用情况构建SO列表<br/>&保存发件箱数据
+            end
+        option DFS零件
+            a2 ->> a2: 获取DFS零件生成SO
+        option 管控件& 非dfs零件
+            a2 ->> a2: 不做任何操作,等待业务手动转单
+        end
+        a2 ->> a2: 更新订单状态, 转单成功
+        a2 ->> a3: 提交采购订单事务消息(转单成功)
+        a2 ->>+ a1: commit
+        deactivate a2
+    end
