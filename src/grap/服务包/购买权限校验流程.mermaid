@@ -1,0 +1,84 @@
+sequenceDiagram
+    participant Client as 上游
+    participant Service as 服务包
+    participant Cache as redis
+    participant Iccc as 座舱
+    participant Order as 订单
+    participant Ins as 天星
+    participant Cis as cis
+    Client ->> + Service: 调用权限校验
+    Note over Client, Service: 参数：mid、vid、ssuId等<br/>notUseInsuranceCache=true
+    Service ->> + Iccc: 获取用户绑定车辆列表
+    Iccc -->> - Service: 返回车辆信息列表
+    Service ->> + Order: 获取交付中车辆信息
+    Order -->> - Service: 返回交付中车辆列表
+    Service ->> + Ins: 查询商业险保单列表
+    Ins -->> - Service: 返回保单信息列表
+    Service ->> + Cis: 获取VID到VIN映射关系
+    Cis -->> - Service: 返回VIN映射
+    Service ->> Service: 校验车辆和保单信息
+    Note over Service: 校验逻辑：<br/>1. 检查是否有车辆(allCarInfoList不为空)<br/>2. 检查是否有有效保单(carAndInsInfoList不为空)
+
+    alt 无车辆
+        Service ->> Service: 设置hasPermission=false<br/>messageCode=NO_CAR
+        Service -->> Client: 返回校验结果
+    else 无有效保单
+        Service ->> Service: 设置hasPermission=false<br/>messageCode=NO_INSURANCE
+        Service -->> Client: 返回校验结果
+    end
+
+    Service ->> Service: 校验保单生效时间
+    Note over Service: 获取保险时间校验开关状态<br/>insTimeSwitch = 0(关闭) 或 1(打开)
+
+    loop 每辆车
+        alt 开关打开(insTimeSwitch=1)
+            Service ->> Service: 仅校验保单有效期<br/>当前时间 < 保单结束时间
+        else 开关关闭(insTimeSwitch=0)
+            Service ->> Service: 查询车辆是否在白名单
+            Note over Service: 查询service_package_whitelist表<br/>existsByVidAndNotDeleted(vid)
+
+            alt 白名单车辆
+                Service ->> Service: 仅校验保单有效期<br/>当前时间 < 保单结束时间
+            else 非白名单车辆
+                Service ->> Service: 校验保单时间<br/>1. 保单已生效(当前时间 >= 生效时间)<br/>2. 生效时间在7天内(当前时间 < 生效时间+7天)<br/>3. 保单在有效期内(当前时间 < 结束时间)
+            end
+        end
+    end
+
+    alt 所有车辆保单时间校验失败
+        Service ->> Service: 设置hasPermission=false<br/>messageCode=NOT_INSURANCE_TIME
+        Service -->> Client: 返回校验结果
+    end
+
+    Service ->> Service: 校验是否已有服务包
+    Note over Service: 检查车辆是否已购买服务包<br/>通过vid查询用户服务包记录
+
+    loop 每辆车
+        Service ->> + Cache: 获取用户服务包信息
+        Note over Service, Cache: 缓存key: PREFIX_USER_SERVICE_PACKAGE + vid
+        Cache -->> - Service: 返回服务包信息
+        Service ->> Service: 检查车辆是否已有服务包<br/>通过vid_insuranceId匹配
+    end
+
+    alt 所有车辆已有服务包
+        Service ->> Service: 设置hasPermission=false<br/>messageCode=HAS_SERVICE_PKG
+        Service -->> Client: 返回校验结果
+    end
+
+    Service ->> Service: 校验车型版本权限
+    Note over Service: 检查车型版本是否支持购买服务包<br/>通过carEditionSsuId匹配配置
+    Service ->> + Cis: 获取车辆配置信息
+    Cis -->> - Service: 返回车型版本信息(carEditionSsuId)
+    Service ->> Service: 查询服务包配置
+    Note over Service: 根据ssuId或carEditionSsuId查询<br/>ServicePackageConfig表
+    Service ->> Service: 校验车型版本是否支持<br/>检查carEditionSsuId是否在配置列表中
+
+    alt 所有车辆车型版本校验失败
+        Service ->> Service: 设置hasPermission=false<br/>messageCode=NOT_MATCH_CAR_EDITION
+        Service -->> Client: 返回校验结果
+    end
+
+    Service ->> Service: 设置hasPermission=true
+    Note over Service: 至少有一辆车所有校验通过<br/>设置hasPermission=true
+    Service -->> - Client: 返回校验结果
+    Note over Service, Client: VerifyPermissionResponse:<br/>hasPermission<br/>messageCode<br/>carInfoList(可选)

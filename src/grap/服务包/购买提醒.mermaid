@@ -1,0 +1,47 @@
+sequenceDiagram
+    participant Scheduler as 定时调度器
+    participant ServicePackage as 服务包系统
+    participant Redis as Redis分布式锁
+    participant DB as 数据库系统
+    participant Car as 车辆系统(CIS)
+    participant User as 用户系统
+    participant Message as 消息中台
+    autonumber
+%% 定时任务触发
+    Scheduler ->>+ ServicePackage: 触发定时任务
+%% 分布式锁
+    ServicePackage ->>+ Redis: 获取分布式锁
+    Note over ServicePackage, Redis: 关键逻辑1: 分布式锁控制<br/>- key: SERVICE_PACKAGE_TASK<br/>- 超时时间: 5分钟<br/>- 防止任务重复执行
+    Redis -->>- ServicePackage: 返回锁状态
+
+    alt 获取锁成功
+    %% 数据查询
+        ServicePackage ->>+ DB: 查询投保记录
+        Note over ServicePackage, DB: 关键逻辑2: 投保记录查询<br/>- 查询条件: insuranceValidBeginDate = today<br/>- 查询条件: insuranceValidBeginDate6 = today<br/>- 分别获取首次和二次提醒用户
+        DB -->>- ServicePackage: 返回投保记录列表
+
+        loop 每条投保记录
+            ServicePackage ->>+ DB: 查询服务包购买记录
+            Note over ServicePackage, DB: 关键逻辑3: 购买记录校验<br/>- 条件: vid = 投保记录vid<br/>- 过滤已购买用户<br/>- 避免重复推送
+            DB -->>- ServicePackage: 返回购买记录
+
+            alt 无购买记录
+                ServicePackage ->>+ Car: 获取车辆配置信息
+                Note over ServicePackage, Car: 关键逻辑4: 车型白名单校验<br/>- 参数: vid<br/>- 返回: carEditionSsuId<br/>- 校验车型是否在配置的白名单中
+                Car -->>- ServicePackage: 返回车辆信息
+
+                alt 车型在白名单中
+                    ServicePackage ->>+ User: 获取用户信息
+                    Note over ServicePackage, User: 关键逻辑5: 用户信息获取<br/>- 参数: vid<br/>- 返回: mid, phone<br/>- 用于消息推送
+                    User -->>- ServicePackage: 返回用户信息
+                    ServicePackage ->>+ Message: 发送营销消息
+                    Note over ServicePackage, Message: 关键逻辑6: 消息推送<br/>- 场景ID: 300000366(首次)/300000367(二次)<br/>- 渠道: CAR_APP_BOX<br/>- 包含用户和车辆信息
+                    Message -->>- ServicePackage: 返回发送结果
+                end
+            end
+        end
+
+        ServicePackage ->>+ Redis: 释放分布式锁
+        Redis -->>- ServicePackage: 释放成功
+    end
+    ServicePackage -->>- Scheduler: 任务结束

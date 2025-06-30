@@ -1,0 +1,61 @@
+sequenceDiagram
+    participant MonitorOrderPayConsumer as 订单支付消息
+    participant OrderRpc as 订单中心
+    participant EquityManagementSystem as 权益中心
+    participant CisRpc as 车辆信息系统
+    participant OrderStatusMQProducer as 订单状态MQ
+    participant DownstreamSystems as 下游系统
+    autonumber
+    Note over MonitorOrderPayConsumer, DownstreamSystems: MonitorOrderPayConsumer.onMessage 完整调用链路
+    MonitorOrderPayConsumer ->> OrderRpc: 1. 查询订单详细信息(detail)
+    OrderRpc -->> MonitorOrderPayConsumer: 2. 返回订单信息(OrderDetailDTO)
+    MonitorOrderPayConsumer ->> EquityManagementSystem: 3. 处理订单收单(processOrderCollect)
+    Note over EquityManagementSystem: 4. 幂等性校验
+    EquityManagementSystem ->> EquityManagementSystem: 4.1 检查订单是否已收单(listByOrderId)
+    Note over EquityManagementSystem: 5. 获取车辆配置信息
+    EquityManagementSystem ->> CisRpc: 5.1 查询车辆配置信息(getConfigInfo)
+    CisRpc -->> EquityManagementSystem: 5.2 返回车辆配置信息
+    Note over EquityManagementSystem: 6. 查询权益包配置
+    EquityManagementSystem ->> EquityManagementSystem: 6.1 查询权益包配置信息(getById)
+    Note over EquityManagementSystem: 7. 权益发放处理
+    EquityManagementSystem ->> EquityManagementSystem: 7.1 保存权益发放记录(save)
+    Note over EquityManagementSystem: 8. 发送收单成功消息(条件：非整车延保权益包)
+    alt 非整车延保权益包
+        EquityManagementSystem ->> OrderStatusMQProducer: 8.1 发送收单成功消息(CREATED状态)
+        Note over OrderStatusMQProducer: 消息内容：订单ID、状态(CREATED)、操作时间
+    else 整车延保权益包
+        Note over EquityManagementSystem: 整车延保不发收单成功消息
+    end
+
+    Note over EquityManagementSystem: 9. 异步发放权益
+    EquityManagementSystem ->> EquityManagementSystem: 9.1 异步调用权益发放(asyncIssueUserEquity)
+    Note over EquityManagementSystem: 10. 异步方法内部：调用下游系统发放权益
+    alt 优惠券权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.1 调用优惠券系统发放优惠券权益(CouponRpc.issueCoupon)
+    else 活动权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.2 调用活动系统发放活动权益(CarMrsRpc.activityEquityGrant)
+    else 流量权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.3 调用流量管理系统订购流量包(MegaSimRpc.orderTraffic)
+    else 基础流量权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.4 调用流量管理系统订购基础流量(MegaSimRpc.orderFlow)
+    else 延保权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.5 调用延保系统发放延保权益(CarWarrantyPolicyRpc.issueWarranty)
+    else 寄存权益包
+        EquityManagementSystem ->> DownstreamSystems: 10.6 调用寄存系统发放寄存权益(StorageRpc.issueStorage)
+    else 道路救援权益包
+        Note over EquityManagementSystem: 10.7 道路救援系统无需主动下发，用户使用时触发
+    else 代步车权益包
+        Note over EquityManagementSystem: 10.8 代步车系统无需主动下发，用户使用时触发
+    end
+
+    DownstreamSystems -->> EquityManagementSystem: 11. 返回权益发放结果
+    Note over EquityManagementSystem: 12. 异步方法内部：发送妥投成功消息(条件：所有权益发放成功且非基础权益包且非整车延保)
+    alt 所有权益发放成功 && 非基础权益包 && 非整车延保
+        EquityManagementSystem ->> OrderStatusMQProducer: 12.1 发送妥投成功消息(DELIVERED状态)
+        Note over OrderStatusMQProducer: 消息内容：订单ID、状态(DELIVERED)、操作时间
+    else 权益发放失败或基础权益包或整车延保
+        Note over EquityManagementSystem: 不发送妥投成功消息
+    end
+
+    OrderStatusMQProducer -->> EquityManagementSystem: 13. 消息发送确认
+    EquityManagementSystem -->> MonitorOrderPayConsumer: 14. 返回处理结果

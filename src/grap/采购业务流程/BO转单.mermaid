@@ -1,49 +1,54 @@
-flowchart TD
-    A[开始] --> B{检查 performanceMsgList 是否为空?}
-    B -->|是| C[返回 0]
-    B -->|否| D[获取所有 implAbilityIds]
-
-    D --> E[查询有效的权益发放详情]
-    E --> F[获取所有权益发放ID]
-    F --> G[查询有效的权益发放记录]
-
-    G --> H[过滤轮胎券权益]
-    H --> I{是否存在轮胎券权益?}
-    I -->|否| J[返回 0]
-    I -->|是| K[过滤权益发放详情]
-
-    K --> L[获取轮胎包 packageGrantIds]
-    L --> M[获取所有 vid]
-    M --> N[查询用户有效的套餐发放记录]
-
-    N --> O[构建主套餐映射]
-    O --> P[遍历套餐发放记录]
-
-    P --> Q{是否需要下发轮胎存储权益?}
-    Q -->|否| R[继续循环]
-    Q -->|是| S[添加到待下发映射]
-
-    S --> T[调用 saveAndIssueTireStorageEquity]
-
-    subgraph saveAndIssueTireStorageEquity
-        T --> U{待下发映射是否为空?}
-        U -->|是| V[返回 0]
-        U -->|否| W[遍历待下发映射]
-
-        W --> X[获取车辆配置信息]
-        X --> Y[获取权益包配置]
-
-        Y --> Z{配置是否存在?}
-        Z -->|否| AA[记录错误日志]
-        Z -->|是| AB[构建订单信息]
-
-        AB --> AC[保存权益发放记录]
-        AC --> AD[同步下发用户权益]
-        AD --> AE[记录成功日志]
+sequenceDiagram
+    autonumber
+    box Grey 业务系统
+        participant a1 as 工单系统
+        participant a2 as BPM审核
+        participant a3 as 座舱服务
+        participant a4 as 权益中心
+    end
+    box Blue 下游服务
+        participant a5 as 维保服务
+        participant a6 as 卡券服务
     end
 
-    AE --> AF[返回处理成功数量]
+    activate a1
+    rect rgb(240,240,240)
+        note over a1,a2: 审核阶段
+        a1 ->>+ a2: 同步调用审核接口
+        alt 审核不通过
+            a2 ->> a1: !驳回申请(同步返回)
+            deactivate a2
+            a1 ->> a1: 记录驳回原因
+        else 审核通过
+            a2 -->> a1: 返回审核成功
+            deactivate a2
+        end
+    end
 
-    C --> AG[结束]
-    J --> AG
-    AF --> AG
+    rect rgb(240,240,240)
+        note over a3,a6: 权益恢复阶段（异步处理）
+        par 并行恢复
+            a1 ->>+ a3: 异步消息：恢复车主标签
+            a3 -->>- a1: 处理结果
+        and
+            a1 ->>+ a4: 异步消息：恢复首任车主权益
+            a4 ->>+ a5: 调用维保API
+            a5 -->>- a4: 返回结果
+            a4 ->>+ a6: 调用卡券API
+            a6 -->>- a4: 返回结果
+            a4 -->> a1: 汇总处理结果
+        end
+    end
+
+    rect rgb(240,240,240)
+        note over a1: 终态处理
+        alt 全部成功
+            a1 ->> a1: 自动关单
+        else 存在失败
+            loop 重试机制
+                a1 ->> a1: 记录失败项并重试
+            end
+            a1 ->> a3: 触发人工干预
+        end
+        deactivate a1
+    end

@@ -1,0 +1,56 @@
+sequenceDiagram
+    participant Task as 定时任务
+    participant Service as 服务包系统
+    participant DB as 数据库
+    participant Car as 车辆系统(CIS)
+    participant Point as 积分系统(Aries)
+    participant Config as 配置中心(Nacos)
+
+%% 定时任务触发
+    Task->>Service: 触发积分补偿任务(servicePackageExpirePointCompensation)
+
+%% 获取配置信息
+    Service->>Config: 获取积分补偿配置
+    Note over Service,Config: 关键配置:<br/>- 补偿标准(standard)<br/>- 积分批次(batchId)<br/>- 场景码(sceneCode)<br/>- 权益ID列表(equityIds)
+    Config-->>Service: 返回配置信息
+
+%% 查询待补偿记录
+    Service->>DB: 查询到期服务包记录
+    Note over Service,DB: 查询条件:<br/>- 服务包到期30天内<br/>- 状态为已付款<br/>- 分页查询(每页200条)
+    DB-->>Service: 返回服务包记录列表
+
+    loop 每条服务包记录
+    %% 过滤已补偿记录
+        Service->>DB: 过滤已补偿记录
+        Note over Service,DB: 过滤条件:<br/>- 查询积分发放记录<br/>- 排除已发放成功记录
+
+    %% 获取权益使用次数
+        Service->>DB: 查询取送车权益使用次数
+        Note over Service,DB: 根据权益使用次数<br/>确定补偿积分数量
+
+    %% 获取用户信息
+        Service->>Car: 获取车主信息
+        Note over Service,Car: 查询条件:<br/>- 根据vid查询<br/>- 获取车主和授权人信息
+        Car-->>Service: 返回车主信息
+
+    %% 构建补偿记录
+        Service->>Service: 构建积分补偿记录
+        Note over Service,Service: 记录信息:<br/>- 服务包ID<br/>- 用户MID<br/>- 补偿积分数量<br/>- 批次ID
+
+    %% 保存补偿记录
+        Service->>DB: 保存积分补偿记录
+        DB-->>Service: 保存成功
+
+    %% 发放积分
+        Service->>Point: 调用积分发放接口
+        Note over Service,Point: 参数:<br/>- 用户MID<br/>- 批次ID<br/>- 场景码<br/>- 积分数量
+        Point-->>Service: 返回发放结果
+
+    %% 更新发放状态
+        Service->>DB: 更新积分发放状态
+        Note over Service,DB: 更新字段:<br/>- 发放状态<br/>- 红包ID<br/>- 更新时间
+    end
+
+%% 记录执行结果
+    Service->>Service: 记录执行日志
+    Note over Service,Service: 记录信息:<br/>- 总记录数<br/>- 成功数<br/>- 失败数

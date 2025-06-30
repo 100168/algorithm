@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant pay as 交易
+    participant equity as 权益中心
+    participant CIS as 整车中心
+    participant warranty as 延保
+    participant servicePackage as 服务包
+    autonumber
+    pay ->> equity: 购买权限校验(verifyPackagePermission)
+
+    alt 服务包购买校验
+        equity ->> servicePackage: 校验服务包权限(verifyServicePackagePermission)
+        servicePackage -->> equity: 返回校验结果
+    else 普通权益包购买校验
+        equity ->> equity: 查询权益包信息(getById)
+        equity ->> CIS: 查询车主和授权人信息(getOwnerInfo)
+        CIS -->> equity: 返回用户信息
+        equity ->> CIS: 查询车辆配置信息(getConfigInfo)
+        CIS -->> equity: 返回车辆配置
+        alt 延保权益包
+            equity ->> warranty: 校验延保资格(checkExtendedWarranty)
+            warranty -->> equity: 返回延保校验结果
+        else 耗材权益包
+            Note over equity: 校验车辆型号和配置
+        else 流量权益包
+            Note over equity: 校验车辆信息有效性
+        end
+    end
+
+    equity -->> pay: 返回权限校验结果(AuthorityDto)

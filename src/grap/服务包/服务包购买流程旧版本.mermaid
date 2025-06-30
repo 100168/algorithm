@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    participant app as 汽车app
+    participant jy as 交易
+    participant qy as 权益
+    participant fwb as 服务包
+    app ->> + fwb: 根据mid查询可购买车辆
+    fwb -->> - app: 返回可购买车辆列表
+    app -->> app: 选择服务包
+    app ->> + jy: 加购[mid+ssuId]
+    jy ->> + qy: 购买资格校验[mid+ssuId]
+    qy ->> + fwb: 购买资格校验[mid+ssuId]
+    fwb -->> -qy: 返回可以购买<br/>当前服务包的车辆列表
+    qy -->>- jy: 返回可以购买<br/>当前服务包的车辆列表
+    jy -->> - app: 返回结果
+
+
+
+
+

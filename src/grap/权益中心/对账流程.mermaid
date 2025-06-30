@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant TimingTaskProvider as 任务调度器
+    participant EquityCenter as 权益中心
+    participant DepositRpc as 寄存服务RPC
+    participant LoanCarRpc as 代步车服务RPC
+    participant CouponRpc as 优惠券服务RPC
+    participant RoadRescueRpc as 道路救援RPC
+    TimingTaskProvider ->> EquityCenter: reconcilePerformanceRecord(...)
+    note right of TimingTaskProvider: 调度器向权益中心<br>分发对账任务
+    activate EquityCenter
+
+    alt 寄存服务对账
+        EquityCenter ->> DepositRpc: batchQueryDepositInterest(...)
+        DepositRpc -->> EquityCenter: 返回寄存记录
+    else 代步车服务对账
+        EquityCenter ->> LoanCarRpc: queryLoanCarRecord(...)
+        LoanCarRpc -->> EquityCenter: 返回代步车记录
+    else 优惠券服务对账
+        EquityCenter ->> CouponRpc: batchQueryCouponInfo(...)
+        CouponRpc -->> EquityCenter: 返回优惠券记录
+    else 道路救援服务对账
+        EquityCenter ->> RoadRescueRpc: queryRescueOrderByVids(...)
+        RoadRescueRpc -->> EquityCenter: 返回救援记录
+    end
+
+    EquityCenter ->> EquityCenter: 对比数据并生成结果
+    EquityCenter ->> EquityCenter: saveBatch(logs)
+    EquityCenter -->> TimingTaskProvider: 返回对账结果
+    deactivate EquityCenter
+
