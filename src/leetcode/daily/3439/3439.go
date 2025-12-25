@@ -26,4 +26,6 @@ package main
 
 func maxFreeTime(eventTime int, k int, startTime []int, endTime []int) int {
 
+	return 1
+
 }
