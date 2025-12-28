@@ -11,17 +11,11 @@ package main
 */
 func distanceK(root *TreeNode, target *TreeNode, k int) []int {
 	parent := make(map[int]*TreeNode)
-	current := root
-
 	var stack []*TreeNode
-
 	var ans []int
-	stack = append(stack, current)
+	stack = append(stack, root)
 	for len(stack) > 0 {
 		pop := stack[len(stack)-1]
-		if pop == target {
-			break
-		}
 		stack = stack[:len(stack)-1]
 		if pop.Left != nil {
 			stack = append(stack, pop.Left)
@@ -34,34 +28,24 @@ func distanceK(root *TreeNode, target *TreeNode, k int) []int {
 	}
 
 	//用来表示已经遍历过的结点
-	path := make(map[int]bool)
-	ans = append(ans, getK(target, k, path)...)
-	current = target
-	path[target.Val] = true
-	for parent[current.Val] != nil {
-		k--
-		current = parent[current.Val]
-		ans = append(ans, getK(current, k, path)...)
-	}
+	visit := make([]bool, 501)
 
-	return ans
-}
+	var dfs func(node *TreeNode, k int)
+	dfs = func(node *TreeNode, k int) {
 
-func getK(root *TreeNode, k int, path map[int]bool) (ans []int) {
-	if path[root.Val] {
-		return
-	}
-	path[root.Val] = true
-	if k == 0 {
-		ans = append(ans, root.Val)
-		return ans
-	}
-	if root.Left != nil {
-		ans = append(ans, getK(root.Left, k-1, path)...)
-	}
-	if root.Right != nil {
-		ans = append(ans, getK(root.Right, k-1, path)...)
-	}
+		if node == nil || visit[node.Val] || k < 0 {
+			return
+		}
+		visit[node.Val] = true
+		if k == 0 {
+			ans = append(ans, node.Val)
+		}
 
+		dfs(node.Left, k-1)
+		dfs(node.Right, k-1)
+		dfs(parent[node.Val], k-1)
+
+	}
+	dfs(target, k)
 	return ans
 }
