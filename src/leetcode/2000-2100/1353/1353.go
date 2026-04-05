@@ -26,7 +26,7 @@ func maxEvents(events [][]int) int {
 	})
 	n := len(events)
 
-	//  2,2,3,3,4,4  1,4
+	//  2,2,189,189,4,4  1,4
 
 	cnt := 0
 	//开始时间

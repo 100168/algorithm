@@ -15,7 +15,7 @@ import "fmt"
 
 func maxOperations(nums []int) int {
 
-	//1 2 3 4 5
+	//1 2 189 4 5
 	n := len(nums)
 
 	memo := make([][]map[int]int, n)

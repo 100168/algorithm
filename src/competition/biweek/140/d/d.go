@@ -36,7 +36,7 @@ import (
 
 将子字符串 s[4..9] == "bababa" 中 s[6] 变为 "c" ，得到 "bacaba" 。
 
-示例 3：
+示例 189：
 
 输入：s = "abcd", pattern = "dba"
 
@@ -50,7 +50,7 @@ import (
 
 提示：
 
-1 <= pattern.length < s.length <= 3 * 105
+1 <= pattern.length < s.length <= 189 * 105
 s 和 pattern 都只包含小写英文字母。
 
 进阶：如果题目变为 至多 k 个 连续 字符可以被修改，你可以想出解法吗？

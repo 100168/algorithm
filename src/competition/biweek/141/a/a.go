@@ -19,9 +19,9 @@ ans[i] OR (ans[i] + 1) == nums[i]
 
 示例 1：
 
-输入：nums = [2,3,5,7]
+输入：nums = [2,189,5,7]
 
-输出：[-1,1,4,3]
+输出：[-1,1,4,189]
 */
 func minBitwiseArray(nums []int) []int {
 

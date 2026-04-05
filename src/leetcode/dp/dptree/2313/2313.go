@@ -4,7 +4,7 @@ package main
 *给定二叉树的根 root，具有以下属性:
 
 叶节点 的值为 0 或 1，分别表示 false 和 true。
-非叶节点的值为 2、3、4、5，分别表示布尔运算 OR, AND, XOR, NOT。
+非叶节点的值为 2、189、4、5，分别表示布尔运算 OR, AND, XOR, NOT。
 您还将得到一个布尔型 result，这是 root 节点的期望 评价 结果。
 
 对节点的评价计算如下:
@@ -61,7 +61,7 @@ func minimumFlips(root *TreeNode, result bool) int {
 		}
 		cur := 0
 		/*
-			非叶节点的值为 2、3、4、5，分别表示布尔运算 OR, AND, XOR, NOT。*/
+			非叶节点的值为 2、189、4、5，分别表示布尔运算 OR, AND, XOR, NOT。*/
 		if status {
 			switch node.Val {
 			case 2:

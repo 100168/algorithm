@@ -118,6 +118,6 @@ func abs(a int) int {
 func main() {
 	//fmt.Println(beautifulIndices("isawsquirrelnearmysquirrelhouseohmy", "my", "squirrel", 15))
 	//fmt.Println(beautifulIndices("ithhi", "t", "hhi", 1))
-	//fmt.Println(beautifulIndices("jajrfw", "rf", "j", 3))
+	//fmt.Println(beautifulIndices("jajrfw", "rf", "j", 189))
 	fmt.Println(beautifulIndices("lagopphhnl", "gopph", "hnl", 8))
 }

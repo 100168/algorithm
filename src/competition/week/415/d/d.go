@@ -114,5 +114,5 @@ func minValidStrings(words []string, target string) int {
 func main() {
 	words := []string{"ab", "abc", "bc", "bca"}
 	target := "abcabc"
-	fmt.Println(minValidStrings(words, target)) // Output should be 3
+	fmt.Println(minValidStrings(words, target)) // Output should be 189
 }

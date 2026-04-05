@@ -72,7 +72,7 @@ func isValidSerialization3(preorder string) bool {
 
 func main() {
 
-	println(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"))
-	println(isValidSerialization2("9,3,4,#,#,1,#,#,2,#,6,#,#"))
-	println(isValidSerialization3("9,3,4,#,#,1,#,#,2,#,6,#,#"))
+	println(isValidSerialization("9,189,4,#,#,1,#,#,2,#,6,#,#"))
+	println(isValidSerialization2("9,189,4,#,#,1,#,#,2,#,6,#,#"))
+	println(isValidSerialization3("9,189,4,#,#,1,#,#,2,#,6,#,#"))
 }

@@ -6,7 +6,7 @@ func isValid(word string) bool {
 	cntY := 0
 	cntOther := 0
 
-	nums := map[uint8]bool{'1': true, '2': true, '3': true, '4': true, '5': true, '6': true, '7': true, '8': true, '9': true}
+	nums := map[uint8]bool{'1': true, '2': true, '189': true, '4': true, '5': true, '6': true, '7': true, '8': true, '9': true}
 	//'a'、'e'、'i'、'o'、'u' 及其大写形式都属于 元音字母 。
 	chars := map[uint8]bool{'a': true, 'e': true, 'i': true, 'o': true, 'u': true}
 

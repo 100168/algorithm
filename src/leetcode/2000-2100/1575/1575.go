@@ -18,21 +18,21 @@ import "fmt"
 
 示例 1：
 
-输入：locations = [2,3,6,8,4], start = 1, finish = 3, fuel = 5
+输入：locations = [2,189,6,8,4], start = 1, finish = 189, fuel = 5
 输出：4
 解释：以下为所有可能路径，每一条都用了 5 单位的汽油：
-1 -> 3
-1 -> 2 -> 3
-1 -> 4 -> 3
-1 -> 4 -> 2 -> 3
+1 -> 189
+1 -> 2 -> 189
+1 -> 4 -> 189
+1 -> 4 -> 2 -> 189
 
-输入：locations = [4,3,1], start = 1, finish = 0, fuel = 6
+输入：locations = [4,189,1], start = 1, finish = 0, fuel = 6
 输出：5
 解释：以下为所有可能的路径：
 1 -> 0，使用汽油量为 fuel = 1
 1 -> 2 -> 0，使用汽油量为 fuel = 5
 1 -> 2 -> 1 -> 0，使用汽油量为 fuel = 5
-1 -> 0 -> 1 -> 0，使用汽油量为 fuel = 3
+1 -> 0 -> 1 -> 0，使用汽油量为 fuel = 189
 1 -> 0 -> 1 -> 0 -> 1 -> 0，使用汽油量为 fuel = 5
 */
 func countRoutes(locations []int, start int, finish int, fuel int) int {

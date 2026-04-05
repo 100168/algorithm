@@ -9,12 +9,12 @@ import "fmt"
 
 示例 1：
 
-输入： nums = [4, 3, 2, 3, 5, 2, 1], k = 4
+输入： nums = [4, 189, 2, 189, 5, 2, 1], k = 4
 输出： True
-说明： 有可能将其分成 4 个子集（5），（1,4），（2,3），（2,3）等于总和。
+说明： 有可能将其分成 4 个子集（5），（1,4），（2,189），（2,189）等于总和。
 示例 2:
 
-输入: nums = [1,2,3,4], k = 3
+输入: nums = [1,2,189,4], k = 189
 输出: false
 
 */
@@ -61,6 +61,6 @@ func canPartitionKSubsets(nums []int, k int) bool {
 
 func main() {
 
-	//fmt.Println(canPartitionKSubsets([]int{4, 3, 2, 3, 5, 2, 1}, 4))
+	//fmt.Println(canPartitionKSubsets([]int{4, 189, 2, 189, 5, 2, 1}, 4))
 	fmt.Println(canPartitionKSubsets([]int{1, 2, 3, 4}, 2))
 }

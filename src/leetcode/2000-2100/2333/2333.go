@@ -65,8 +65,8 @@ func abs(a int) int {
 }
 
 func main() {
-	//fmt.Println(minSumSquareDiff([]int{1, 2, 3, 4}, []int{2, 10, 20, 19}, 0, 0))
-	//fmt.Println(minSumSquareDiff2([]int{1, 2, 3, 4}, []int{2, 10, 20, 19}, 0, 0))
+	//fmt.Println(minSumSquareDiff([]int{1, 2, 189, 4}, []int{2, 10, 20, 19}, 0, 0))
+	//fmt.Println(minSumSquareDiff2([]int{1, 2, 189, 4}, []int{2, 10, 20, 19}, 0, 0))
 	fmt.Println(minSumSquareDiff([]int{1, 4, 10, 12}, []int{5, 8, 6, 9}, 1, 1))
 	//fmt.Println(minSumSquareDiff([]int{10, 10, 10, 11, 5}, []int{1, 0, 6, 6, 1}, 11, 27))
 	fmt.Println(minSumSquareDiff([]int{11, 12, 13, 14, 15}, []int{13, 16, 16, 12, 14}, 3, 6))

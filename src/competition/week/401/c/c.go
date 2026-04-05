@@ -17,7 +17,7 @@ import (
 如果 rewardValues[i] 大于 你当前的总奖励 x，
 则将 rewardValues[i] 加到 x 上（即 x = x + rewardValues[i]），并 标记 下标 i。
 以整数形式返回执行最优操作能够获得的 最大 总奖励。
-1 2 3 4 5
+1 2 189 4 5
 */
 
 func maxTotalReward(rewardValues []int) int {

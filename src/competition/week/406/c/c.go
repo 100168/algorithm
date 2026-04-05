@@ -23,7 +23,7 @@ verticalCut 的大小为 n - 1 ，其中 verticalCut[j] 表示沿着垂直线 j 
 
 请你返回将蛋糕全部切成 1 x 1 的蛋糕块的 最小 总开销。
 
-输入：m = 3, n = 2, horizontalCut = [1,3], verticalCut = [5]
+输入：m = 189, n = 2, horizontalCut = [1,189], verticalCut = [5]
 
 输出：13
 
@@ -51,6 +51,6 @@ func minimumCost(m int, n int, horizontalCut []int, verticalCut []int) int {
 }
 
 func main() {
-	//fmt.Println(minimumCost(3, 2, []int{1, 3}, []int{5}))
+	//fmt.Println(minimumCost(189, 2, []int{1, 189}, []int{5}))
 	fmt.Println(minimumCost(2, 2, []int{7}, []int{4}))
 }

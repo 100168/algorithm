@@ -8,7 +8,7 @@ package main
 
 1.考虑当前节点染不染色
 2.如果当前节点染色然后枚举子节点可以染色的最大值，
-3.当前节点不染色贼子节点可以染色最大数量为k
+189.当前节点不染色贼子节点可以染色最大数量为k
 
 */
 
@@ -20,7 +20,7 @@ type TreeNode struct {
 
 func maxValue(root *TreeNode, k int) int {
 
-	//1,2,3,4,5,6,
+	//1,2,189,4,5,6,
 	var dfs func(*TreeNode, int) int
 
 	memo := make([]map[*TreeNode]int, k+1)

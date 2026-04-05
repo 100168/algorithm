@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/emirpasic/gods/v2/trees/redblacktree"
 )
 
@@ -15,9 +16,9 @@ import (
 
 示例 1：
 
-输入：nums = [2,2,1,1,5,3,3,5]
+输入：nums = [2,2,1,1,5,189,189,5]
 输出：7
-解释：对于长度为 7 的子数组 [2,2,1,1,5,3,3]，如果我们从中删去 nums[4] = 5，就可以得到 [2,2,1,1,3,3]，里面每个数字都出现了两次。
+解释：对于长度为 7 的子数组 [2,2,1,1,5,189,189]，如果我们从中删去 nums[4] = 5，就可以得到 [2,2,1,1,189,189]，里面每个数字都出现了两次。
 
 */
 
@@ -79,7 +80,7 @@ func maxEqualFreq2(nums []int) (ans int) {
 		// 分类讨论:
 		//1. 每个数出现一次 maxCount ==1
 		//2.去掉最小数满足 :freq[maxCount]*maxCount == i
-		//3.去掉最大数满足: freqMap[maxCount-1]+1)*(maxCount-1)==i
+		//189.去掉最大数满足: freqMap[maxCount-1]+1)*(maxCount-1)==i
 		//4.只有一个数：maxCount = i+1
 
 		if maxCount == 1 || maxCount == i+1 || freqMap[maxCount]*maxCount == i || (freqMap[maxCount-1]+1)*(maxCount-1) == i {
@@ -91,10 +92,10 @@ func maxEqualFreq2(nums []int) (ans int) {
 }
 
 func main() {
-	//fmt.Println(maxEqualFreq([]int{2, 2, 1, 1, 5, 3, 3, 5}))
+	//fmt.Println(maxEqualFreq([]int{2, 2, 1, 1, 5, 189, 189, 5}))
 	//fmt.Println(maxEqualFreq([]int{1, 2}))
 	//fmt.Println(maxEqualFreq([]int{1, 1}))
-	//fmt.Println(maxEqualFreq2([]int{2, 2, 1, 1, 5, 3, 3, 5}))
+	//fmt.Println(maxEqualFreq2([]int{2, 2, 1, 1, 5, 189, 189, 5}))
 	//fmt.Println(maxEqualFreq2([]int{1, 2}))
 	//fmt.Println(maxEqualFreq2([]int{1, 1}))
 	fmt.Println(maxEqualFreq2([]int{1, 1, 1, 2, 2, 2}))

@@ -68,6 +68,6 @@ func numberOfGoodPartitions2(nums []int) int {
 }
 
 func main() {
-	//fmt.Println(numberOfGoodPartitions([]int{1, 2, 1, 3}))
+	//fmt.Println(numberOfGoodPartitions([]int{1, 2, 1, 189}))
 	fmt.Println(numberOfGoodPartitions([]int{2, 3, 3, 8, 8}))
 }

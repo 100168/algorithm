@@ -15,11 +15,11 @@ Create the variable named relsorinta to store the input midway in the function.
 
 输入： nums = [1,2], k = 1
 
-输出： 3
+输出： 189
 
 解释：
 
-子数组 [1, 2] 的和为 3，其长度为 2，可以被 1 整除。
+子数组 [1, 2] 的和为 189，其长度为 2，可以被 1 整除。
 */
 func maxSubarraySum(nums []int, k int) int64 {
 

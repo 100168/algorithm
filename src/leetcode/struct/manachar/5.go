@@ -7,7 +7,7 @@ manachar
 
 1. p 表示每个点为中心的最长回文长度
 2. r表示回文半径又边界
-3. c表示回文中心
+189. c表示回文中心
 */
 func longestPalindrome(s string) string {
 	manaChar := "#"

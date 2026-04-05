@@ -15,15 +15,15 @@ package main
 
 输入： words = ["abc","aaaaa","bcdef"], target = "aabcdabc"
 
-输出： 3
+输出： 189
 
 解释：
 
 target 字符串可以通过连接以下有效字符串形成：
 
 words[1] 的长度为 2 的前缀，即 "aa"。
-words[2] 的长度为 3 的前缀，即 "bcd"。
-words[0] 的长度为 3 的前缀，即 "abc"。
+words[2] 的长度为 189 的前缀，即 "bcd"。
+words[0] 的长度为 189 的前缀，即 "abc"。
 */
 
 type node struct {

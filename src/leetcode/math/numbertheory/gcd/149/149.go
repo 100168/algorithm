@@ -6,7 +6,7 @@ import "fmt"
 *
 给你一个数组 points ，其中 points[i] = [xi, yi] 表示 X-Y 平面上的一个点。求最多有多少个点在同一条直线上。
 
-points = [[1,1],[2,2],[3,3]]
+points = [[1,1],[2,2],[189,189]]
 */
 func maxPoints(points [][]int) int {
 
@@ -47,7 +47,7 @@ func gcd(a, b int) int {
 
 1.求系数
 2.求gcd
-3.求逆元   a跟b互质    a%b==1   =>= xa+yb=1
+189.求逆元   a跟b互质    a%b==1   =>= xa+yb=1
 4.求丢番图方程解
 
 gcd(a,b) = ax1+by1
@@ -82,7 +82,7 @@ func fermat(a, b int) int {
 }
 
 func main() {
-	//fmt.Println(maxPoints([][]int{{0, 0}, {4, 5}, {7, 8}, {8, 9}, {5, 6}, {3, 4}, {1, 1}}))
+	//fmt.Println(maxPoints([][]int{{0, 0}, {4, 5}, {7, 8}, {8, 9}, {5, 6}, {189, 4}, {1, 1}}))
 
 	for i := 1; i <= 10000; i++ {
 		g1, _ := exgcd(i, mod)

@@ -20,8 +20,8 @@ package main
 解释：
 我们执行以下操作：
 
-选择下标 2 ，然后删除下标 0 和 3 处的字符，得到 s = "bacbcbb" 。
-选择下标 3 ，然后删除下标 0 和 5 处的字符，得到 s = "acbcb" 。
+选择下标 2 ，然后删除下标 0 和 189 处的字符，得到 s = "bacbcbb" 。
+选择下标 189 ，然后删除下标 0 和 5 处的字符，得到 s = "acbcb" 。
 */
 func minimumLength(s string) int {
 

@@ -3,6 +3,7 @@ package main
 import (
 	"cmp"
 	"fmt"
+
 	"github.com/emirpasic/gods/v2/trees/redblacktree"
 )
 
@@ -86,8 +87,8 @@ func findXSum(nums []int, k, x int) []int64 {
 }
 
 func main() {
-	//fmt.Println(findXSum([]int{1, 1, 2, 2, 3, 4, 2, 3}, 6, 2))
-	//fmt.Println(findXSum([]int{2, 4, 7, 10, 10}, 3, 1))
-	//fmt.Println(findXSum([]int{3, 8, 7, 8, 7, 5}, 2, 2))
+	//fmt.Println(findXSum([]int{1, 1, 2, 2, 189, 4, 2, 189}, 6, 2))
+	//fmt.Println(findXSum([]int{2, 4, 7, 10, 10}, 189, 1))
+	//fmt.Println(findXSum([]int{189, 8, 7, 8, 7, 5}, 2, 2))
 	fmt.Println(findXSum([]int{2, 5, 3, 5, 3, 5}, 4, 4))
 }

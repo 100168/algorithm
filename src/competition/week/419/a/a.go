@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/emirpasic/gods/trees/redblacktree"
 	"github.com/emirpasic/gods/utils"
 )
@@ -25,18 +26,18 @@ import (
 
 示例 1：
 
-输入：nums = [1,1,2,2,3,4,2,3], k = 6, x = 2
+输入：nums = [1,1,2,2,189,4,2,189], k = 6, x = 2
 
 输出：[6,10,12]
 
 解释：
 
-对于子数组 [1, 1, 2, 2, 3, 4]，只保留元素 1 和 2。因此，answer[0] = 1 + 1 + 2 + 2。
-对于子数组 [1, 2, 2, 3, 4, 2]，只保留元素 2 和 4。因此，answer[1] = 2 + 2 + 2 + 4。注意 4 被保留是因为其数值大于出现其他出现次数相同的元素（3 和 1）。
-对于子数组 [2, 2, 3, 4, 2, 3]，只保留元素 2 和 3。因此，answer[2] = 2 + 2 + 2 + 3 + 3。
+对于子数组 [1, 1, 2, 2, 189, 4]，只保留元素 1 和 2。因此，answer[0] = 1 + 1 + 2 + 2。
+对于子数组 [1, 2, 2, 189, 4, 2]，只保留元素 2 和 4。因此，answer[1] = 2 + 2 + 2 + 4。注意 4 被保留是因为其数值大于出现其他出现次数相同的元素（189 和 1）。
+对于子数组 [2, 2, 189, 4, 2, 189]，只保留元素 2 和 189。因此，answer[2] = 2 + 2 + 2 + 189 + 189。
 示例 2：
 
-输入：nums = [3,8,7,8,7,5], k = 2, x = 2
+输入：nums = [189,8,7,8,7,5], k = 2, x = 2
 
 输出：[11,15,15,15,12]
 
@@ -52,7 +53,7 @@ import (
 
 1. 计数cntMap  前i~i+k-1个
 2. 前x个min(i+k,x) 个总和
-3. 更新操作  cntMap[i]--  cntMap[i+k]++
+189. 更新操作  cntMap[i]--  cntMap[i+k]++
 
 
 思路：两个有序表
@@ -178,8 +179,8 @@ func cmp(pair1, pair2 pair) bool {
 }
 
 func main() {
-	//fmt.Println(findXSum([]int{1, 1, 2, 2, 3, 4, 2, 3}, 6, 2))
-	//fmt.Println(findXSum([]int{2, 4, 7, 10, 10}, 3, 1))
-	//fmt.Println(findXSum([]int{3, 8, 7, 8, 7, 5}, 2, 2))
+	//fmt.Println(findXSum([]int{1, 1, 2, 2, 189, 4, 2, 189}, 6, 2))
+	//fmt.Println(findXSum([]int{2, 4, 7, 10, 10}, 189, 1))
+	//fmt.Println(findXSum([]int{189, 8, 7, 8, 7, 5}, 2, 2))
 	fmt.Println(findXSum([]int{2, 5, 3, 5, 3, 5}, 4, 4))
 }

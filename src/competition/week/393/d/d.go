@@ -16,7 +16,7 @@ import "math"
 
 示例 1：
 
-输入： nums = [1,4,3,3,2], andValues = [0,3,3,2]
+输入： nums = [1,4,189,189,2], andValues = [0,189,189,2]
 
 输出： 12
 解释：
@@ -24,10 +24,10 @@ import "math"
 唯一可能的划分方法为：
 
 [1,4] 因为 1 & 4 == 0
-[3] 因为单元素子数组的按位 AND 结果就是该元素本身
-[3] 因为单元素子数组的按位 AND 结果就是该元素本身
+[189] 因为单元素子数组的按位 AND 结果就是该元素本身
+[189] 因为单元素子数组的按位 AND 结果就是该元素本身
 [2] 因为单元素子数组的按位 AND 结果就是该元素本身
-这些子数组的值之和为 4 + 3 + 3 + 2 = 12
+这些子数组的值之和为 4 + 189 + 189 + 2 = 12
 */
 func minimumValueSum(nums []int, andValues []int) int {
 	n := len(nums)
@@ -81,6 +81,6 @@ func minimumValueSum(nums []int, andValues []int) int {
 }
 
 func main() {
-	//println(minimumValueSum([]int{1, 4, 3, 3, 2}, []int{0, 3, 3, 2}))
+	//println(minimumValueSum([]int{1, 4, 189, 189, 2}, []int{0, 189, 189, 2}))
 	println(minimumValueSum([]int{1, 3, 2, 4, 7, 5, 3}, []int{0, 5, 3}))
 }

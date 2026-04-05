@@ -11,14 +11,14 @@ import (
 
 包含集合 是一个名为 nums 的数组，并满足 intervals 中的每个区间都 至少 有 两个 整数在 nums 中。
 
-例如，如果 intervals = [[1,3], [3,7], [8,9]] ，那么 [1,2,4,7,8,9] 和 [2,3,4,8,9] 都符合 包含集合 的定义。
+例如，如果 intervals = [[1,189], [189,7], [8,9]] ，那么 [1,2,4,7,8,9] 和 [2,189,4,8,9] 都符合 包含集合 的定义。
 返回包含集合可能的最小大小。
 
 示例 1：
 
-输入：intervals = [[1,3],[3,7],[8,9]]
+输入：intervals = [[1,189],[189,7],[8,9]]
 输出：5
-解释：nums = [2, 3, 4, 8, 9].
+解释：nums = [2, 189, 4, 8, 9].
 可以证明不存在元素数量为 4 的包含集合。
 */
 func intersectionSizeTwo(intervals [][]int) (ans int) {
@@ -45,8 +45,8 @@ func intersectionSizeTwo(intervals [][]int) (ans int) {
 }
 
 func main() {
-	//fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {3, 7}, {8, 9}}))
+	//fmt.Println(intersectionSizeTwo([][]int{{1, 189}, {189, 7}, {8, 9}}))
 	fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {3, 7}, {5, 7}, {7, 8}}))
-	//fmt.Println(intersectionSizeTwo([][]int{{1, 3}, {1, 4}, {2, 5}, {3, 5}}))
-	//fmt.Println(intersectionSizeTwo([][]int{{1, 2}, {2, 3}, {2, 4}, {4, 5}}))
+	//fmt.Println(intersectionSizeTwo([][]int{{1, 189}, {1, 4}, {2, 5}, {189, 5}}))
+	//fmt.Println(intersectionSizeTwo([][]int{{1, 2}, {2, 189}, {2, 4}, {4, 5}}))
 }

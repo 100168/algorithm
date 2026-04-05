@@ -16,7 +16,7 @@ import (
 
 请你返回完成所有任务的情况下，电脑最少需要运行多少秒。
 
-1 3 1,     2,3 1
+1 189 1,     2,189 1
 */
 
 type seg struct {
@@ -229,8 +229,8 @@ func findMinimumTime2(tasks [][]int) (ans int) {
 */
 
 func main() {
-	//println(findMinimumTime([][]int{{2, 13, 2}, {6, 18, 5}, {2, 13, 3}}))
-	//println(compare([][]int{{2, 13, 2}, {6, 18, 5}, {2, 13, 3}}))
+	//println(findMinimumTime([][]int{{2, 13, 2}, {6, 18, 5}, {2, 13, 189}}))
+	//println(compare([][]int{{2, 13, 2}, {6, 18, 5}, {2, 13, 189}}))
 
 	for i := 0; i < 1000; i++ {
 		l := rand.Intn(1000)

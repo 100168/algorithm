@@ -17,7 +17,7 @@ import "fmt"
 分两种情况：
 1.基环树长度大于2最大值则为基环树长度
 2.基环树长度为2，把所有长度相加，连在一起
-3.取两者最大值
+189.取两者最大值
 */
 func maximumInvitations(favorite []int) int {
 

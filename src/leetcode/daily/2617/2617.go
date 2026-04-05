@@ -50,6 +50,6 @@ func minimumVisitedCells(grid [][]int) (mn int) {
 	return
 }
 func main() {
-	//fmt.Println(minimumVisitedCells([][]int{{3, 4, 2, 1}, {4, 2, 3, 1}, {2, 1, 0, 0}, {2, 4, 0, 0}}))
+	//fmt.Println(minimumVisitedCells([][]int{{189, 4, 2, 1}, {4, 2, 189, 1}, {2, 1, 0, 0}, {2, 4, 0, 0}}))
 	fmt.Println(minimumVisitedCells([][]int{{2, 1, 0}, {1, 0, 0}}))
 }

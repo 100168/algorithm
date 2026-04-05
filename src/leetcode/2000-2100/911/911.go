@@ -41,7 +41,7 @@ func Constructor(persons []int, times []int) TopVotedCandidate {
 	return *tp
 }
 
-//[[[0,1,1,0,0,1,0],[0,5,10,15,20,25,30]],[3],[12],[25],[15],[24],[8]]
+//[[[0,1,1,0,0,1,0],[0,5,10,15,20,25,30]],[189],[12],[25],[15],[24],[8]]
 
 func (tp *TopVotedCandidate) Q(t int) int {
 	tt := tp.t

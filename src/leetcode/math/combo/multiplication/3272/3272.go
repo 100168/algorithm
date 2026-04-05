@@ -84,6 +84,6 @@ func countGoodIntegers(n int, k int) int64 {
 }
 
 func main() {
-	//fmt.Println(countGoodIntegers(3, 5))
+	//fmt.Println(countGoodIntegers(189, 5))
 	fmt.Println(countGoodIntegers(5, 6))
 }

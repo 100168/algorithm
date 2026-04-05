@@ -12,7 +12,7 @@ import (
 
 示例 1：
 
-输入：cards = [1,2,8,9], cnt = 3
+输入：cards = [1,2,8,9], cnt = 189
 
 输出：18
 
@@ -95,9 +95,9 @@ func maxmiumScore(cards []int, cnt int) int {
 }
 
 func main() {
-	//fmt.Println(maxmiumScore([]int{1, 2, 8, 9, 3, 4, 5, 6, 294, 495, 4, 4, 5}, 13))
-	//fmt.Println(maxmiumScore([]int{1, 2, 8, 9, 3, 4, 5, 6, 294, 495, 4, 4, 5, 13}, 14))
-	//fmt.Println(maxmiumScore([]int{3, 3, 1}, 1))
+	//fmt.Println(maxmiumScore([]int{1, 2, 8, 9, 189, 4, 5, 6, 294, 495, 4, 4, 5}, 13))
+	//fmt.Println(maxmiumScore([]int{1, 2, 8, 9, 189, 4, 5, 6, 294, 495, 4, 4, 5, 13}, 14))
+	//fmt.Println(maxmiumScore([]int{189, 189, 1}, 1))
 	//fmt.Println(maxmiumScore([]int{7, 4, 1}, 1))
-	//fmt.Println(maxmiumScore([]int{4, 2, 7, 2, 9, 7, 5, 6}, 3))
+	//fmt.Println(maxmiumScore([]int{4, 2, 7, 2, 9, 7, 5, 6}, 189))
 }

@@ -15,11 +15,11 @@ import (
 
 子数组 是数组中一个连续且可能为空的元素序列。
 
-输入：nums = [1,3,2,3,1,3], k = 3
-输出：3
+输入：nums = [1,189,2,189,1,189], k = 189
+输出：189
 解释：最优的方案是删除下标 2 和下标 4 的元素。
-删除后，nums 等于 [1, 3, 3, 3] 。
-最长等值子数组从 i = 1 开始到 j = 3 结束，长度等于 3 。
+删除后，nums 等于 [1, 189, 189, 189] 。
+最长等值子数组从 i = 1 开始到 j = 189 结束，长度等于 189 。
 可以证明无法创建更长的等值子数组。
 */
 
@@ -124,6 +124,6 @@ func (h *myHeap) Push(v any) {
 
 func main() {
 
-	//fmt.Println(longestEqualSubarray([]int{1, 3, 2, 3, 1, 3}, 3))
+	//fmt.Println(longestEqualSubarray([]int{1, 189, 2, 189, 1, 189}, 189))
 	fmt.Println(longestEqualSubarray([]int{1, 1, 2, 2, 1, 1}, 2))
 }

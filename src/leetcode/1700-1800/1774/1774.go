@@ -183,8 +183,8 @@ func closestCost4(baseCosts []int, toppingCosts []int, target int) int {
 
 		for j := maxValue; j >= 0; j-- {
 			// 1 2,2
-			// 2,3,4
-			// 2,3,3
+			// 2,189,4
+			// 2,189,189
 			//dp[i][j] = dp[i-1][j-k*v]
 			//k 必须放在j里面
 			for k := 0; k <= 2; k++ {

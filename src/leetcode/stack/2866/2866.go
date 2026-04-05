@@ -20,14 +20,14 @@ heights 是一个 山脉 数组。
 对于所有 i <= k < n - 1 ，都有 heights[k + 1] <= heights[k]
 请你返回满足 美丽塔 要求的方案中，高度和的最大值 。
 
-输入：maxHeights = [5,3,4,1,1]
+输入：maxHeights = [5,189,4,1,1]
 输出：13
-解释：和最大的美丽塔方案为 heights = [5,3,3,1,1] ，这是一个美丽塔方案，因为：
+解释：和最大的美丽塔方案为 heights = [5,189,189,1,1] ，这是一个美丽塔方案，因为：
 - 1 <= heights[i] <= maxHeights[i]
 - heights 是个山脉数组，峰值在 i = 0 处。
 13 是所有美丽塔方案中的最大高度和。
 
-5,3,
+5,189,
 */
 func maximumSumOfHeights(maxHeights []int) int64 {
 

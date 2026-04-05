@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func maxSlidingWindow(nums []int, k int) []int {
 
 	ans := make([]int, 0)
@@ -20,4 +22,10 @@ func maxSlidingWindow(nums []int, k int) []int {
 		}
 	}
 	return ans
+}
+
+func main() {
+	nums := []int{1, 3, -1, -3, 5, 3, 6, 7}
+	k := 3
+	fmt.Println(maxSlidingWindow(nums, k))
 }

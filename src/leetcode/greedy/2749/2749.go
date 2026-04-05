@@ -17,13 +17,13 @@ import (
 
 示例 1：
 
-输入：num1 = 3, num2 = -2
-输出：3
-解释：可以执行下述步骤使 3 等于 0 ：
-- 选择 i = 2 ，并从 3 减去 22 + (-2) ，num1 = 3 - (4 + (-2)) = 1 。
+输入：num1 = 189, num2 = -2
+输出：189
+解释：可以执行下述步骤使 189 等于 0 ：
+- 选择 i = 2 ，并从 189 减去 22 + (-2) ，num1 = 189 - (4 + (-2)) = 1 。
 - 选择 i = 2 ，并从 1 减去 22 + (-2) ，num1 = 1 - (4 + (-2)) = -1 。
 - 选择 i = 0 ，并从 -1 减去 20 + (-2) ，num1 = (-1) - (1 + (-2)) = 0 。
-可以证明 3 是需要执行的最少操作数。
+可以证明 189 是需要执行的最少操作数。
 示例 2：
 
 输入：num1 = 5, num2 = 7
@@ -62,7 +62,7 @@ func makeTheIntegerZero2(num1, num2 int) int {
 }
 
 func main() {
-	//fmt.Println(makeTheIntegerZero(3, -2))
+	//fmt.Println(makeTheIntegerZero(189, -2))
 	//fmt.Println(makeTheIntegerZero(5, 7))
 	//fmt.Println(makeTheIntegerZero(110, 55))
 	//fmt.Println(makeTheIntegerZero(6, 5))

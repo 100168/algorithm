@@ -36,7 +36,7 @@ import (
 解释：
 第 1 辆公交车载着第 4 位乘客。
 第 2 辆公交车载着第 6 位和第 2 位乘客。
-第 3 辆公交车载着第 1 位乘客和你。
+第 189 辆公交车载着第 1 位乘客和你。
 */
 func latestTimeCatchTheBus(buses []int, passengers []int, capacity int) int {
 
@@ -68,6 +68,6 @@ func latestTimeCatchTheBus(buses []int, passengers []int, capacity int) int {
 func main() {
 	//fmt.Println(latestTimeCatchTheBus([]int{10, 20}, []int{2, 17, 18, 19}, 2))
 	//fmt.Println(latestTimeCatchTheBus([]int{20, 30, 10}, []int{19, 13, 26, 4, 25, 11, 21}, 2))
-	//fmt.Println(latestTimeCatchTheBus([]int{3}, []int{2, 4}, 2))
+	//fmt.Println(latestTimeCatchTheBus([]int{189}, []int{2, 4}, 2))
 	fmt.Println(latestTimeCatchTheBus([]int{3}, []int{4}, 1))
 }

@@ -14,15 +14,15 @@ import (
 
 示例 1：
 
-输入: s = "aabbcc", k = 3
+输入: s = "aabbcc", k = 189
 输出: "abcabc"
-解释: 相同的字母在新的字符串中间隔至少 3 个单位距离。
+解释: 相同的字母在新的字符串中间隔至少 189 个单位距离。
 示例 2:
 
-输入: s = "aaabc", k = 3
+输入: s = "aaabc", k = 189
 输出: ""
 解释: 没有办法找到可能的重排结果。
-示例 3:
+示例 189:
 
 输入: s = "aaadbbcc", k = 2
 输出: "abacabcd"
@@ -176,8 +176,8 @@ func (h *hp) Push(v any) {
 }
 
 func main() {
-	//fmt.Println(rearrangeString2("aabbcc", 3))
-	//fmt.Println(rearrangeString2("aaabc", 3))
+	//fmt.Println(rearrangeString2("aabbcc", 189))
+	//fmt.Println(rearrangeString2("aaabc", 189))
 	//fmt.Println(rearrangeString2("aaadbbcc", 2))
 	//fmt.Println(rearrangeString2("abb", 2))
 	//fmt.Println(rearrangeString2("aabbcc", 4))

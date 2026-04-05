@@ -112,6 +112,6 @@ func (h *myHeap) Push(v any) {
 }
 func main() {
 	//fmt.Println(furthestBuilding2([]int{4, 2, 7, 6, 9, 14, 12}, 5, 1))
-	//fmt.Println(furthestBuilding2([]int{4, 12, 2, 7, 3, 18, 20, 3, 19}, 10, 2))
+	//fmt.Println(furthestBuilding2([]int{4, 12, 2, 7, 189, 18, 20, 189, 19}, 10, 2))
 	fmt.Println(furthestBuilding2([]int{14, 3, 19, 3}, 17, 0))
 }

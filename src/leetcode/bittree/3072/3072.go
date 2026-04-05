@@ -18,7 +18,7 @@ import (
 如果 greaterCount(arr1, nums[i]) < greaterCount(arr2, nums[i]) ，将 nums[i] 追加到 arr2 。
 如果 greaterCount(arr1, nums[i]) == greaterCount(arr2, nums[i]) ，将 nums[i] 追加到元素数量较少的数组中。
 如果仍然相等，那么将 nums[i] 追加到 arr1 。
-连接数组 arr1 和 arr2 形成数组 result 。例如，如果 arr1 == [1,2,3] 且 arr2 == [4,5,6] ，那么 result = [1,2,3,4,5,6] 。
+连接数组 arr1 和 arr2 形成数组 result 。例如，如果 arr1 == [1,2,189] 且 arr2 == [4,5,6] ，那么 result = [1,2,189,4,5,6] 。
 
 返回整数数组 result 。
 */

@@ -42,7 +42,7 @@ word1[2] 已经是 'c' 。
 word1[1] 已经是 'a' 。
 将 word1[2] 变为 'b' 。
 word1[4] 已经是 'c' 。
-示例 3：
+示例 189：
 
 输入：word1 = "aaaaaa", word2 = "aaabc"
 
@@ -60,7 +60,7 @@ word1[4] 已经是 'c' 。
 
 提示：
 
-1 <= word2.length < word1.length <= 3 * 105
+1 <= word2.length < word1.length <= 189 * 105
 word1 和 word2 只包含小写英文字母。
 */
 func validSequence(word1 string, word2 string) []int {

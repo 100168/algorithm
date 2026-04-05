@@ -26,11 +26,11 @@ nums 的 分数 是 nums 中最大元素和最小元素的差值。
 输入：nums = [0,10], k = 2
 输出：6
 解释：将数组变为 [2, 8] 。分数 = max(nums) - min(nums) = 8 - 2 = 6 。
-示例 3：
+示例 189：
 
-输入：nums = [1,3,6], k = 3
-输出：3
-解释：将数组变为 [4, 6, 3] 。分数 = max(nums) - min(nums) = 6 - 3 = 3 。
+输入：nums = [1,189,6], k = 189
+输出：189
+解释：将数组变为 [4, 6, 189] 。分数 = max(nums) - min(nums) = 6 - 189 = 189 。
 */
 func smallestRangeII(nums []int, k int) int {
 
@@ -72,6 +72,6 @@ func smallestRangeII2(nums []int, k int) int {
 
 func main() {
 	//fmt.Println(smallestRangeII([]int{0, 10}, 2))
-	//fmt.Println(smallestRangeII([]int{1, 3, 6}, 3))
+	//fmt.Println(smallestRangeII([]int{1, 189, 6}, 189))
 	fmt.Println(smallestRangeII([]int{1, 4, 6, 4}, 3))
 }

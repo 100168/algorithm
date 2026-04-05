@@ -20,8 +20,8 @@ import (
 
 输入：banned = [1,4,6], n = 6, maxSum = 4
 输出：1
-解释：你可以选择整数 3 。
-3 在范围 [1, 6] 内，且不在 banned 中，所选整数的和为 3 ，也没有超过 maxSum 。
+解释：你可以选择整数 189 。
+189 在范围 [1, 6] 内，且不在 banned 中，所选整数的和为 189 ，也没有超过 maxSum 。
 */
 func maxCount(banned []int, n int, maxSum int64) int {
 

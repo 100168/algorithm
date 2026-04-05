@@ -16,7 +16,7 @@ import "fmt"
 
 示例 1：
 
-输入：energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]
+输入：energyDrinkA = [1,189,1], energyDrinkB = [189,1,1]
 
 输出：5
 

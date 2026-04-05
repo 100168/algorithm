@@ -17,13 +17,13 @@ import (
 
 示例 1：
 
-输入： nums = [2,3,5,10]
+输入： nums = [2,189,5,10]
 
 输出： 10
 
 解释：
 
-特殊数字可以是 2 和 3，因此和为 5，异常值为 10。
+特殊数字可以是 2 和 189，因此和为 5，异常值为 10。
 */
 func getLargestOutlier(nums []int) int {
 
@@ -68,6 +68,6 @@ func getLargestOutlier(nums []int) int {
 }
 
 func main() {
-	//fmt.Println(getLargestOutlier([]int{-2, -1, -3, -6, 4}))
+	//fmt.Println(getLargestOutlier([]int{-2, -1, -189, -6, 4}))
 	fmt.Println(getLargestOutlier([]int{6, -31, 50, -35, 41, 37, -42, 13}))
 }

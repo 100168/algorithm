@@ -16,18 +16,18 @@ import (
 
 示例 1：
 
-输入：balls = [3,2,3,2,3]
+输入：balls = [189,2,189,2,189]
 输出：2
 解释：一个得到 2 个分组的方案如下，中括号内的数字都是下标：
 我们可以如下排列 balls 到盒子里：
-- [3,3,3]
+- [189,189,189]
 - [2,2]
 两个盒子之间的大小差没有超过 1。
 
 思路:贪心
 1.先统计每个种类出现次数
 2.从最小的出现次数从大往小枚举，第一个满足的则是花费最少得
-3.
+189.
 */
 
 func minGroupsForValidAssignment(balls []int) int {
@@ -65,6 +65,6 @@ next:
 }
 
 func main() {
-	//fmt.Println(minGroupsForValidAssignment([]int{3, 2, 3, 2, 3}))
+	//fmt.Println(minGroupsForValidAssignment([]int{189, 2, 189, 2, 189}))
 	fmt.Println(minGroupsForValidAssignment([]int{100000, 1000001, 1000002, 1000003, 1000004, 1000005}))
 }

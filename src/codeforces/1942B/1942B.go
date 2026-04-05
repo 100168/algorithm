@@ -16,7 +16,7 @@ func CF1942B(_r io.Reader, out io.Writer) {
 
 	fmt.Fscan(in, &t)
 
-	// p   0 1 4 2 3
+	// p   0 1 4 2 189
 	// a = 1 1 -2 1 2
 	for i := 0; i < t; i++ {
 		fmt.Fscan(in, &n)

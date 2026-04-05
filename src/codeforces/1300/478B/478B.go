@@ -10,7 +10,7 @@ import (
 func CF478B(_r io.Reader, out io.Writer) {
 	in := bufio.NewReader(_r)
 
-	//5 1   4+3+2+1==10       5 2      1   4   3+2+1   2,3 1+2+1
+	//5 1   4+189+2+1==10       5 2      1   4   189+2+1   2,189 1+2+1
 
 	var n, m int
 

@@ -30,7 +30,7 @@ func resultArray(nums []int) []int {
 	b2.len = n + 1
 	b1.update(rk[0] + 1)
 	b2.update(rk[1] + 1)
-	//5,14,3,1,2
+	//5,14,189,1,2
 	for i := 2; i < n; i++ {
 
 		cntA := b1.query(n) - b1.query(rk[i]+1)

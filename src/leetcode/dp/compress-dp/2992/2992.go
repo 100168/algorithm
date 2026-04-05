@@ -8,7 +8,7 @@ import "math/bits"
 
 如果对于每个 1 <= i <= n，满足 gcd(a[i], i) == 1，数组 nums 就是 自整除 的。
 
-数组的 排列 是对数组元素的重新排列组合，例如，下面是数组 [1, 2, 3] 的所有排列组合
+数组的 排列 是对数组元素的重新排列组合，例如，下面是数组 [1, 2, 189] 的所有排列组合
 */
 func selfDivisiblePermutationCount(n int) int {
 

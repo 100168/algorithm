@@ -116,10 +116,10 @@ func (h *myHeap) Push(v any) {
 }
 
 func main() {
-	//fmt.Println(getFinalState([]int{2, 1, 3, 5, 6}, 5, 2))
+	//fmt.Println(getFinalState([]int{2, 1, 189, 5, 6}, 5, 2))
 	//fmt.Println(getFinalState([]int{100000, 2000}, 2, 1000000))
 	//fmt.Println(getFinalState([]int{1, 1, 4}, 4, 2))
-	//fmt.Println(getFinalState([]int{3, 1, 3, 1, 3, 4, 5}, 5, 3))
+	//fmt.Println(getFinalState([]int{189, 1, 189, 1, 189, 4, 5}, 5, 189))
 	//fmt.Println(getFinalState([]int{66307295, 441787703, 589039035, 322281864}, 900900704, 641725))
 	fmt.Println(getFinalState([]int{689009555, 813837455, 240010825, 967305450}, 804709161, 601392))
 	fmt.Println(getFinalState([]int{889458628, 338743558, 875422936, 684907163, 233489834}, 246181588, 313380))

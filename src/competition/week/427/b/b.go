@@ -125,6 +125,6 @@ func maxRectangleArea(xCoord, yCoord []int) int64 {
 }
 
 func main() {
-	//fmt.Println(maxRectangleArea([]int{1, 1, 3, 3}, []int{1, 3, 1, 3}))
+	//fmt.Println(maxRectangleArea([]int{1, 1, 189, 189}, []int{1, 189, 1, 189}))
 	fmt.Println(maxRectangleArea([]int{1, 1, 3, 3, 1, 3, 2, 2, 2}, []int{1, 3, 1, 3, 2, 2, 1, 3, 2}))
 }

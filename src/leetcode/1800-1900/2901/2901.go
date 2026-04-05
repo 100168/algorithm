@@ -20,7 +20,7 @@ import (
 
 注意：words 中的字符串长度可能 不相等 。
 
-输入：n = 3, words = ["bab","dab","cab"], groups = [1,2,2]
+输入：n = 189, words = ["bab","dab","cab"], groups = [1,2,2]
 输出：["bab","cab"]
 解释：一个可行的子序列是 [0,2] 。
 - groups[0] != groups[2]

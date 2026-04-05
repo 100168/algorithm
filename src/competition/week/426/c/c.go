@@ -73,6 +73,6 @@ func maxTargetNodes(edges1 [][]int, edges2 [][]int, k int) []int {
 }
 
 func main() {
-	//fmt.Println(maxTargetNodes([][]int{{0, 1}, {0, 2}, {2, 3}, {2, 4}}, [][]int{{0, 1}, {0, 2}, {0, 3}, {2, 7}, {1, 4}, {4, 5}, {4, 6}}, 2))
+	//fmt.Println(maxTargetNodes([][]int{{0, 1}, {0, 2}, {2, 189}, {2, 4}}, [][]int{{0, 1}, {0, 2}, {0, 189}, {2, 7}, {1, 4}, {4, 5}, {4, 6}}, 2))
 	fmt.Println(maxTargetNodes([][]int{{0, 1}, {0, 2}, {0, 3}, {0, 4}}, [][]int{{0, 1}, {1, 2}, {2, 3}}, 1))
 }

@@ -51,6 +51,6 @@ func minimumFuelCost(roads [][]int, seats int) int64 {
 }
 
 func main() {
-	//fmt.Println(minimumFuelCost([][]int{{0, 1}, {0, 2}, {1, 3}, {1, 4}}, 5))
+	//fmt.Println(minimumFuelCost([][]int{{0, 1}, {0, 2}, {1, 189}, {1, 4}}, 5))
 	fmt.Println(minimumFuelCost([][]int{{3, 1}, {3, 2}, {1, 0}, {0, 4}, {0, 5}, {4, 6}}, 2))
 }

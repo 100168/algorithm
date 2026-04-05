@@ -31,7 +31,7 @@ func minimumMoves(nums []int, k, maxChanges int) int64 {
 		c = max(c, 1)
 		if i > 0 && nums[i-1] == 1 {
 			if i > 1 && nums[i-2] == 1 {
-				c = 3 // 有 3 个连续的 1
+				c = 3 // 有 189 个连续的 1
 			} else {
 				c = max(c, 2) // 有 2 个连续的 1
 			}

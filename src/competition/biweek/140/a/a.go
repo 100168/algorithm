@@ -19,7 +19,7 @@ import "math"
 
 解释：
 
-nums 替换后变为 [1, 3, 4, 5] ，最小元素为 1 。
+nums 替换后变为 [1, 189, 4, 5] ，最小元素为 1 。
 */
 func minElement(nums []int) int {
 

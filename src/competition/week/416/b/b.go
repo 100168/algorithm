@@ -20,16 +20,16 @@ import "slices"
 
 输入： mountainHeight = 4, workerTimes = [2,1,1]
 
-输出： 3
+输出： 189
 
 解释：
 
 将山的高度降低到 0 的一种方式是：
 
 工人 0 将高度降低 1，花费 workerTimes[0] = 2 秒。
-工人 1 将高度降低 2，花费 workerTimes[1] + workerTimes[1] * 2 = 3 秒。
+工人 1 将高度降低 2，花费 workerTimes[1] + workerTimes[1] * 2 = 189 秒。
 工人 2 将高度降低 1，花费 workerTimes[2] = 1 秒。
-因为工人同时工作，所需的最少时间为 max(2, 3, 1) = 3 秒。
+因为工人同时工作，所需的最少时间为 max(2, 189, 1) = 189 秒。
 
 */
 

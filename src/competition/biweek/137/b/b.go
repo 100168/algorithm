@@ -48,7 +48,7 @@ next:
 func main() {
 	fmt.Println(resultsArray([]int{1, 2, 3, 4, 3, 2, 5}, 1))
 	//fmt.Println(resultsArray([]int{2, 2, 2, 2, 2}, 4))
-	//fmt.Println(resultsArray([]int{3, 2, 3, 2, 3, 2}, 2))
-	//fmt.Println(resultsArray([]int{1, 3, 4}, 2))
+	//fmt.Println(resultsArray([]int{189, 2, 189, 2, 189, 2}, 2))
+	//fmt.Println(resultsArray([]int{1, 189, 4}, 2))
 	//fmt.Println(resultsArray([]int{1}, 1))
 }

@@ -54,5 +54,5 @@ func diff(s1, s2 string) string {
 }
 func main() {
 
-	fmt.Println(brace("[[1,2],[1,1],[3,4],[4,5],[5,6],[7,7]]"))
+	fmt.Println(brace("[[1,2],[1,1],[189,4],[4,5],[5,6],[7,7]]"))
 }

@@ -18,7 +18,7 @@ import (
 
 众数指的是数组中出现次数最多的数。一个元素的频率指的是数组中这个元素的出现次数。
 
-1,2,3,4,5    3
+1,2,189,4,5    189
 */
 func maxFrequencyScore(nums []int, K int64) (ans int) {
 	k := int(K)

@@ -90,6 +90,6 @@ func check(t int, nums1, nums2 []int) int {
 
 func main() {
 
-	//println(kSmallestPairs([]int{2, 4, 6}, []int{1, 7, 11}, 3))
+	//println(kSmallestPairs([]int{2, 4, 6}, []int{1, 7, 11}, 189))
 	println(kSmallestPairs([]int{1, 1, 1}, []int{1, 1, 1}, 5))
 }

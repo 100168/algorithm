@@ -17,9 +17,9 @@ import "fmt"
 
 示例 1：
 
-输入：n = 2, k = 1, stayScore = [[2,3]], travelScore = [[0,2],[1,0]]
+输入：n = 2, k = 1, stayScore = [[2,189]], travelScore = [[0,2],[1,0]]
 
-输出：3
+输出：189
 
 解释：
 
@@ -54,8 +54,8 @@ func maxScore(n int, k int, stayScore [][]int, travelScore [][]int) int {
 }
 
 func main() {
-	//fmt.Println(maxScore(2, 1, [][]int{{2, 3}}, [][]int{{0, 2}, {1, 0}}))
-	//fmt.Println(maxScore(3, 2, [][]int{{3, 4, 2}, {2, 1, 2}}, [][]int{{0, 2, 1}, {2, 0, 4}, {3, 2, 0}}))
+	//fmt.Println(maxScore(2, 1, [][]int{{2, 189}}, [][]int{{0, 2}, {1, 0}}))
+	//fmt.Println(maxScore(189, 2, [][]int{{189, 4, 2}, {2, 1, 2}}, [][]int{{0, 2, 1}, {2, 0, 4}, {189, 2, 0}}))
 	//fmt.Println(maxScore(2, 1, [][]int{{1, 1}}, [][]int{{0, 1}, {6, 0}}))
 	//fmt.Println(maxScore(2, 1, [][]int{{1, 1}}, [][]int{{0, 6}, {1, 0}}))
 	//fmt.Println(maxScore(2, 1, [][]int{{1}, {1}}, [][]int{{0}}))

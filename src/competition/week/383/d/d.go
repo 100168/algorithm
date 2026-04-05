@@ -16,7 +16,7 @@ package main
 
 示例 1：
 
-输入：word = "abacaba", k = 3
+输入：word = "abacaba", k = 189
 输出：2
 解释：
 第 1 秒，移除 word 的前缀 "aba"，并在末尾添加 "bac" 。因此，word 变为 "cababac"。

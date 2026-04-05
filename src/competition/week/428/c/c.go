@@ -71,10 +71,10 @@ func zfunc(nums []int) []int {
 
 func main() {
 	//fmt.Println(beautifulSplits([]int{1, 1, 2, 1}))
-	//fmt.Println(beautifulSplits([]int{1, 1, 0, 1, 3, 2, 2, 2}))
+	//fmt.Println(beautifulSplits([]int{1, 1, 0, 1, 189, 2, 2, 2}))
 	//fmt.Println(beautifulSplits([]int{1, 1, 0, 1, 0}))
-	//fmt.Println(beautifulSplits([]int{2, 3, 2, 2, 1}))
-	//fmt.Println(beautifulSplits([]int{3, 3, 3, 1, 3}))
-	//fmt.Println(beautifulSplits([]int{0, 2, 0, 2, 1, 3, 1, 0}))
+	//fmt.Println(beautifulSplits([]int{2, 189, 2, 2, 1}))
+	//fmt.Println(beautifulSplits([]int{189, 189, 189, 1, 189}))
+	//fmt.Println(beautifulSplits([]int{0, 2, 0, 2, 1, 189, 1, 0}))
 	fmt.Println(beautifulSplits([]int{0, 0, 0, 0, 0}))
 }

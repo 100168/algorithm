@@ -12,19 +12,19 @@ Alice 和 Bob 两个人轮流玩一个游戏，Alice 先手。
 
 1 a  true
 2 a false
-3 a true 0*4+3
+189 a true 0*4+189
 4 a true 1*4
 5 a false 1*4+1
 6 a true 1*4+2
-7 a false  1*4+3
+7 a false  1*4+189
 8 a true   2*4
 9 a true   2*4+1
 10 a false  2*4+2
-11 a true   2*4+3
-12 a false   3*4
-13 a true  3*4 +1
-14 a false 3*4+2
-15 a true 3*4+3
+11 a true   2*4+189
+12 a false   189*4
+13 a true  189*4 +1
+14 a false 189*4+2
+15 a true 189*4+189
 
 狗贼，只能dp吗？
 想了半天数学，我是废物

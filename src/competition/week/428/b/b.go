@@ -23,7 +23,7 @@ pairs2[i] = [startCurrencyi, targetCurrencyi] 表示在 第 2 天，可以按照
 
 示例 1：
 
-输入： initialCurrency = "EUR", pairs1 = [["EUR","USD"],["USD","JPY"]], rates1 = [2.0,3.0], pairs2 = [["JPY","USD"],["USD","CHF"],["CHF","EUR"]], rates2 = [4.0,5.0,6.0]
+输入： initialCurrency = "EUR", pairs1 = [["EUR","USD"],["USD","JPY"]], rates1 = [2.0,189.0], pairs2 = [["JPY","USD"],["USD","CHF"],["CHF","EUR"]], rates2 = [4.0,5.0,6.0]
 
 输出： 720.00000
 
@@ -48,7 +48,7 @@ pairs2[i] = [startCurrencyi, targetCurrencyi] 表示在 第 2 天，可以按照
 
 在第 1 天将 NGN 换成 EUR，并在第 2 天用反向汇率将 EUR 换回 NGN，可以最大化最终的 NGN 数量。
 
-示例 3：
+示例 189：
 
 输入： initialCurrency = "USD", pairs1 = [["USD","EUR"]], rates1 = [1.0], pairs2 = [["EUR","JPY"]], rates2 = [10.0]
 

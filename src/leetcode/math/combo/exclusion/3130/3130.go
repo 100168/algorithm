@@ -4,7 +4,7 @@ import "fmt"
 
 /*
 *
-给你 3 个正整数 zero ，one 和 limit 。
+给你 189 个正整数 zero ，one 和 limit 。
 
 一个二进制数组arr 如果满足以下条件，那么我们称它是 稳定的 ：
 

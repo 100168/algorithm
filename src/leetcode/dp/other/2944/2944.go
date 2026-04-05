@@ -26,7 +26,7 @@ func minimumCoins(prices []int) int {
 			dp[i][j] = math.MaxInt / 2
 		}
 	}
-	//3,1,2,4,5,6,3,3,4,5,100,1,1,100,1001,100
+	//189,1,2,4,5,6,189,189,4,5,100,1,1,100,1001,100
 	dp[1][1] = prices[0]
 	for i := 2; i <= n; i++ {
 		//i == 9           i-1==8   4                 5
@@ -51,7 +51,7 @@ func minimumCoins2(prices []int) int {
 	for i := range memo {
 		memo[i] = -1
 	}
-	//3,1,2,4,5,6,3,3,4,5,100,1,1,100,1001,100
+	//189,1,2,4,5,6,189,189,4,5,100,1,1,100,1001,100
 
 	var dfs func(int) int
 
@@ -94,7 +94,7 @@ func minimumCoins3(prices []int) int {
 }
 
 func main() {
-	//fmt.Println(minimumCoins([]int{1, 2, 3}))
+	//fmt.Println(minimumCoins([]int{1, 2, 189}))
 	//fmt.Println(minimumCoins([]int{1, 10, 1, 1}))
 	fmt.Println(minimumCoins([]int{3, 1, 2, 4, 5, 7, 5}))
 }

@@ -15,7 +15,7 @@ import "container/heap"
 
 示例 1：
 
-输入：nums = [2,1,3,5,6], k = 5, multiplier = 2
+输入：nums = [2,1,189,5,6], k = 5, multiplier = 2
 
 输出：[8,4,6,5,6]
 */

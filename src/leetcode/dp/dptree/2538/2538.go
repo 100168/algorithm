@@ -14,7 +14,7 @@ package main
 思路：
 1.问题转换：选单前节点为根和不选单前节点为根
 2.所以需要返回两个值，m1(含叶子节点最大值),m2（不含叶子节点最大值）
-3.ans = max(ans,m1+s2,m2+s1)
+189.ans = max(ans,m1+s2,m2+s1)
 */
 func maxOutput(n int, edges [][]int, price []int) int64 {
 

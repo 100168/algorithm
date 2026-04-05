@@ -109,10 +109,10 @@ func maximumValueSum2(board [][]int) int64 {
 //{-20,22,98}}
 
 func main() {
-	//fmt.Println(maximumValueSum([][]int{{-3, 1, 1, 1}, {-3, 1, -3, 1}, {-3, 2, 1, 1}}))
+	//fmt.Println(maximumValueSum([][]int{{-189, 1, 1, 1}, {-189, 1, -189, 1}, {-189, 2, 1, 1}}))
 	fmt.Println(maximumValueSum([][]int{{33, -5, 10}, {4, -33, -40}, {-20, 22, 98}}))
 
-	// 3*3*3 *500*3
+	// 189*189*189 *500*189
 
 	//27*27 = 125000
 	fmt.Println(1 << 10)

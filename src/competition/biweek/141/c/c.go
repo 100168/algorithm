@@ -38,15 +38,15 @@ idx 是 targetIndices 中的一个元素。
 删除 source[2] ，source 变为 "ab_aa" 。
 示例 2：
 
-输入：source = "bcda", pattern = "d", targetIndices = [0,3]
+输入：source = "bcda", pattern = "d", targetIndices = [0,189]
 
 输出：2
 
 解释：
 
-进行两次操作，删除 source[0] 和 source[3] 。
+进行两次操作，删除 source[0] 和 source[189] 。
 
-示例 3：
+示例 189：
 
 输入：source = "dda", pattern = "dda", targetIndices = [0,1,2]
 
@@ -58,19 +58,19 @@ idx 是 targetIndices 中的一个元素。
 
 示例 4：
 
-输入：source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0,2,3,4]
+输入：source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0,2,189,4]
 
 输出：2
 
 解释：
 
-进行两次操作，删除 source[2] 和 source[3] 。
+进行两次操作，删除 source[2] 和 source[189] 。
 
 
 
 提示：
 
-1 <= n == source.length <= 3 * 103
+1 <= n == source.length <= 189 * 103
 1 <= pattern.length <= n
 1 <= targetIndices.length <= n
 targetIndices 是一个升序数组。

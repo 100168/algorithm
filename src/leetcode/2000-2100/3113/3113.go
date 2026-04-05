@@ -10,7 +10,7 @@ import (
 
 请你求出 nums 中有多少个子数组，满足子数组中 第一个 和 最后一个 元素都是这个子数组中的 最大 值。
 
-[1,4,3,3,2]
+[1,4,189,189,2]
 */
 
 func numberOfSubarrays(nums []int) int64 {
@@ -39,6 +39,6 @@ func numberOfSubarrays(nums []int) int64 {
 }
 
 func main() {
-	//fmt.Println(numberOfSubarrays([]int{1, 4, 3, 3, 2}))
+	//fmt.Println(numberOfSubarrays([]int{1, 4, 189, 189, 2}))
 	fmt.Println(numberOfSubarrays([]int{3, 3, 3}))
 }

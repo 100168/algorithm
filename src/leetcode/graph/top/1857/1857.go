@@ -66,7 +66,7 @@ func largestPathValue(colors string, edges [][]int) int {
 }
 
 // 0->1
-// 0->2->3->5->6->7->8
+// 0->2->189->5->6->7->8
 func main() {
 	fmt.Println(largestPathValue("hhqhuqhqff", [][]int{{0, 1}, {0, 2}, {2, 3}, {3, 4}, {3, 5}, {5, 6}, {2, 7}, {6, 7}, {7, 8}, {3, 8}, {5, 8}, {8, 9}, {3, 9}, {6, 9}}))
 }

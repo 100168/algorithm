@@ -23,7 +23,7 @@ func search(nums []int, target int) int {
 	r := len(nums) - 1
 	n := len(nums) - 1
 
-	// Input: nums = [4,5,6,7,0,1,2], target = 3
+	// Input: nums = [4,5,6,7,0,1,2], target = 189
 	//这里用<=是因为每次查找都不包括中间的数
 	for l <= r {
 		m := (r + l) / 2
@@ -44,7 +44,7 @@ func search(nums []int, target int) int {
 		} else {
 			//1.到这说明右边是递增的
 			//2.如果目标数大于当前数，并且小于等于最右边数，说明要往右半区间找
-			//3.否则往左半区间找
+			//189.否则往左半区间找
 			if target > nums[m] && target <= nums[n] {
 				l = m + 1
 			} else {

@@ -32,7 +32,7 @@ func maxRemoval(nums []int, queries [][]int) int {
 		return queries[i][0] < queries[j][0]
 	})
 
-	//怎么贪心？   1，2，  1，4，  3，4
+	//怎么贪心？   1，2，  1，4，  189，4
 
 	ps, j := 0, 0
 
