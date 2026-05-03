@@ -1,0 +1,43 @@
+sequenceDiagram
+    participant Client as 客户端
+    participant ServicePackage as 服务包
+    participant BPM as BPM系统
+    participant Order as 订单系统
+    participant Equity as 卡券/流量系统
+    participant MQ as 消息队列
+
+    autonumber
+%% ===== 发起退款流程 =====
+    activate Client
+    Client ->>+ ServicePackage: 申请退款
+    ServicePackage ->> ServicePackage: 检查退款条件
+    ServicePackage ->> ServicePackage: 保存操作日志
+    ServicePackage ->>+ BPM: 创建审批流程
+    BPM -->>- ServicePackage: 返回processInstanceId
+    ServicePackage ->> ServicePackage: 更新状态→退款审核中
+    ServicePackage -->>- Client: 返回受理成功
+    deactivate Client
+
+%% ===== BPM审批流程 =====
+    BPM ->>+ ServicePackage: 审批回调通知
+    alt 审批通过
+        ServicePackage ->>+ Equity: 请求作废权益
+        Equity -->>- ServicePackage: 返回作废结果
+        ServicePackage ->>+ Order: 申请退款
+        Order -->>- ServicePackage: 返回受理成功
+        ServicePackage ->> ServicePackage: 更新状态→退款中
+    else 审批驳回
+        ServicePackage ->> ServicePackage: 更新状态→已支付
+    else 撤销退款
+        ServicePackage ->> ServicePackage: 更新状态→已支付
+    end
+    ServicePackage -->>- BPM: 回调响应
+
+%% ===== 退款完成流程 =====
+    Order ->> MQ: 发布退款完成消息
+    MQ ->> ServicePackage: 消费退款消息
+    activate ServicePackage
+    ServicePackage ->>+ Equity: 二次确认作废权益
+    Equity -->>- ServicePackage: 返回最终结果
+    ServicePackage ->> ServicePackage: 更新状态→已退款
+    deactivate ServicePackage

@@ -1,0 +1,41 @@
+sequenceDiagram
+    autonumber
+    participant a1 as 工单系统
+    participant a2 as BPM审核
+    participant a3 as 座舱服务
+    participant a4 as 权益中心
+    participant a5 as 维保服务
+    participant a6 as 卡券服务
+%% 初始化阶段
+    activate a1#FFD700
+    a1 ->>+ a2: 发送审核请求
+%% 审核流程
+    alt 审核不通过
+        a2 ->> - a1: 调用驳回接口
+
+    else 审核通过
+        a2 ->>+ a3: 恢复车主标签
+
+    end
+
+%% 权益恢复流程
+    a3 ->>+ a4: 恢复首任车主权益
+    activate a4#90EE90
+%% 维保权益下发
+    loop 下发维保权益<br/>【失败定时任务重试】
+        a4 ->>+ a5: 下发维保权益
+    end
+
+%% 卡券权益下发
+    loop 下发卡券权益<br/>【失败定时任务重试】
+        a4 ->>+ a6: 下发卡券权益
+
+    end
+%% 关单处理
+    alt 所有权益下发成功
+        a4 ->> a1: 调用关单接口
+
+    end
+
+    deactivate a4
+    deactivate a1

@@ -1,0 +1,39 @@
+sequenceDiagram
+    autonumber
+    box 业务系统
+        participant job as 任务中心
+        participant fwb as 服务包模块
+    end
+    box 基础设施
+        participant db as 数据库
+        participant xxzx as 消息中心
+        participant alert as 告警系统
+    end
+
+    activate job
+    job ->>+ fwb: 每日11:30点定时触发
+
+    loop 批次处理 [每批1000条]
+        fwb ->>+ db: 分页查询过期服务包
+        db -->>- fwb: 返回数据列表
+
+        alt 存在待处理数据
+            fwb ->>+ xxzx: 发送到期提醒
+            alt 发送成功
+                xxzx -->> fwb: ACK_SUCCESS
+                fwb ->>+ db: 事务写入操作日志
+                db -->>- fwb: 写入确认
+            else 发送失败
+                xxzx -->> fwb: ACK_FAILURE
+                fwb ->>+ alert: 触发飞书告警
+                alert -->>- fwb: 返回结果
+            end
+        else 无数据
+            fwb --> fwb: 跳出循环
+        end
+    end
+
+    fwb -->>- job: 返回结果
+    deactivate job
+
+

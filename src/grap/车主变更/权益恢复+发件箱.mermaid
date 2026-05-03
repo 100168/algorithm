@@ -1,0 +1,44 @@
+sequenceDiagram
+    autonumber
+    participant a1 as 工单系统
+    participant a3 as 座舱服务
+    participant a4 as 权益中心
+    participant a5 as 发件箱
+    participant a8 as 飞书
+    participant a6 as 维保服务
+    participant a7 as 卡券服务
+%% 初始化阶段
+    activate a1
+%% 权益恢复流程
+    a3 ->> + a4: 恢复首任车主权益
+    a4 ->> a4: 查询已作废的首任基础权益
+    a4 ->> + a5: 将需要恢复的权益数据<br/>保存在发件箱<br/>保存成功后会自动下发一次
+%% 维保权益下发
+    loop 恢复维保权益<br/>【失败定时任务重试】
+        a5 ->>+ a6: 恢复维保权益
+    end
+    alt 下发成功
+        a5 ->> a4: 更新权益下发明细状态
+    else 下发失败
+        a5 ->> a8: 发送飞书提醒【告警群】
+    end
+
+%% 卡券权益下发
+    loop 恢复卡券权益<br/>【失败定时任务重试】
+        a5 ->>+ a7: 恢复卡券权益
+    end
+    alt 下发成功
+        a5 ->> a4: 更新权益下发明细状态
+    else 下发失败
+        a5 ->> a8: 发送飞书提醒【告警群】
+    end
+    a5 ->> a4: 恢复完成更新权益下发记录状态
+    a4 ->> a4: 更新权益下发状态
+
+%% 关单处理
+
+   a4 ->> a1: 调用关单接口
+    deactivate a4
+    deactivate a5
+    deactivate a1
+

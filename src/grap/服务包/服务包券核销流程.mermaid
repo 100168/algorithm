@@ -1,0 +1,34 @@
+sequenceDiagram
+    autonumber
+    participant user as 用户
+    participant order as 订单
+    participant coupon as 卡券
+    participant mq as MQ
+    participant servicePackage as 服务包
+    participant pay as 交易中心
+    user ->>+ order: 下单
+    order ->> order: 生成订单
+    order ->> + coupon: 使用卡券
+    coupon -->> - order: 返回结果
+    coupon ->> + mq: 下发券核销消息
+    mq -->> - coupon: ack
+    mq ->>+ servicePackage: 消费消息
+    servicePackage ->> + order: 查询订单详情
+    order -->> - servicePackage: 返回结果
+    servicePackage -->>- mq: ack
+    order ->> + pay: 交易
+    pay -->> - order: ack
+    order ->> order: 订单支付超时/取消
+    order ->> + coupon: 取消使用卡券
+    coupon -->> - order: 返回结果
+    coupon ->> + mq: 下发取消券核销消息
+    mq -->> - coupon: ack
+    mq ->>+ servicePackage: 消费消息
+    servicePackage -->> - mq: ack
+    order -->> - user: 返回结果
+
+
+
+
+
+

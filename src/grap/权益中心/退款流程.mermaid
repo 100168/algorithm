@@ -1,0 +1,67 @@
+sequenceDiagram
+    participant Client as 交易中心
+    participant EquityManagementSystem as 权益中心
+    participant OrderRpc as 订单中心
+    participant DownstreamSystems as 下游系统
+    autonumber
+    Note over Client, DownstreamSystems: orderRefund 订单退款调用链路
+    Client ->> EquityManagementSystem: 1. 调用订单退款接口(orderRefund)
+    Note over EquityManagementSystem: 1.1 参数校验：订单ID、用户ID、退款原因等
+    Note over EquityManagementSystem: 2. 分布式锁处理
+    EquityManagementSystem ->> EquityManagementSystem: 2.1 构建锁key(ORDER_REFUND_LOCK_{orderId})
+    EquityManagementSystem ->> EquityManagementSystem: 2.2 获取Redis分布式锁(30秒超时)
+    Note over EquityManagementSystem: 3. 查询权益发放记录
+    EquityManagementSystem ->> EquityManagementSystem: 3.1 查询订单权益发放记录(listByOrderId)
+
+    alt 权益发放记录为空
+        EquityManagementSystem -->> Client: 3.2 返回无权限(hasPermission=false)
+    else 权益发放记录存在
+        Note over EquityManagementSystem: 3.3 校验权益包状态(是否有效、是否已作废)
+        Note over EquityManagementSystem: 4. 退款权限校验
+        EquityManagementSystem ->> EquityManagementSystem: 4.1 调用退款权限校验(verifyRefundPermission)
+
+        alt 延保权益包退款校验
+            EquityManagementSystem ->> OrderRpc: 4.2 查询订单详细信息(detail)
+            OrderRpc -->> EquityManagementSystem: 4.3 返回订单信息(OrderDetailDTO)
+            EquityManagementSystem ->> DownstreamSystems: 4.4 校验延保退款资格(延保系统)
+            DownstreamSystems -->> EquityManagementSystem: 4.5 返回校验结果
+        else 其他权益包退款校验
+            EquityManagementSystem ->> DownstreamSystems: 4.6 查询权益使用记录
+            DownstreamSystems -->> EquityManagementSystem: 4.7 返回使用记录
+        end
+
+        Note over EquityManagementSystem: 5. 执行退款流程
+        EquityManagementSystem ->> EquityManagementSystem: 5.1 构建退款请求(buildGoodsRefundReqDTO)
+        EquityManagementSystem ->> OrderRpc: 5.2 调用订单预退款(virtualGoodsPreRefund)
+        OrderRpc -->> EquityManagementSystem: 5.3 返回预退款结果
+        Note over EquityManagementSystem: 6. 权益作废处理
+        EquityManagementSystem ->> EquityManagementSystem: 6.1 作废订单权益包(invalidOrderEquityPackage)
+        Note over EquityManagementSystem: 6.2 更新权益包状态为已作废<br/>6.3 记录作废时间<br/>6.4 记录作废原因
+
+        alt 权益已使用需要作废
+            Note over EquityManagementSystem: 6.5 根据权益类型调用对应下游系统作废权益
+            alt 优惠券权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.1 调用优惠券系统作废优惠券(cancelEquity)
+            else 流量包权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.2 调用流量系统作废流量包(cancelEquity)
+            else 延保权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.3 调用延保系统作废延保权益(cancelEquity)
+            else 活动权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.4 调用活动系统作废活动权益(cancelEquity)
+            else 寄存权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.5 调用寄存系统作废寄存权益(cancelEquity)
+            else 道路救援权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.6 调用道路救援系统作废救援权益(cancelEquity)
+            else 代步车权益
+                EquityManagementSystem ->> DownstreamSystems: 6.5.7 调用代步车系统作废代步车权益(cancelEquity)
+            end
+            DownstreamSystems -->> EquityManagementSystem: 6.6 返回作废结果
+        end
+
+        Note over EquityManagementSystem: 7. 实际退款处理
+        EquityManagementSystem ->> OrderRpc: 7.1 调用订单实际退款(virtualGoodsRefundApply)
+        OrderRpc -->> EquityManagementSystem: 7.2 返回退款结果
+        Note over EquityManagementSystem: 8. 释放分布式锁
+        EquityManagementSystem ->> EquityManagementSystem: 8.1 释放Redis分布式锁
+        EquityManagementSystem -->> Client: 9. 返回退款成功结果(hasPermission=true, isRefund=true)
+    end

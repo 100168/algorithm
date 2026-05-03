@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant CS as 客服工作台
+    participant OP as 客服作业
+    participant SOC as SOC工单系统
+    participant BPM as BPM审批
+    participant ZC as 座舱
+    participant QY as 权益
+    CS ->> SOC: 创建内部升级工单
+    SOC ->> OP: 推送客服作业
+    CS ->> OP: 办理-车主标签和权益恢复
+    OP ->> SOC: 提交工单
+    OP ->> OP: 客服作业单完结
+    OP ->> SOC: 发mq通知
+    SOC ->> SOC: 通过流程引擎转到车主及权益恢复节点
+    SOC ->> OP: 推送车主及权益恢复作业单
+    SOC ->> BPM: 发起审批
+    BPM ->> OP: 回调通知审批结果【通过/拒绝】
+    OP ->> OP: 通过或者拒绝作业单都会完结
+    OP ->> ZC: 审核通过发mq通知恢复车主标签
+    ZC ->> ZC: 恢复车主标签
+    OP ->> QY: 审核通过发mq通知发放权益
+    QY ->> QY: 恢复首任车主权益
+    OP ->> SOC: 发mq通知
+    SOC ->> SOC:工单完结
+
+
+
+

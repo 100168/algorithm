@@ -1,0 +1,49 @@
+sequenceDiagram
+    participant Client as 客户端
+    participant Service as 服务包系统
+    participant Coupon as 优惠券系统
+    participant Order as 订单系统
+    participant BPM as 流程系统
+    participant DB as 数据库
+    participant MQ as 消息队列
+    autonumber
+%% 券下发流程
+    Service ->> Service: 购买服务包
+    Service ->>+ Coupon: 调用券下发接口(SingleAssignRequest)
+    Note over Service, Coupon: 参数：<br/>appId、token、userId<br/>configId(券批次ID)<br/>vid、有效期等
+    Coupon -->>- Service: 返回券下发结果(SingleAssignResponse)
+    Service ->>+ DB: 保存券下发记录(UserEquityCouponIssuancePO)
+    DB -->>- Service: 保存成功
+%% 券核销流程
+    Client ->>+ Coupon: 使用优惠券
+    Coupon ->> Coupon: 核销券
+    Coupon ->>+ MQ: 发送核销消息(CouponUsePushMsgBody)
+    Note over Coupon, MQ: 消息体包含：<br/>couponId、orderId<br/>status、modifyTime等
+    MQ ->>+ Service: 消费核销消息
+    Service ->>+ Order: 获取维修单号和工单号
+    Order -->>- Service: 返回mrOrderId和superWorkOrderId
+    Service ->>+ DB: 查询券下发记录
+    DB -->>- Service: 返回UserEquityCouponIssuancePO
+    Service ->>+ DB: 查询或创建核销记录
+    alt 核销记录不存在
+        Service ->> DB: 创建核销记录(UserEquityVerificationDetailPO)
+        Note over Service, DB: 记录包含：<br/>couponId、orderId<br/>mrOrderId、superWorkOrderId<br/>status、operateTime等
+    else 核销记录已存在
+        Service ->> DB: 更新核销记录状态
+    end
+
+    Service ->>+ DB: 更新权益核销数量
+    DB -->>- Service: 更新成功
+
+    alt 核销状态为已使用(USED)
+        Service ->>+ DB: 查询服务包退款流程
+        DB -->>- Service: 返回退款流程信息
+        alt 存在审核中的退款流程
+            Service ->>+ BPM: 取消退款流程
+            BPM -->>- Service: 取消成功
+            Service ->>+ DB: 更新退款流程状态为驳回
+            DB -->>- Service: 更新成功
+        end
+    end
+
+    Service -->>- Client: 返回核销结果

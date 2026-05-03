@@ -1,0 +1,56 @@
+sequenceDiagram
+    participant Client as 客户端
+    participant EquityService as 权益服务
+    participant OrderService as 订单服务
+    participant VehicleUserService as 车辆用户服务
+    participant ExtendedWarrantyService as 延保策略服务
+    participant ConsumableSystem as 优惠中台
+    participant TrafficSystem as 流量系统
+    autonumber
+    Note over Client, TrafficSystem: 退款权限校验调用链路
+    Client ->> EquityService: 1. 调用退款权限校验方法(verifyRefundPermission)
+    EquityService ->> EquityService: 2.1 查询权益发放记录(listByOrderId)
+    Note over EquityService: 2.2 返回发放记录实体(PackageGrantEntity)
+    Note over EquityService: 2.3 校验权益包状态(是否有效)
+
+    alt 延保权益包退款流程
+        Note over EquityService: 3.0 延保退款策略：<br/>1. 权益未使用<br/>2. 用户为车主或授权人<br/>3. 退款金额和手续费
+        EquityService ->> ExtendedWarrantyService: 3.1 校验延保退款资格(checkExtendedWarranty)
+        ExtendedWarrantyService ->> OrderService: 3.2 查询订单详情(detail)
+        OrderService -->> ExtendedWarrantyService: 3.3 返回订单详情(OrderDetailDTO)
+        ExtendedWarrantyService ->> VehicleUserService: 3.4 获取车主信息(getOwnerInfo)
+        VehicleUserService -->> ExtendedWarrantyService: 3.5 返回用户信息
+        ExtendedWarrantyService -->> EquityService: 3.6 返回权限校验结果(AuthorityDto)
+        Note over EquityService: 3.7 计算退款金额和手续费
+
+    else 耗材权益包退款流程
+        EquityService ->> EquityService: 4.1 查询权益使用记录(queryEquityUsageRecord)
+        EquityService ->> ConsumableSystem: 4.2 调用耗材系统查询使用记录
+        ConsumableSystem -->> EquityService: 4.3 返回耗材使用记录
+
+        alt 耗材单品(14天后扣除10%)
+            Note over EquityService: 4.3.1 耗材单品退款策略：<br/>1. 权益未使用<br/>2. 14天内全额退款<br/>3. 14天后扣除10%手续费
+            EquityService ->> OrderService: 4.5 查询订单详情(detail)
+            OrderService -->> EquityService: 4.6 返回订单详情(OrderDetailDTO)
+            Note over EquityService: 4.7 计算退款金额和手续费<br/>1. 计算购买时间<br/>2. 判断是否超过14天<br/>3. 超过14天扣除10%<br/>4. 计算实际退款金额
+
+        else 耗材单品(全额退款)
+            Note over EquityService: 4.3.2 耗材单品全额退款策略：<br/>1. 权益未使用<br/>2. 全额退款
+            EquityService ->> OrderService: 4.8 查询订单详情(detail)
+            OrderService -->> EquityService: 4.9 返回订单详情(OrderDetailDTO)
+            Note over EquityService: 4.10 计算全额退款金额<br/>1. 获取订单金额<br/>2. 计算实际退款金额
+        end
+
+    else 流量权益包退款流程
+        Note over EquityService: 5.0 流量权益包退款策略：<br/>1. 权益未使用<br/>2. 全额退款
+        EquityService ->> EquityService: 5.1 查询权益使用记录(queryEquityUsageRecord)
+        EquityService ->> TrafficSystem: 5.2 调用流量系统查询使用记录
+        TrafficSystem -->> EquityService: 5.3 返回流量使用记录
+        Note over EquityService: 5.4 校验使用记录<br/>1. 检查是否使用过<br/>2. 获取使用量
+        EquityService ->> OrderService: 5.5 查询订单详情(detail)
+        OrderService -->> EquityService: 5.6 返回订单详情(OrderDetailDTO)
+        Note over EquityService: 5.7 计算全额退款金额<br/>1. 获取订单金额<br/>2. 计算实际退款金额
+    end
+
+    Note over EquityService: 6.0 生成退款权限校验结果<br/>1. 设置退款权限<br/>2. 设置退款比例<br/>3. 设置退款金额<br/>4. 设置扣除金额<br/>5. 设置积分金额
+    EquityService -->> Client: 6.1 返回退款权限校验结果(VerifyPermissionResp)

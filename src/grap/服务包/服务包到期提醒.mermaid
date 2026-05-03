@@ -1,0 +1,36 @@
+sequenceDiagram
+    autonumber
+    participant job as 任务中心
+    participant fwb as 服务包
+    participant db as 数据库
+    participant fjx as 发件箱
+    participant xxzx as 消息中心
+    participant alert as 告警系统
+    activate job
+    job ->>+ fwb: 每日10点触发任务
+    loop 分批处理（每批1000条）
+        fwb ->>+ db: 分页查询过期服务包
+        db -->>- fwb: 返回当前页数据
+        fwb ->>+ fjx: 批量创建推送任务
+        fjx -->>- fwb: 返回结果
+    end
+    fwb -->>- job: 返回结果
+    deactivate job
+
+    rect rgba(0, 255, 0, 0.1)
+        note right of fjx: 异步发送流程（独立定时任务）
+        loop
+            fjx ->>+ xxzx: 发送到期提醒
+            alt 发送成功
+                xxzx -->> fjx: 返回成功
+                fjx ->>+ db: 更新发送状态
+                db -->>- fjx: 返回结果
+            else 发送失败
+                xxzx -->> fjx: 返回失败原因
+                fjx ->>+ alert: 发送飞书告警
+                alert -->>- fjx: 返回结果
+            end
+        end
+    end
+
+

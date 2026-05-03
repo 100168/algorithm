@@ -1,0 +1,148 @@
+erDiagram
+    service_package_config ||--o{ service_package_equity : "包含"
+    service_package_config ||--o{ user_service_package_record : "购买"
+    service_package_config ||--o{ service_package_log : "记录"
+    service_package_config ||--o{ service_package_whitelist : "白名单"
+    user_service_package_record ||--o{ user_service_package_equity_detail : "包含"
+    user_service_package_record ||--o{ user_equity_verification_detail : "核销"
+    user_service_package_record ||--o{ user_equity_sim_issuance : "流量"
+    equity_config ||--o{ service_package_equity : "关联"
+    equity_config ||--o{ equity_attachment_config : "附件"
+    equity_config ||--o{ equity_log : "记录"
+
+    service_package_config {
+        bigint service_package_id PK "主键"
+        string service_package_name "服务包名称"
+        bigint ssu_id "商品ID"
+        string ssu_name "商品名称"
+        string car_edition_ssu_id "车型版本ID"
+        int status "状态:0-有效；1-无效"
+        datetime create_time "创建时间"
+        datetime update_time "修改时间"
+        string create_user "创建人"
+        string create_user_cn "创建人中文名"
+        string update_user "更新人"
+        string update_user_cn "更新人中文名"
+        int delete_flag "是否删除:0-有效；1-逻辑删除"
+    }
+
+    service_package_equity {
+        bigint id PK "主键"
+        bigint service_package_id FK "服务包ID"
+        bigint equity_id FK "权益ID"
+        int limit_number "限制数量，不限制是-1"
+        int delete_flag "是否删除:0-有效；1-逻辑删除"
+    }
+
+    user_service_package_record {
+        bigint id PK "主键"
+        string vid "车辆VID"
+        bigint service_package_id FK "服务包ID"
+        string service_package_name "服务包名称"
+        bigint order_id "订单号"
+        bigint mid "下单人MID"
+        bigint trade_time "交易时间"
+        bigint amount "交易金额(分)"
+        bigint valid_begin_time "有效期开始时间"
+        bigint valid_end_time "有效期结束时间"
+        int status "状态:1-已付款妥投中；2-已付款已妥投；3-已付款妥投失败；4-已退款；5-退款审核中；6-退款中"
+        int delivery_status "妥投状态:0妥投中；1已妥投；2-妥投失败"
+        string insurance_id "保单ID"
+        bigint insurance_valid_begin_time "保单有效期开始时间"
+        bigint insurance_valid_end_time "保单有效期结束时间"
+        bigint approve_time "保单承保时间"
+        datetime create_time "创建时间"
+    }
+
+    user_service_package_equity_detail {
+        bigint id PK "主键"
+        bigint order_id FK "订单号"
+        bigint equity_id FK "权益ID"
+        int equity_type "权益类型:1-基础保养；2-漆面保养；3-上门补胎；4-取送车"
+        string equity_name "权益名称"
+        int equity_form "权益形式:1-卡券；2-非卡券"
+        bigint collection_price "收记单价(分)"
+        bigint settlement_price "结算单价(分)"
+        bigint single_collection_price "单次计收金额(分)"
+        int collection_frequency "收记频次，不限次数有值，限次数为-1"
+        int store_settlement "是否与门店结算:0-否;1-是"
+        string sap_id "SAP编号"
+        int limit_number "限制数量，不限制是-1"
+        int delivery_number "妥投数量"
+        int verification_number "核销数量"
+        string business_id "业务ID：券批次ID/取送车标识"
+        datetime create_time "创建时间"
+    }
+
+    service_package_whitelist {
+        bigint id PK "主键"
+        string vid "车辆VID"
+        string create_user "创建人"
+        string create_user_cn "创建人中文名"
+        datetime create_time "创建时间"
+        int delete_flag "是否删除:0-有效；1-逻辑删除"
+        datetime update_time "修改时间"
+    }
+
+    equity_config {
+        bigint equity_id PK "主键"
+        string equity_name "权益名称"
+        int equity_type "权益类型"
+        int equity_form "权益形式"
+        bigint collection_price "收记单价"
+        bigint settlement_price "结算单价"
+        int collection_frequency "收记频次"
+        int store_settlement "是否与门店结算"
+        string sap_id "SAP编号"
+        int status "状态"
+        int delete_flag "是否删除"
+        string business_id "业务ID"
+        string settlement_method "结算方式"
+    }
+
+    user_equity_verification_detail {
+        bigint id PK "主键"
+        bigint order_id FK "订单号"
+        bigint equity_id FK "权益ID"
+        string verification_code "核销码"
+        int status "状态"
+        datetime create_time "创建时间"
+    }
+
+    user_equity_sim_issuance {
+        bigint id PK "主键"
+        bigint order_id FK "订单号"
+        string vid "车辆VID"
+        string sim_id "SIM卡ID"
+        int status "状态"
+        datetime create_time "创建时间"
+    }
+
+    service_package_log {
+        bigint id PK "主键"
+        bigint service_package_id FK "服务包ID"
+        int oper_type "操作类型"
+        datetime create_time "创建时间"
+        string create_user "创建人"
+        string create_user_cn "创建人中文名"
+        int delete_flag "是否删除"
+    }
+
+    equity_log {
+        bigint id PK "主键"
+        bigint equity_id FK "权益ID"
+        int oper_type "操作类型"
+        datetime create_time "创建时间"
+        string create_user "创建人"
+        string create_user_cn "创建人中文名"
+        int delete_flag "是否删除"
+    }
+
+    equity_attachment_config {
+        bigint id PK "主键"
+        bigint equity_id FK "权益ID"
+        string attachment_url "附件URL"
+        string attachment_name "附件名称"
+        int delete_flag "是否删除"
+        datetime create_time "创建时间"
+    }

@@ -1,0 +1,41 @@
+sequenceDiagram
+    autonumber
+    participant user as 用户
+    participant order as 订单服务
+    participant coupon as 卡券服务
+    participant mq as MQ
+    participant servicePackage as 服务包服务
+    participant pay as 支付服务
+
+    user ->>+ order: 1. 下单请求
+    order ->> order: 2. 生成订单（待支付状态）
+    order ->>+ coupon: 3. 预锁定卡券（同步）
+    coupon -->>- order: 4. 返回锁定结果
+
+    alt 卡券锁定成功
+        order ->>+ pay: 5. 发起支付（异步）
+        pay -->>- order: 6. 返回受理成功
+        order -->> user: 7. 返回下单成功（待支付）
+
+        par 并行处理
+            order ->> mq: 8. 发送订单创建事件（含订单+卡券数据）
+            mq ->> servicePackage: 9. 消费订单创建事件
+            servicePackage ->> servicePackage: 10. 记录核销待处理
+            servicePackage -->> mq: 11. ACK
+        and
+            pay ->> order: 12. 支付结果回调
+            alt 支付成功
+                order ->> order: 13. 更新订单状态（已支付）
+                order ->>+ coupon: 14. 确认核销卡券（同步）
+                coupon ->> mq: 15. 发送核销完成事件
+                coupon -->> order: 16. 返回核销成功
+                mq ->> servicePackage: 17. 触发服务包发放
+            else 支付超时/失败
+                order ->> order: 18. 更新订单状态（已取消）
+                order ->>+ coupon: 19. 释放卡券锁定（同步）
+                coupon -->> order: 20. 返回释放成功
+            end
+        end
+    else 卡券锁定失败
+        order -->> user: 21. 返回下单失败
+    end

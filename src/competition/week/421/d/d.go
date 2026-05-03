@@ -55,16 +55,18 @@ func newMatrix(n, m int) matrix {
 
 //有点抽象，有点难想，切记 这样写
 
+// c[i][j] = (a[i][k]*b[k][j])
+
 func (a matrix) mul(b matrix) matrix {
 	c := newMatrix(len(a), len(b[0]))
 
-	for i, row := range a {
-		for k, x := range row {
-			if x == 0 {
-				continue
-			}
-			for j, y := range b[k] {
-				c[i][j] = (c[i][j] + x*y) % mod
+	k := len(b)
+
+	for i := range c {
+		for j := range c[i] {
+
+			for p := 0; p < k; p++ {
+				c[i][j] += a[i][p] * b[p][j]
 			}
 		}
 	}
